@@ -21,3 +21,6 @@ Route::post('/login', function () {
     return "Login diproses";
 })->name('login.process');
 
+Route::get('/registrasi', function () {
+    return view('registrasi');
+});
