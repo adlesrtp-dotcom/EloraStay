@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registrasi - EloraStay</title>
+    <title>Tambah Pelanggan - EloraStay</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -18,6 +18,7 @@
             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             color: white;
         }
 
@@ -25,6 +26,7 @@
             color: white;
             text-decoration: none;
             margin-left: 20px;
+            font-size: 14px;
         }
 
         .login-btn {
@@ -38,7 +40,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 85vh;
+            height: 80vh;
         }
 
         .card {
@@ -51,19 +53,19 @@
         .card-header {
             background: #f062a6;
             color: white;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
             text-align: center;
             margin-bottom: 20px;
         }
 
         label {
+            display: block;
             font-size: 13px;
             margin-top: 10px;
-            display: block;
         }
 
-        input {
+        input, textarea {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
@@ -71,55 +73,44 @@
             border: 1px solid #ccc;
         }
 
-        .forgot {
-            text-align: right;
-            font-size: 12px;
-            color: #f062a6;
-            margin-top: 5px;
+        textarea {
+            border-radius: 10px;
+            resize: none;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
         }
 
         .btn {
-            width: 100%;
+            flex: 1;
             padding: 10px;
-            margin-top: 15px;
-            border: none;
             border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
             background: #f062a6;
             color: white;
-            cursor: pointer;
         }
 
-        .divider {
-            text-align: center;
-            margin: 15px 0;
-            font-size: 12px;
-            color: #999;
-        }
-
-        .btn-google {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            background: white;
-            cursor: pointer;
-        }
-
-        .register {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 12px;
-        }
-
-        .register a {
-            color: #f062a6;
-            text-decoration: none;
+        .btn-secondary {
+            background: #ddd;
+            color: #666;
         }
 
         .terms {
-            text-align: center;
             font-size: 11px;
             margin-top: 10px;
+            text-align: center;
+        }
+
+        .terms a {
+            color: #f062a6;
+            text-decoration: none;
         }
 
         /* FOOTER */
@@ -137,6 +128,7 @@
             background: #f4a8c7;
             color: white;
             padding: 10px;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -158,42 +150,38 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h3>Daftar Akun</h3>
-            <small>Buat akun baru untuk mulai booking</small>
+            <h3>Tambah Pelanggan</h3>
+            <small>Isi data pelanggan hotel baru</small>
         </div>
 
-        <form method="POST" action="{{ route('register.process') }}">
+        <form method="POST" action="{{ route('pelanggan.store') }}">
             @csrf
 
-            <label>Nama Lengkap</label>
+            <label>Nama Pelanggan</label>
             <input type="text" name="nama" required>
 
             <label>Email</label>
             <input type="email" name="email" required>
 
-            <label>Password</label>
-            <input type="password" name="password" required>
+            <label>Nomor Hp</label>
+            <input type="text" name="hp" required>
 
-            <button type="submit" class="btn">Daftar</button>
+            <label>Alamat</label>
+            <textarea name="alamat" rows="3" required></textarea>
 
-            <div class="divider">atau</div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="button" onclick="window.location.href='/kamar'" class="btn btn-secondary">
+                    Kembali
+                </button>
+            </div>
 
-            <button type="button" class="btn-google">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png"
-                     style="width:18px; margin-right:8px;">
-                Lanjutkan dengan Google
-            </button>
-
-            <div class="register">
-                Sudah punya akun? <a href="/login">Login</a>
+            <div class="terms">
+                Dengan melanjutkan, Anda menyetujui 
+                <a href="#">Syarat & Ketentuan</a> dan 
+                <a href="#">Kebijakan Privasi</a> kami.
             </div>
         </form>
-
-        <div class="terms">
-            Dengan melanjutkan, Anda menyetujui 
-            <a href="#">Syarat & Ketentuan</a> dan 
-            <a href="#">Kebijakan Privasi</a>.
-        </div>
     </div>
 </div>
 
@@ -201,23 +189,26 @@
 <div class="footer">
     <div>
         <h4>EloraStay</h4>
-        <p>Platform booking hotel terpercaya.</p>
+        <p>Platform booking hotel terpercaya untuk pengalaman menginap terbaik Anda.</p>
     </div>
 
     <div>
         <h4>Link Cepat</h4>
         <p>Beranda</p>
         <p>Daftar Kamar</p>
+        <p>Reservasi Saya</p>
     </div>
 
     <div>
         <h4>Hubungi Kami</h4>
         <p>Email: info@elorastay.com</p>
+        <p>Telepon: +62 123 456 7890</p>
+        <p>Instagram: @elorastay</p>
     </div>
 </div>
 
 <div class="copyright">
-    © 2026 EloraStay
+    © 2026 EloraStay. All rights reserved.
 </div>
 
 </body>
