@@ -27,3 +27,18 @@ Route::post('/login', function () {
     return "Login diproses";
 })->name('login.process');
 
+Route::get('/registrasi', function () {
+    return view('registrasi');
+});
+
+Route::post('/registrasi', function () {
+    return redirect('/login');
+})->name('register.process');
+
+Route::get('/tambah_pelanggan', function () {
+    return view('tambah_pelanggan');
+});
+
+Route::post('/tambah_pelanggan', function () {
+    return "Data pelanggan berhasil disimpan";
+})->name('pelanggan.store');

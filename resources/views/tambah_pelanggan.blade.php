@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login - EloraStay</title>
+    <title>Tambah Pelanggan - EloraStay</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -48,7 +48,6 @@
             padding: 30px;
             width: 350px;
             border-radius: 15px;
-            text-align: center;
         }
 
         .card-header {
@@ -56,62 +55,60 @@
             color: white;
             padding: 15px;
             border-radius: 10px;
+            text-align: center;
             margin-bottom: 20px;
         }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 20px;
-            border: 1px solid #ccc;
-        }
-
-        .forgot {
-            text-align: right;
-            font-size: 12px;
-            color: #f062a6;
-            margin-bottom: 15px;
-        }
-
-        .btn {
-            width: 100%;
-            background: #f062a6;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .divider {
-            margin: 15px 0;
-            font-size: 12px;
-        }
-
-        .btn-google {
-            width: 100%;
-            padding: 10px;
-            border-radius: 20px;
-            border: 1px solid #ccc;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .btn-google img {
-            width: 18px;
-            margin-right: 8px;
-        }
-
-        .register {
-            font-size: 12px;
+        label {
+            display: block;
+            font-size: 13px;
             margin-top: 10px;
         }
 
-        .register a {
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+        }
+
+        textarea {
+            border-radius: 10px;
+            resize: none;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #f062a6;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #ddd;
+            color: #666;
+        }
+
+        .terms {
+            font-size: 11px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .terms a {
             color: #f062a6;
             text-decoration: none;
         }
@@ -124,10 +121,6 @@
             display: flex;
             justify-content: space-around;
             font-size: 12px;
-        }
-
-        .footer h4 {
-            margin-bottom: 10px;
         }
 
         .copyright {
@@ -153,33 +146,40 @@
     </div>
 </div>
 
-<!-- FORM LOGIN -->
+<!-- FORM -->
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h3>Selamat Datang</h3>
-            <small>Login untuk mengakses akun Anda</small>
+            <h3>Tambah Pelanggan</h3>
+            <small>Isi data pelanggan hotel baru</small>
         </div>
 
-        <form method="POST" action="{{ route('login.process') }}">
+        <form method="POST" action="{{ route('pelanggan.store') }}">
             @csrf
 
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <label>Nama Pelanggan</label>
+            <input type="text" name="nama" required>
 
-            <div class="forgot">Lupa password?</div>
+            <label>Email</label>
+            <input type="email" name="email" required>
 
-            <button type="submit" class="btn">Masuk</button>
+            <label>Nomor Hp</label>
+            <input type="text" name="hp" required>
 
-            <div class="divider">atau</div>
+            <label>Alamat</label>
+            <textarea name="alamat" rows="3" required></textarea>
 
-            <button type="button" class="btn-google">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png">
-                Lanjutkan dengan Google
-            </button>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="button" onclick="window.location.href='/kamar'" class="btn btn-secondary">
+                    Kembali
+                </button>
+            </div>
 
-            <div class="register">
-                <p>Belum punya akun? <a href="/registrasi">Daftar sekarang</a></p>
+            <div class="terms">
+                Dengan melanjutkan, Anda menyetujui 
+                <a href="#">Syarat & Ketentuan</a> dan 
+                <a href="#">Kebijakan Privasi</a> kami.
             </div>
         </form>
     </div>
@@ -202,7 +202,7 @@
     <div>
         <h4>Hubungi Kami</h4>
         <p>Email: info@elorastay.com</p>
-        <p>Telepon: 0812 3456 7890</p>
+        <p>Telepon: +62 123 456 7890</p>
         <p>Instagram: @elorastay</p>
     </div>
 </div>
