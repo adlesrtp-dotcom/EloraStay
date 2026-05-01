@@ -148,7 +148,7 @@
     <div>
         <a href="/">Beranda</a>
         <a href="/kamar">Daftar Kamar</a>
-        <a href="#">Reservasi Saya</a>
+        <a href="/reservasi">Reservasi Saya</a>
         <a href="#">Pembayaran</a>
         <a href="/login" class="login-btn">Login</a>
     </div>

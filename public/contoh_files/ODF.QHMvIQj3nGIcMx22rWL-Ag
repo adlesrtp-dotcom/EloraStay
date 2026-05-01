@@ -1,0 +1,22 @@
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="256pt" height="256pt" viewBox="0 0 256 256"
+ preserveAspectRatio="xMidYMid meet">
+ <style>
+        path {
+            fill: #000000;
+        }
+        @media (prefers-color-scheme: dark) {
+            path {
+                fill: #198CBB;
+            }
+        }
+    </style>
+<g transform="translate(0,256) scale(0.100000,-0.100000)"
+ stroke="none">
+<path d="M5 2508 c2 -7 144 -508 315 -1113 171 -605 320 -1122 333 -1150 33
+-74 87 -137 148 -170 l54 -30 404 -3 c474 -3 471 -4 561 87 31 31 65 77 77
+102 16 34 608 2099 648 2262 l7 27 -283 -2 -283 -3 -332 -1094 c-182 -601
+-341 -1114 -354 -1140 l-22 -46 -25 50 c-17 37 -683 2210 -683 2231 0 2 -128
+4 -285 4 -223 0 -283 -3 -280 -12z"/>
+</g>
+</svg>

@@ -2,143 +2,359 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reservasi  - EloraStay</title>
+    <title>Reservasi Saya - EloraStay</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffe4ec;
+        }
+
+        /* Navbar */
+          .navbar {
+    background: linear-gradient(to right, #f472b6, #ec4899);
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Menu */
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    position: relative;
+    transition: 0.3s;
+}
+
+/* Hover underline effect */
+.nav-menu a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: white;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* Login button */
+.login-btn {
+    background: white;
+    color: #ec4899;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Hero Image */
+.hero {
+    height: 300px;
+    background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Overlay biar teks kebaca */
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(236, 72, 153, 0.4); /* pink overlay */
+    top: 0;
+    left: 0;
+}
+
+/* Text */
+.hero-content {
+    position: relative;
+    color: white;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    margin-bottom: 15px;
+}
+
+.hero-content button {
+    background: white;
+    color: #ec4899;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-btn:hover {
+    background: #ffe4ec;
+}
+
+        /* Header */
+        .header {
+            padding: 20px;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        /* Container */
+        .container {
+            padding: 0 20px;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin: 0;
+        }
+
+        .sub-text {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .info-grid p:first-child {
+            color: #888;
+        }
+
+        hr {
+            border: 1px solid #f9a8d4;
+            margin: 15px 0;
+        }
+
+        /* Bottom */
+        .bottom {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .price {
+            color: #ec4899;
+            font-weight: bold;
+        }
+
+        /* Button */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #ec4899;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #fbcfe8;
+            color: #be185d;
+        }
+
+        .btn-full {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f472b6;
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-pink-100 via-pink-50 to-white min-h-screen font-sans">
+
+<body>
 
 <!-- Navbar -->
-<nav class="bg-white/70 backdrop-blur-md shadow-sm px-6 py-3 flex justify-between items-center sticky top-0 z-50">
-    <h1 class="font-bold text-xl text-pink-600">EloraStay</h1>
+<div class="navbar">
+    <div class="logo">EloraStay</div>
 
-    <div class="space-x-6 text-sm font-medium">
-        <a href="/" class="hover:text-pink-500 transition">Beranda</a>
-        <a href="/kamar" class="hover:text-pink-500 transition">Daftar Kamar</a>
-        <a href="/reservasi" class="hover:text-pink-500 transition">Reservasi</a>
-        <a href="/pembayaran" class="hover:text-pink-500 transition">Pembayaran</a>
+    <div class="nav-menu">
+        <a href="/">Beranda</a>
+        <a href="/kamar">Daftar Kamar</a>
+        <a href="/reservasi">Reservasi</a>
+        <a href="/pembayaran">Pembayaran</a>
     </div>
 
-    <button class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-1 rounded-lg shadow transition">
-        Login
-    </button>
-</nav>
-
+    <button class="login-btn">Login</button>
+</div>
+<div class="hero">
+    <div class="hero-content">
+        <h1>Temukan Hotel Impian Anda</h1>
+        <p>Booking mudah, cepat, dan terpercaya hanya di EloraStay</p>  
+    </div>
+</div>
 <!-- Header -->
-<div class="p-6">
-    <h2 class="text-2xl font-bold">Reservasi</h2>
-    <p class="text-gray-600">Kelola dan lihat detail reservasi Anda</p>
+<div class="header">
+    <h2>Reservasi Saya</h2>
+    <p>Kelola dan lihat detail reservasi Anda</p>
 </div>
 
 <!-- LIST RESERVASI -->
-<div class="px-6 space-y-6">
+<div class="container">
 
     <!-- Card 1 -->
-    <div class="bg-white rounded-2xl p-5 shadow">
-        <h3 class="font-semibold text-lg">Deluxe Room</h3>
-        <p class="text-sm text-gray-500">EloraStay Jakarta</p>
+    <div class="card">
+        <h3>Deluxe Room</h3>
+        <p class="sub-text">EloraStay Jakarta</p>
 
-        <!-- Info -->
-        <div class="grid grid-cols-3 text-sm text-center mt-4">
+        <div class="info-grid">
             <div>
-                <p class="text-gray-500">Check-in</p>
+                <p>Check-in</p>
                 <p>Sen, 20 Apr 2026</p>
             </div>
             <div>
-                <p class="text-gray-500">Check-out</p>
+                <p>Check-out</p>
                 <p>Kam, 23 Apr 2026</p>
             </div>
             <div>
-                <p class="text-gray-500">Tamu</p>
+                <p>Tamu</p>
                 <p>2 orang</p>
             </div>
         </div>
 
-        <hr class="my-3 border-pink-300">
+        <hr>
 
-        <!-- Bottom -->
-        <div class="flex justify-between items-center text-sm">
+        <div class="bottom">
             <div>
-                <p class="text-gray-500">Kode Booking</p>
+                <p class="sub-text">Kode Booking</p>
                 <p>ELS-2026-001</p>
             </div>
 
-            <div class="text-right">
-                <p class="text-gray-500">Total Pembayaran</p>
-                <p class="text-pink-500 font-bold">Rp 1.500.000</p>
+            <div style="text-align:right;">
+                <p class="sub-text">Total Pembayaran</p>
+                <p class="price">Rp 1.500.000</p>
             </div>
         </div>
 
-        <!-- Button -->
-        <div class="flex gap-4 mt-4">
-            <a href="/pembayaran" 
-                class="bg-pink-500 text-white px-4 py-2 rounded w-1/2 text-center">
-                Lihat Detail
-            </a>
-            <button class="bg-pink-200 text-pink-600 px-4 py-2 rounded w-1/2">Batalkan</button>
+        <div class="btn-group">
+            <button class="btn btn-primary">Lihat Detail</button>
+            <button class="btn btn-secondary">Batalkan</button>
         </div>
     </div>
 
     <!-- Card 2 -->
-    <div class="bg-white rounded-2xl p-5 shadow">
-        <h3 class="font-semibold text-lg">Deluxe Room</h3>
-        <p class="text-sm text-gray-500">EloraStay Jakarta</p>
+    <div class="card">
+        <h3>Deluxe Room</h3>
+        <p class="sub-text">EloraStay Jakarta</p>
 
-        <div class="grid grid-cols-3 text-sm text-center mt-4">
+        <div class="info-grid">
             <div>
-                <p class="text-gray-500">Check-in</p>
+                <p>Check-in</p>
                 <p>Sen, 20 Apr 2026</p>
             </div>
             <div>
-                <p class="text-gray-500">Check-out</p>
+                <p>Check-out</p>
                 <p>Kam, 23 Apr 2026</p>
             </div>
             <div>
-                <p class="text-gray-500">Tamu</p>
+                <p>Tamu</p>
                 <p>2 orang</p>
             </div>
         </div>
 
-        <hr class="my-3 border-pink-300">
+        <hr>
 
-        <div class="flex justify-between items-center text-sm">
+        <div class="bottom">
             <div>
-                <p class="text-gray-500">Kode Booking</p>
+                <p class="sub-text">Kode Booking</p>
                 <p>ELS-2026-001</p>
             </div>
 
-            <div class="text-right">
-                <p class="text-gray-500">Total Pembayaran</p>
-                <p class="text-pink-500 font-bold">Rp 1.500.000</p>
+            <div style="text-align:right;">
+                <p class="sub-text">Total Pembayaran</p>
+                <p class="price">Rp 1.500.000</p>
             </div>
         </div>
 
-        <div class="mt-4">
-            <button class="bg-pink-500 text-white px-4 py-2 rounded w-full">Lihat Detail</button>
-        </div>
+        <button class="btn btn-primary btn-full">Lihat Detail</button>
     </div>
 
 </div>
 
 <!-- Footer -->
-<footer class="bg-pink-400 text-white p-6 mt-10 grid grid-cols-3">
+<footer>
     <div>
-        <h4 class="font-bold">EloraStay</h4>
-        <p class="text-sm">Platform booking hotel terpercaya</p>
+        <h4>EloraStay</h4>
+        <p>Platform booking hotel terpercaya</p>
     </div>
 
     <div>
-        <h4 class="font-bold">Link</h4>
-        <p class="text-sm">Beranda</p>
-        <p class="text-sm">Daftar </p>
-        <p class="text-sm">Reservasi </p>
+        <h4>Link</h4>
+        <p>Beranda</p>
+        <p>Daftar Kamar</p>
+        <p>Reservasi Saya</p>
     </div>
 
     <div>
-        <h4 class="font-bold">Hubungi Kami</h4>
-        <p class="text-sm">email@elorastay.com</p>
-        <p class="text-sm">+62 123 456 7890</p>
+        <h4>Hubungi Kami</h4>
+        <p>email@elorastay.com</p>
+        <p>+62 123 456 7890</p>
     </div>
 </footer>
 

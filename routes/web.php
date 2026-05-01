@@ -42,3 +42,7 @@ Route::get('/tambah_pelanggan', function () {
 Route::post('/tambah_pelanggan', function () {
     return "Data pelanggan berhasil disimpan";
 })->name('pelanggan.store');
+
+Route::get('/booking', function () {
+    return view('booking');
+});

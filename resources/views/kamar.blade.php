@@ -4,128 +4,349 @@
     <meta charset="UTF-8">
     <title>Daftar Kamar - EloraStay</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffe4ec;
+        }
+
+        /* Navbar */
+
+.navbar {
+    background: linear-gradient(to right, #f472b6, #ec4899);
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Menu */
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    position: relative;
+    transition: 0.3s;
+}
+
+/* Hover underline effect */
+.nav-menu a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: white;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* Login button */
+.login-btn {
+    background: white;
+    color: #ec4899;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Hero Image */
+.hero {
+    height: 300px;
+    background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Overlay biar teks kebaca */
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(236, 72, 153, 0.4); /* pink overlay */
+    top: 0;
+    left: 0;
+}
+
+/* Text */
+.hero-content {
+    position: relative;
+    color: white;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    margin-bottom: 15px;
+}
+
+.hero-content button {
+    background: white;
+    color: #ec4899;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-btn:hover {
+    background: #ffe4ec;
+}
+
+        /* Header */
+        .header {
+            padding: 20px;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        /* Filter */
+        .filter {
+            background-color: #fbcfe8;
+            margin: 0 20px;
+            padding: 20px;
+            border-radius: 15px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+
+        .filter button {
+            background-color: #fce7f3;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* Room */
+        .room-list {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .price {
+            color: #ec4899;
+            font-weight: bold;
+        }
+
+        .card button {
+            background-color: #ec4899;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            float: right;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        /* Rating */
+        .image-container {
+            position: relative;
+        }
+
+        .rating {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #facc15;
+            color: white;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f472b6;
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 20px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+    </style>
 </head>
-<body class="bg-pink-100 font-sans">
+
+<body>
 
 <!-- Navbar -->
-<nav class="bg-pink-400 text-white px-6 py-3 flex justify-between">
-    <h1 class="font-bold text-lg">EloraStay</h1>
-    <div class="space-x-4">
+<div class="navbar">
+    <div class="logo">EloraStay</div>
+
+    <div class="nav-menu">
         <a href="/">Beranda</a>
-        <a href="#">Daftar Kamar</a>
-        <a href="#">Reservasi Saya</a>
-        <a href="#">Pembayaran</a>
-        <button class="bg-white text-pink-500 px-3 py-1 rounded">Login</button>
+        <a href="/kamar">Daftar Kamar</a>
+        <a href="/reservasi">Reservasi</a>
+        <a href="/pembayaran">Pembayaran</a>
     </div>
-</nav>
+
+    <button class="login-btn">Login</button>
+</div>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>Temukan Hotel Impian Anda</h1>
+        <p>Booking mudah, cepat, dan terpercaya hanya di EloraStay</p>  
+    </div>
+</div>
 
 <!-- Header -->
-<div class="p-6">
-    <h2 class="text-2xl font-bold">Daftar Kamar</h2>
-    <p class="text-gray-600">Temukan kamar yang tersedia</p>
+<div class="header">
+    <h2>Daftar Kamar</h2>
+    <p>Temukan kamar yang tersedia</p>
 </div>
 
 <!-- Filter -->
-<div class="bg-pink-200 mx-6 p-5 rounded-xl grid grid-cols-3 gap-4 text-center">
-
+<div class="filter">
     <div>
-        <p class="mb-2 text-sm">Rentang Harga</p>
-        <button class="bg-pink-100 px-4 py-2 rounded w-full">Semua Harga</button>
+        <p>Rentang Harga</p>
+        <button>Semua Harga</button>
     </div>
 
     <div>
-        <p class="mb-2 text-sm">Kapasitas</p>
-        <button class="bg-pink-100 px-4 py-2 rounded w-full">2 Orang</button>
+        <p>Kapasitas</p>
+        <button>2 Orang</button>
     </div>
 
     <div>
-        <p class="mb-2 text-sm">Urutkan</p>
-        <button class="bg-pink-100 px-4 py-2 rounded w-full">Unggulan</button>
+        <p>Urutkan</p>
+        <button>Unggulan</button>
     </div>
-
 </div>
 
 <!-- Room List -->
-<div class="p-6 grid grid-cols-2 gap-6">
+<div class="room-list">
 
     <!-- Card 1 -->
-    <div class="bg-white rounded-xl shadow">
-        <div class="relative">
-            <img src="https://via.placeholder.com/400x200" class="rounded-t-xl w-full">
-            <span class="absolute top-2 right-2 bg-yellow-400 text-white text-xs px-2 py-1 rounded">⭐ 4.8</span>
+    <div class="card">
+        <div class="image-container">
+            <img src="{{ asset('img/kamar/deluxe.jpeg') }}" class="room-img">
+            <span class="rating">⭐ 4.8</span>
         </div>
-        <div class="p-3">
-            <h4 class="font-semibold">Deluxe Room</h4>
-            <p class="text-sm text-gray-500">Kamar deluxe dengan pemandangan kota yang menakjubkan</p>
-            <p class="text-pink-500 font-bold mt-1">Rp. 500.000</p>
-            <button class="bg-pink-500 text-white px-3 py-1 rounded mt-2 float-right">Pesan Saya</button>
+        <div class="card-body">
+            <h4>Deluxe Room</h4>
+            <p>Kamar deluxe dengan pemandangan kota yang menakjubkan</p>
+            <p class="price">Rp. 500.000</p>
+            <button>Pesan Saya</button>
         </div>
     </div>
 
     <!-- Card 2 -->
-    <div class="bg-white rounded-xl shadow">
-        <div class="relative">
-            <img src="https://via.placeholder.com/400x200" class="rounded-t-xl w-full">
-            <span class="absolute top-2 right-2 bg-yellow-400 text-white text-xs px-2 py-1 rounded">⭐ 4.7</span>
+    <div class="card">
+        <div class="image-container">
+            <img src="{{ asset('img/kamar/executive.jpeg') }}" class="room-img">
+            <span class="rating">⭐ 4.7</span>
         </div>
-        <div class="p-3">
-            <h4 class="font-semibold">Executive Room</h4>
-            <p class="text-sm text-gray-500">Kamar eksklusif untuk tamu bisnis dengan fasilitas modern</p>
-            <p class="text-pink-500 font-bold mt-1">Rp. 600.000</p>
-            <button class="bg-pink-500 text-white px-3 py-1 rounded mt-2 float-right">Pesan Saya</button>
+        <div class="card-body">
+            <h4>Executive Room</h4>
+            <p>Kamar eksklusif untuk tamu bisnis dengan fasilitas modern</p>
+            <p class="price">Rp. 600.000</p>
+            <button>Pesan Saya</button>
         </div>
     </div>
 
     <!-- Card 3 -->
-    <div class="bg-white rounded-xl shadow">
-        <div class="relative">
-            <img src="https://via.placeholder.com/400x200" class="rounded-t-xl w-full">
-            <span class="absolute top-2 right-2 bg-yellow-400 text-white text-xs px-2 py-1 rounded">⭐ 4.8</span>
+    <div class="card">
+        <div class="image-container">
+            <img src="{{ asset('img/kamar/suite.jpeg') }}" class="room-img">
+            <span class="rating">⭐ 4.8</span>
         </div>
-        <div class="p-3">
-            <h4 class="font-semibold">Superior Suite</h4>
-            <p class="text-sm text-gray-500">Suite premium dengan ruang tamu terpisah</p>
-            <p class="text-pink-500 font-bold mt-1">Rp. 700.000</p>
-            <button class="bg-pink-500 text-white px-3 py-1 rounded mt-2 float-right">Pesan Saya</button>
+        <div class="card-body">
+            <h4>Superior Suite</h4>
+            <p>Suite premium dengan ruang tamu terpisah</p>
+            <p class="price">Rp. 700.000</p>
+            <button>Pesan Saya</button>
         </div>
     </div>
 
     <!-- Card 4 -->
-    <div class="bg-white rounded-xl shadow">
-        <div class="relative">
-            <img src="https://via.placeholder.com/400x200" class="rounded-t-xl w-full">
-            <span class="absolute top-2 right-2 bg-yellow-400 text-white text-xs px-2 py-1 rounded">⭐ 4.6</span>
+    <div class="card">
+        <div class="image-container">
+            <img src="{{ asset('img/kamar/family.jpeg') }}" class="room-img">
+            <span class="rating">⭐ 4.6</span>
         </div>
-        <div class="p-3">
-            <h4 class="font-semibold">Family Room</h4>
-            <p class="text-sm text-gray-500">Kamar luas cocok untuk keluarga</p>
-            <p class="text-pink-500 font-bold mt-1">Rp. 850.000</p>
-            <button class="bg-pink-500 text-white px-3 py-1 rounded mt-2 float-right">Pesan Saya</button>
+        <div class="card-body">
+            <h4>Family Room</h4>
+            <p>Kamar luas cocok untuk keluarga</p>
+            <p class="price">Rp. 850.000</p>
+            <button>Pesan Saya</button>
         </div>
     </div>
 
 </div>
 
 <!-- Footer -->
-<footer class="bg-pink-400 text-white p-6 grid grid-cols-3">
+<footer>
     <div>
-        <h4 class="font-bold">EloraStay</h4>
-        <p class="text-sm">Platform booking hotel terpercaya</p>
+        <h4>EloraStay</h4>
+        <p>Platform booking hotel terpercaya</p>
     </div>
 
     <div>
-        <h4 class="font-bold">Link</h4>
-        <p class="text-sm">Beranda</p>
-        <p class="text-sm">Daftar Kamar</p>
-        <p class="text-sm">Reservasi Saya</p>
+        <h4>Link</h4>
+        <p>Beranda</p>
+        <p>Daftar Kamar</p>
+        <p>Reservasi Saya</p>
     </div>
 
     <div>
-        <h4 class="font-bold">Hubungi Kami</h4>
-        <p class="text-sm">email@elorastay.com</p>
-        <p class="text-sm">+62 123 456 7890</p>
+        <h4>Hubungi Kami</h4>
+        <p>email@elorastay.com</p>
+        <p>+62 123 456 7890</p>
     </div>
 </footer>
 
