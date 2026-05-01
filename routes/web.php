@@ -3,14 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-// Home
 Route::get('/', function () {
     return view('home');
 });
 
-// Kamar
 Route::get('/kamar', function () {
     return view('kamar');
+});
+
+Route::get('/reservasi', function () {
+    return view('reservasi');
+});
+
+Route::get('/pembayaran', function () {
+    return view('pembayaran');
 });
 
 Route::get('/login', function () {
