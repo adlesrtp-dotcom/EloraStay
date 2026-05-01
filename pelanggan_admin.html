@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>EloraStay - Data Pelanggan</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3e3ea;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #e89ac2;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .navbar .menu a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Container */
+    .container {
+      padding: 30px;
+    }
+
+    h2 {
+      margin-bottom: 5px;
+    }
+
+    /* Search */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-box input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Button */
+    .btn {
+      background: #f2a3c7;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    /* Table */
+    .table-container {
+      background: #eee;
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #999;
+    }
+
+    th {
+      font-weight: bold;
+    }
+
+    /* Footer */
+    .footer {
+      background: #e89ac2;
+      color: white;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    .footer .columns {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h3>EloraStay</h3>
+    <div class="menu">
+      <a href="#">Dashboard</a>
+      <a href="#">Pelanggan</a>
+      <a href="#">Reservasi</a>
+      <a href="#">Kamar</a>
+      <a href="#">Pembayaran</a>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="container">
+    <div class="top-bar">
+      <div>
+        <h2>Daftar Pelanggan</h2>
+        <p>Kelola data pelanggan hotel</p>
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="Cari...">
+      </div>
+    </div>
+
+    <button class="btn">+ Tambah Pelanggan</button>
+
+    <!-- Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Telepon</th>
+            <th>Alamat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PL-001</td>
+            <td>John Doe</td>
+            <td>john@email.com</td>
+            <td>+62 812 3456 7890</td>
+            <td>Jakarta</td>
+            <td>Edit | Hapus</td>
+          </tr>
+          <tr>
+            <td>PL-002</td>
+            <td>Jane Smith</td>
+            <td>jane@email.com</td>
+            <td>+62 812 2222 1111</td>
+            <td>Bandung</td>
+            <td>Edit | Hapus</td>
+          </tr>
+          <tr>
+            <td>PL-003</td>
+            <td>Ahmad Rahman</td>
+            <td>ahmad@email.com</td>
+            <td>+62 813 9999 8888</td>
+            <td>Bali</td>
+            <td>Edit | Hapus</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="columns">
+      <div>
+        <h4>EloraStay</h4>
+        <p>Platform booking hotel terpercaya</p>
+      </div>
+      <div>
+        <h4>Link</h4>
+        <p>Beranda</p>
+        <p>Daftar Kamar</p>
+        <p>Reservasi Saya</p>
+      </div>
+      <div>
+        <h4>Hubungi Kami</h4>
+        <p>Email: info@elorastay.com</p>
+        <p>Telepon: +62 123 456 7890</p>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:10px;">© 2026 EloraStay</p>
+  </div>
+
+</body>
+</html>
