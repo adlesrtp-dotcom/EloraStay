@@ -12,149 +12,163 @@
         }
 
         /* Navbar */
-       /* Navbar Modern */
-.navbar {
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    color: white;
-    padding: 15px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Logo */
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* Menu */
-.nav-menu {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    position: relative;
-    transition: 0.3s;
-}
-
-/* Hover underline effect */
-.nav-menu a::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    background: white;
-    left: 0;
-    bottom: -4px;
-    transition: 0.3s;
-}
-
-.nav-menu a:hover::after {
-    width: 100%;
-}
-
-/* Login button */
-.login-btn {
-    background: white;
-    color: #ec4899;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.login-btn:hover {
-    background: #ffe4ec;
-}
-
-/* Hero Image */
-.hero {
-    height: 300px;
-    background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-/* Overlay biar teks kebaca */
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(236, 72, 153, 0.4); /* pink overlay */
-    top: 0;
-    left: 0;
-}
-
-/* Text */
-.hero-content {
-    position: relative;
-    color: white;
-    text-align: center;
-}
-
-.hero-content h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.hero-content p {
-    margin-bottom: 15px;
-}
-
-.hero-content button {
-    background: white;
-    color: #ec4899;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-        /* Search */
-        .search-box {
-            background-color: #fbcfe8;
-            margin: 20px;
-            padding: 20px;
-            border-radius: 15px;
-        }
-
-        .search-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .search-grid input,
-        .search-grid button {
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-        }
-
-        .search-grid button {
-            background-color: #ec4899;
+        .navbar {
+            background: linear-gradient(to right, #f472b6, #ec4899);
             color: white;
-            cursor: pointer;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Features */
-        .features {
+        /* Logo */
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Menu */
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        /* Hover underline effect */
+        .nav-menu a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: white;
+            left: 0;
+            bottom: -4px;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Login button */
+        .login-btn {
+            background: white;
+            color: #ec4899;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #ffe4ec;
+        }
+
+        /* Hero Image */
+        .hero {
+            height: 300px;
+            background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Overlay biar teks kebaca */
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(236, 72, 153, 0.4); /* pink overlay */
+            top: 0;
+            left: 0;
+        }
+
+        /* Text */
+        .hero-content {
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            margin-bottom: 15px;
+        }
+
+        .hero-content button {
+            background: white;
+            color: #ec4899;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+                /* Navigation */
+                .features {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 40px 20px;
             text-align: center;
-            padding: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #666;
+        }
+        .lihat-semua {
+            color: #ec4899;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+        }
+
+        /* Hover effect */
+        .lihat-semua:hover {
+            color: #db2777;
+            gap: 10px; /* panah geser dikit */
         }
 
         /* Room */
@@ -213,53 +227,52 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         /* Footer */
-        /* Footer Modern */
-.footer {
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    color: white;
-    margin-top: 40px;
-}
+            
+        .footer {
+            background: linear-gradient(to right, #f472b6, #ec4899);
+            color: white;
+            margin-top: 40px;
+        }
 
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 30px 20px;
-    gap: 20px;
-}
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 30px 20px;
+            gap: 20px;
+        }
 
-.footer-section h3,
-.footer-section h4 {
-    margin-bottom: 10px;
-}
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 10px;
+        }
 
-.footer-section p {
-    font-size: 14px;
-    line-height: 1.6;
-}
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
 
-.footer-section a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    margin-bottom: 8px;
-    font-size: 14px;
-    transition: 0.3s;
-}
+        .footer-section a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
 
-.footer-section a:hover {
-    transform: translateX(5px);
-    color: #ffe4ec;
-}
+        .footer-section a:hover {
+            transform: translateX(5px);
+            color: #ffe4ec;
+        }
 
-.footer-bottom {
-    text-align: center;
-    padding: 15px;
-    background-color: rgba(0,0,0,0.1);
-    font-size: 13px;
-}
-    </style>
+        .footer-bottom {
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(0,0,0,0.1);
+            font-size: 13px;
+        }
+         </style>
 </head>
 
 <body>
@@ -271,8 +284,8 @@
     <div class="nav-menu">
         <a href="/">Beranda</a>
         <a href="/kamar">Daftar Kamar</a>
-        <a href="/reservasi">Reservasi</a>
         <a href="/pembayaran">Pembayaran</a>
+        <a href="/reservasi">Reservasi</a>
     </div>
 
     <button class="login-btn">Login</button>
@@ -282,55 +295,63 @@
     <div class="hero-content">
         <h1>Temukan Hotel Impian Anda</h1>
         <p>Booking mudah, cepat, dan terpercaya hanya di EloraStay</p>
-        <button>Booking Sekarang</button>
     </div>
 </div>
 
-<!-- Search -->
-<div class="search-box">
-    <h2>Cari Kamar & Booking Hotel</h2>
-    <p>Temukan kamar hotel impian Anda dengan harga terbaik</p>
 
-    <div class="search-grid">
-        <input type="text" placeholder="Cari Kota atau Hotel">
-        <input type="date">
-        <input type="date">
-        <button>Cari Kamar</button>
-    </div>
-</div>
-
-<!-- Features -->
 <div class="features">
-    <div>Hotel Terpercaya</div>
-    <div>Rating Terbaik</div>
-    <div>Booking Instan</div>
-    <div>Dukungan 24/7</div>
+
+    <div class="feature-card">
+        <div class="icon">🏨</div>
+        <h3>Hotel Terpercaya</h3>
+        <p>Kami bekerja sama dengan hotel terbaik untuk memastikan kenyamanan dan kualitas menginap Anda.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="icon">⭐</div>
+        <h3>Rating Terbaik</h3>
+        <p>Semua kamar memiliki ulasan tinggi dari pelanggan yang telah merasakan pengalaman menginap.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h3>Booking Instan</h3>
+        <p>Pesan kamar hanya dalam beberapa klik tanpa proses yang ribet dan langsung terkonfirmasi.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="icon">📞</div>
+        <h3>Dukungan 24/7</h3>
+        <p>Tim kami siap membantu Anda kapan saja jika terjadi kendala saat reservasi atau menginap.</p>
+    </div>
+
 </div>
 
 <!-- Room -->
 <div class="room-section">
     <div class="room-header">
         <h3>Pilihan kamar terpopuler</h3>
-        <a href="#" style="color:#ec4899;">Lihat Semua →</a>
+        <a href="{{ url('/kamar') }}" class="lihat-semua">
+             Lihat Semua →
+        </a>
     </div>
 
     <div class="room-grid">
         <div class="card">
             <img src="{{ asset('img/kamar/deluxe.jpeg') }}" class="room-img">
             <h4>Deluxe Room</h4>
-            <p>Kamar dengan pemandangan kota</p>
+            <p>Kamar nyaman dengan desain modern dan pemandangan kota yang menenangkan. Cocok untuk Anda yang menginginkan istirahat berkualitas dengan suasana hangat dan fasilitas lengkap.</p>
             <b style="color:#ec4899;">Rp. 500.000</b>
             <br>
-            <button>Pesan Saya</button>
         </div>
 
         <div class="card">
             <img src="{{ asset('img/kamar/suite.jpeg') }}" class="room-img">
             <h4>Superior Suite</h4>
-            <p>Suite mewah dan luas</p>
+            <p>Suite mewah dengan ruang tamu terpisah, fasilitas premium, dan pemandangan indah. Ideal untuk Anda yang menginginkan pengalaman menginap yang lebih eksklusif dan nyaman.</p>
             <b style="color:#ec4899;">Rp. 750.000</b>
             <br>
-            <button>Pesan Saya</button>
+    
         </div>
     </div>
 </div>

@@ -46,3 +46,4 @@ Route::post('/tambah_pelanggan', function () {
 Route::get('/booking', function () {
     return view('booking');
 });
+
