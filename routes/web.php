@@ -71,3 +71,6 @@ Route::get('/pembayaran', function () {
     return view('pembayaran');
 })->name('pembayaran');
 
+Route::get('/lupa-password', function () {
+    return view('lupa-password');
+});

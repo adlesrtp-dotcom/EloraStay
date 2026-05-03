@@ -272,8 +272,9 @@ input {
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
 
-                <div class="forgot">Lupa password?</div>
-
+                <div class="forgot">
+                <a href="/lupa-password" style="color:#ec4899;">Lupa password?</a>
+                </div>
                 <button type="submit" class="btn">Masuk</button>
 
                 <div class="divider">atau</div>
@@ -322,7 +323,6 @@ input {
 
     </div>
 <script>
-<script>
 function fakeLogin(e) {
     e.preventDefault(); // ❌ stop submit ke backend
 
@@ -335,7 +335,7 @@ function fakeLogin(e) {
         return false;
     }
 
-    // simpan status login (biar bisa dipakai di halaman lain)
+    // simpan status login
     localStorage.setItem("isLogin", "true");
     localStorage.setItem("userEmail", email);
 
@@ -344,19 +344,16 @@ function fakeLogin(e) {
 
     return false;
 }
-</script>
-<script>
+
 window.onload = function() {
     const isLogin = localStorage.getItem("isLogin");
 
     if (isLogin) {
         const loginBtn = document.querySelector(".login-btn");
+
         if (loginBtn) {
-            loginBtn.innerText = "Logout";
-            loginBtn.onclick = function() {
-                localStorage.clear();
-                window.location.reload();
-            };
+            // 🔥 SEMBUNYIKAN tombol login (sesuai request kamu)
+            loginBtn.style.display = "none";
         }
     }
 }

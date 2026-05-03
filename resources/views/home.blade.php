@@ -288,7 +288,8 @@
         <a href="/reservasi">Reservasi</a>
     </div>
 
-    <button class="login-btn">Login</button>
+    <a href="/login" class="login-btn">Login</a>
+    <a href="/login" class="login-btn" id="loginBtn">Login</a>
 </div>
 
 <div class="hero">
@@ -358,9 +359,10 @@
 
 <!-- CTA -->
 <div class="cta">
+    <div class="cta-section" id="daftarSection">
     <h3>Siap untuk pengalaman terbaik?</h3>
     <p>Daftar sekarang dan dapatkan promo</p>
-    <button>Daftar Sekarang</button>
+    <a href="/registrasi" class="btn-daftar">Daftar Sekarang</a>
 </div>
 
 <!-- Footer -->
@@ -395,7 +397,33 @@
     <!-- Bottom -->
     <div class="footer-bottom">
         <p>© 2026 EloraStay. All rights reserved.</p>
+    <div>
+        <h4 class="font-bold">Link</h4>
+        <p>Beranda</p>
+        <p>Daftar Kamar</p>
+        <p>Reservasi</p>
+    </div>
+    <div>
+        <h4 class="font-bold">Kontak</h4>
+        <p>email@elorastay.com</p>
+        <p>+62 123 456 789</p>
     </div>
 </footer>
+<script>
+window.onload = function() {
+    const isLogin = localStorage.getItem("isLogin");
+
+    if (isLogin === "true") {
+
+        // ❌ sembunyikan tombol login
+        const loginBtn = document.getElementById("loginBtn");
+        if (loginBtn) loginBtn.style.display = "none";
+
+        // ❌ sembunyikan section daftar
+        const daftarSection = document.getElementById("daftarSection");
+        if (daftarSection) daftarSection.style.display = "none";
+    }
+}
+</script>
 </body>
 </html>
