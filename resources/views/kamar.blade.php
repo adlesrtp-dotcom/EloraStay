@@ -234,7 +234,7 @@ body {
         <p>Kamar nyaman dengan desain modern dan pemandangan kota yang menenangkan.</p>
         <p class="price">Rp 500.000</p>
         <button class="btn-detail" onclick="openModal('deluxe')">Lihat Detail</button>
-    </div>
+        </div>
 </div>
 
 <div class="card" onclick="openModal('executive')">

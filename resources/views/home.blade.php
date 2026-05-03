@@ -397,6 +397,16 @@
     <!-- Bottom -->
     <div class="footer-bottom">
         <p>© 2026 EloraStay. All rights reserved.</p>
+    <div>
+        <h4 class="font-bold">Link</h4>
+        <p>Beranda</p>
+        <p>Daftar Kamar</p>
+        <p>Reservasi</p>
+    </div>
+    <div>
+        <h4 class="font-bold">Kontak</h4>
+        <p>email@elorastay.com</p>
+        <p>+62 123 456 789</p>
     </div>
 </footer>
 <script>
