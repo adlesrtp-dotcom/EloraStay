@@ -87,7 +87,7 @@ body{
     font-weight:bold;
 }
 
-/* Table Style (sesuai gambar) */
+/* Table */
 .table-wrapper{
     background:#efefef;
     border-radius:50px;
@@ -153,10 +153,10 @@ body{
     <div class="logo">EloraStay</div>
     <div class="menu">
         <a href="{{ route('dashboard') }}">Dashboard</a>
-        <a href="{{ route('pelanggan') }}">Pelanggan</a>
+        <a href="{{ route('pelangganadmin') }}">Pelanggan</a>
         <a href="{{ route('reservasiadmin') }}">Reservasi</a>
-        <a href="{{ route('kamar') }}">Kamar</a>
-        <a href="{{ route('pembayaran') }}">Pembayaran</a>
+        <a href="{{ route('kamaradmin') }}">Kamar</a>
+        <a href="{{ route('pembayaranadmin') }}">Pembayaran</a>
     </div>
 </div>
 
@@ -191,26 +191,53 @@ body{
                     <th>Check-in</th>
                     <th>Harga</th>
                     <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
 
             <tbody>
-               @foreach($reservasi ?? [] as $row)
+                @forelse($reservasi as $row)
                 <tr>
-                    <td>{{ $r->id }}</td>
-                    <td>{{ $r->nama }}</td>
-                    <td>{{ $r->kamar }}</td>
-                    <td>{{ $r->checkin }}</td>
-                    <td>Rp {{ number_format($r->harga,0,',','.') }}</td>
+                    <td>{{ $row->id }}</td>
+
+                    <td>{{ $row->pelanggan->nama ?? '-' }}</td>
+
+                    <td>{{ $row->kamar->nama_kamar ?? '-' }}</td>
+
+                    <td>{{ $row->checkin }}</td>
+
                     <td>
-                        @if($r->status == 'Menunggu')
+                        Rp {{ number_format($row->harga ?? 0,0,',','.') }}
+                    </td>
+
+                    <td>
+                        @if($row->status == 'Menunggu')
                             <span class="status-menunggu">Menunggu</span>
                         @else
                             <span class="status-checkin">Check-in</span>
                         @endif
                     </td>
+
+                    <td>
+                        <a href="{{ route('reservasi.edit', $row->id) }}">Edit</a> |
+
+                        <form action="{{ route('reservasi.destroy', $row->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" style="border:none;background:none;color:red;cursor:pointer;">
+                                Hapus
+                            </button>
+                        </form>
+                    </td>
                 </tr>
-                @endforeach
+
+                @empty
+                <tr>
+                    <td colspan="7" style="text-align:center;">
+                        Tidak ada data reservasi
+                    </td>
+                </tr>
+                @endforelse
             </tbody>
 
         </table>

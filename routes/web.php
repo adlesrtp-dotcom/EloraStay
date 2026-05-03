@@ -57,19 +57,23 @@ Route::get('/dashboard', function () {
 
 Route::get('/pelangganadmin', function () {
     return view('pelangganadmin');
-})->name('pelanggan');
+})->name('pelangganadmin');
 
 Route::get('/reservasiadmin', function () {
-    return view('reservasiadmin');
+
+    $reservasi = [];
+
+    return view('reservasiadmin', compact('reservasi'));
+
 })->name('reservasiadmin');
 
-Route::get('/kamar', function () {
-    return view('kamar');
-})->name('kamar');
+Route::get('/kamaradmin', function () {
+    return view('kamaradmin');
+})->name('kamaradmin');
 
-Route::get('/pembayaran', function () {
-    return view('pembayaran');
-})->name('pembayaran');
+Route::get('/pembayaranadmin', function () {
+    return view('pembayaranadmin');
+})->name('pembayaranadmin');
 
 Route::get('/lupa-password', function () {
     return view('lupa-password');

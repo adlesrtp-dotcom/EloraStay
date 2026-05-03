@@ -1,0 +1,272 @@
+<!-- resources/views/pembayaran.blade.php -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EloraStay - Admin Pembayaran</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f8edf3;
+}
+
+/* Navbar */
+.navbar{
+    background:#ee9cc8;
+    padding:18px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-weight:bold;
+    font-size:17px;
+}
+
+/* Container */
+.container{
+    width:95%;
+    max-width:1600px;
+    margin:auto;
+    padding:35px 0;
+}
+
+/* Header */
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.topbar h1{
+    font-size:38px;
+}
+
+.topbar p{
+    margin-top:8px;
+    font-size:19px;
+    color:#555;
+}
+
+.search input{
+    width:300px;
+    padding:12px 18px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+/* Button */
+.btn{
+    display:inline-block;
+    margin-bottom:25px;
+    background:#ee9cc8;
+    color:white;
+    padding:14px 28px;
+    border-radius:10px;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* Table */
+.table-box{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    text-align:left;
+    padding:16px;
+    font-size:18px;
+    border-bottom:2px solid #ddd;
+}
+
+td{
+    padding:16px;
+    font-size:17px;
+    border-bottom:1px solid #eee;
+}
+
+.status-lunas{
+    color:green;
+    font-weight:bold;
+}
+
+.status-pending{
+    color:red;
+    font-weight:bold;
+}
+
+/* Footer */
+.footer{
+    background:#ee9cc8;
+    color:white;
+    margin-top:50px;
+    padding:40px 50px;
+}
+
+.footer-box{
+    display:flex;
+    justify-content:space-between;
+}
+
+.footer h3{
+    margin-bottom:12px;
+}
+
+.footer p{
+    line-height:1.8;
+    font-size:16px;
+}
+
+.copy{
+    text-align:center;
+    margin-top:25px;
+    padding-top:15px;
+    border-top:1px solid rgba(255,255,255,0.4);
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">EloraStay Admin</div>
+
+    <div class="menu">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/pelangganadmin">Pelanggan</a>
+        <a href="/reservasiadmin">Reservasi</a>
+        <a href="/kamaradmin">Kamar</a>
+        <a href="/pembayaranadmin">Pembayaran</a>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="container">
+
+    <div class="topbar">
+        <div>
+            <h1>Pembayaran</h1>
+            <p>Kelola transaksi pembayaran hotel</p>
+        </div>
+
+        <div class="search">
+            <input type="text" placeholder="Cari pembayaran...">
+        </div>
+    </div>
+
+    <a href="#" class="btn">+ Tambah Pembayaran</a>
+
+    <div class="table-box">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>Reservasi</th>
+                <th>Metode</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+
+            <tr>
+                <td>PB-001</td>
+                <td>John Doe</td>
+                <td>RS-001</td>
+                <td>Transfer</td>
+                <td>Rp 3.500.000</td>
+                <td class="status-lunas">Lunas</td>
+                <td>Detail</td>
+            </tr>
+
+            <tr>
+                <td>PB-002</td>
+                <td>Jane Smith</td>
+                <td>RS-002</td>
+                <td>Cash</td>
+                <td>Rp 2.500.000</td>
+                <td class="status-pending">Pending</td>
+                <td>Detail</td>
+            </tr>
+
+            <tr>
+                <td>PB-003</td>
+                <td>Ahmad Rahman</td>
+                <td>RS-003</td>
+                <td>QRIS</td>
+                <td>Rp 2.000.000</td>
+                <td class="status-lunas">Lunas</td>
+                <td>Detail</td>
+            </tr>
+
+            <tr>
+                <td>PB-004</td>
+                <td>Siti Rahma</td>
+                <td>RS-004</td>
+                <td>Transfer</td>
+                <td>Rp 3.500.000</td>
+                <td class="status-pending">Pending</td>
+                <td>Detail</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="footer-box">
+        <div>
+            <h3>EloraStay</h3>
+            <p>Platform booking hotel terpercaya<br>untuk pengalaman menginap terbaik.</p>
+        </div>
+
+        <div>
+            <h3>Menu</h3>
+            <p>Dashboard</p>
+            <p>Pelanggan</p>
+            <p>Reservasi</p>
+        </div>
+
+        <div>
+            <h3>Hubungi Kami</h3>
+            <p>Email: info@elorastay.com</p>
+            <p>Telepon: +62 123 456 7890</p>
+        </div>
+    </div>
+
+    <div class="copy">
+        © 2026 EloraStay Admin. All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>

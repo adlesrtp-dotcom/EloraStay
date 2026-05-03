@@ -149,10 +149,10 @@ th{
 
     <div class="menu">
         <a href="{{ route('dashboard') }}">Dashboard</a>
-        <a href="{{ route('pelanggan') }}">Pelanggan</a>
-        <a href="{{ route('reservasi') }}">Reservasi</a>
-        <a href="{{ route('kamar') }}">Kamar</a>
-        <a href="{{ route('pembayaran') }}">Pembayaran</a>
+        <a href="{{ route('pelangganadmin') }}">Pelanggan</a>
+        <a href="{{ route('reservasiadmin') }}">Reservasi</a>
+        <a href="{{ route('kamaradmin') }}">Kamar</a>
+        <a href="{{ route('pembayaranadmin') }}">Pembayaran</a>
     </div>
 
 </div>
