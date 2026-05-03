@@ -215,8 +215,6 @@ body {
         <a href="/pembayaran">Pembayaran</a>
         <a href="/reservasi">Reservasi</a>
     </div>
-
-    <button class="login-btn">Login</button>
 </div>
 
 <div class="hero">
@@ -229,7 +227,7 @@ body {
 <!-- Room List -->
 <div class="room-list">
 
-<div class="card">
+<div class="card" onclick="openModal('deluxe')">
     <img src="{{ asset('img/kamar/deluxe.jpeg') }}">
     <div class="card-body">
         <h4>Deluxe Room</h4>
@@ -239,7 +237,7 @@ body {
     </div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openModal('executive')">
     <img src="{{ asset('img/kamar/executive.jpeg') }}">
     <div class="card-body">
         <h4>Executive Room</h4>
@@ -249,7 +247,7 @@ body {
     </div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openModal('superior')">
     <img src="{{ asset('img/kamar/suite.jpeg') }}">
     <div class="card-body">
         <h4>Superior Suite</h4>
@@ -259,7 +257,7 @@ body {
     </div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openModal('family')">
     <img src="{{ asset('img/kamar/family.jpeg') }}">
     <div class="card-body">
         <h4>Family Room</h4>

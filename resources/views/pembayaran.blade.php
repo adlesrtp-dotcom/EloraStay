@@ -222,7 +222,6 @@ input {
         <a href="/reservasi">Reservasi</a>
     </div>
 
-    <button class="login-btn">Login</button>
 </div>
 <div class="hero">
     <div class="hero-content">

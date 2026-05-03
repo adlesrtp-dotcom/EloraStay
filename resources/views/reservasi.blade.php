@@ -218,7 +218,7 @@ hr { border: 1px solid #f9a8d4; margin: 15px 0; }
         <a href="/pembayaran">Pembayaran</a>
         <a href="/reservasi">Reservasi</a>
     </div>
-    <button class="login-btn">Login</button>
+
 </div>
 
 <!-- Hero -->

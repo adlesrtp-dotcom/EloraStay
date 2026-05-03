@@ -35,15 +35,6 @@ Route::post('/registrasi', function () {
     return redirect('/login');
 })->name('register.process');
 
-Route::get('/tambah_pelanggan', function () {
-    return view('tambah_pelanggan');
+Route::get('/lupa-password', function () {
+    return view('lupa-password');
 });
-
-Route::post('/tambah_pelanggan', function () {
-    return "Data pelanggan berhasil disimpan";
-})->name('pelanggan.store');
-
-Route::get('/booking', function () {
-    return view('booking');
-});
-
