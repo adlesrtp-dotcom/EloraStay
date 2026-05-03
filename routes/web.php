@@ -47,3 +47,27 @@ Route::get('/booking', function () {
     return view('booking');
 });
 
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('/pelangganadmin', function () {
+    return view('pelangganadmin');
+})->name('pelanggan');
+
+Route::get('/reservasiadmin', function () {
+    return view('reservasiadmin');
+})->name('reservasiadmin');
+
+Route::get('/kamar', function () {
+    return view('kamar');
+})->name('kamar');
+
+Route::get('/pembayaran', function () {
+    return view('pembayaran');
+})->name('pembayaran');
+
