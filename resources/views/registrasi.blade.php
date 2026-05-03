@@ -1,224 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Registrasi - EloraStay</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Registrasi - EloraStay</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5e6ee;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5e6ee;
+}
 
-        /* NAVBAR */
-        .navbar {
-            background: #f062a6;
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            color: white;
-        }
+/* NAVBAR */
+.navbar {
+    background: linear-gradient(to right, #f472b6, #ec4899);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-        }
 
-        .login-btn {
-            background: #ff85c1;
-            padding: 6px 12px;
-            border-radius: 5px;
-        }
+/* MAIN */
+.main {
+    display: flex;
+    height: calc(100vh - 70px);
+}
 
-        /* CONTAINER */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 85vh;
-        }
+/* LEFT */
+.left {
+    flex: 1;
+    background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover no-repeat;
+    position: relative;
+}
 
-        .card {
-            background: #f9f9f9;
-            padding: 30px;
-            width: 350px;
-            border-radius: 15px;
-        }
+.left::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(236,72,153,0.4);
+}
 
-        .card-header {
-            background: #f062a6;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+.left-content {
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
 
-        label {
-            font-size: 13px;
-            margin-top: 10px;
-            display: block;
-        }
+/* RIGHT */
+.right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 20px;
-            border: 1px solid #ccc;
-        }
+.card {
+    background: #f9f9f9;
+    padding: 10px;
+    width: 400px;
+    border-radius: 15px;
+    text-align: center;
+}
 
-        .forgot {
-            text-align: right;
-            font-size: 12px;
-            color: #f062a6;
-            margin-top: 5px;
-        }
+.card-header {
+    background: #ec4899;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
 
-        .btn {
-            width: 100%;
-            padding: 10px;
-            margin-top: 15px;
-            border: none;
-            border-radius: 8px;
-            background: #f062a6;
-            color: white;
-            cursor: pointer;
-        }
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
 
-        .divider {
-            text-align: center;
-            margin: 15px 0;
-            font-size: 12px;
-            color: #999;
-        }
+.btn {
+    width: 100%;
+    background: #ec4899;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
 
-        .btn-google {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            background: white;
-            cursor: pointer;
-        }
+.divider {
+    margin: 15px 0;
+    font-size: 12px;
+}
 
-        .register {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 12px;
-        }
+.btn-google {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .register a {
-            color: #f062a6;
-            text-decoration: none;
-        }
+.btn-google img {
+    width: 18px;
+    margin-right: 8px;
+}
 
-        .terms {
-            text-align: center;
-            font-size: 11px;
-            margin-top: 10px;
-        }
+.register {
+    font-size: 12px;
+    margin-top: 10px;
+}
 
-        /* FOOTER */
-        .footer {
-            background: #f4a8c7;
-            padding: 30px;
-            color: white;
-            display: flex;
-            justify-content: space-around;
-            font-size: 12px;
-        }
+.register a {
+    color: #ec4899;
+    text-decoration: none;
+}
 
-        .copyright {
-            text-align: center;
-            background: #f4a8c7;
-            color: white;
-            padding: 10px;
-        }
-    </style>
+/* FOOTER */
+.footer {
+    background: linear-gradient(to right, #f472b6, #ec4899);
+    color: white;
+    margin-top: 40px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 30px 20px;
+}
+
+.footer-section a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+</style>
 </head>
+
 <body>
 
 <!-- NAVBAR -->
 <div class="navbar">
     <div><b>EloraStay</b></div>
-    <div>
-        <a href="/">Beranda</a>
-        <a href="/kamar">Daftar Kamar</a>
-        <a href="/reservasi">Reservasi Saya</a>
-        <a href="#">Pembayaran</a>
-        <a href="/login" class="login-btn">Login</a>
-    </div>
 </div>
 
-<!-- FORM -->
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h3>Daftar Akun</h3>
-            <small>Buat akun baru untuk mulai booking</small>
-        </div>
+<!-- MAIN -->
+<div class="main">
 
-        <form method="POST" action="{{ route('register.process') }}">
-            @csrf
-
-            <label>Nama Lengkap</label>
-            <input type="text" name="nama" required>
-
-            <label>Email</label>
-            <input type="email" name="email" required>
-
-            <label>Password</label>
-            <input type="password" name="password" required>
-
-            <button type="submit" class="btn">Daftar</button>
-
-            <div class="divider">atau</div>
-
-            <button type="button" class="btn-google">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png"
-                     style="width:18px; margin-right:8px;">
-                Lanjutkan dengan Google
-            </button>
-
-            <div class="register">
-                Sudah punya akun? <a href="/login">Login</a>
-            </div>
-        </form>
-
-        <div class="terms">
-            Dengan melanjutkan, Anda menyetujui 
-            <a href="#">Syarat & Ketentuan</a> dan 
-            <a href="#">Kebijakan Privasi</a>.
+    <!-- LEFT -->
+    <div class="left">
+        <div class="left-content">
+            <h1>Temukan Hotel Impian Anda</h1>
+            <p>Booking mudah, cepat, dan terpercaya hanya di EloraStay</p>
         </div>
     </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+        <div class="card">
+            <div class="card-header">
+                <h3>Daftar Akun</h3>
+                <small>Buat akun baru untuk mulai booking</small>
+            </div>
+
+            <form method="POST" action="{{ route('register.process') }}">
+                @csrf
+
+                <input type="text" name="nama" placeholder="Nama Lengkap" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" required>
+
+                <button type="submit" class="btn">Daftar</button>
+
+                <div class="divider">atau</div>
+
+                <button type="button" class="btn-google">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png">
+                    Daftar dengan Google
+                </button>
+
+                <div class="register">
+                    Sudah punya akun? <a href="/login">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </div>
 
 <!-- FOOTER -->
-<div class="footer">
-    <div>
-        <h4>EloraStay</h4>
-        <p>Platform booking hotel terpercaya.</p>
-    </div>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>EloraStay</h3>
+            <p>Platform booking hotel terpercaya.</p>
+        </div>
 
-    <div>
-        <h4>Link Cepat</h4>
-        <p>Beranda</p>
-        <p>Daftar Kamar</p>
-    </div>
+        <div class="footer-section">
+            <a href="/">Beranda</a>
+            <a href="/kamar">Daftar Kamar</a>
+        </div>
 
-    <div>
-        <h4>Hubungi Kami</h4>
-        <p>Email: info@elorastay.com</p>
+        <div class="footer-section">
+            <p>Email: email@elorastay.com</p>
+        </div>
     </div>
-</div>
-
-<div class="copyright">
-    © 2026 EloraStay
-</div>
+</footer>
 
 </body>
 </html>
