@@ -40,6 +40,11 @@ body{
     margin-left:25px;
     font-size:17px;
     font-weight:bold;
+    transition:0.3s;
+}
+
+.menu a:hover{
+    color:#ffe6f2;
 }
 
 /* Container */
@@ -136,6 +141,7 @@ td{
 .footer-box{
     display:flex;
     justify-content:space-between;
+    gap:30px;
 }
 
 .footer h3{
@@ -145,6 +151,11 @@ td{
 .footer p{
     line-height:1.8;
     font-size:16px;
+}
+
+.footer a{
+    color:white;
+    text-decoration:none;
 }
 
 .copy{
@@ -159,21 +170,26 @@ td{
 
 <!-- Navbar -->
 <div class="navbar">
+
     <div class="logo">EloraStay</div>
 
     <div class="menu">
-        <a href="{{ route('dashboard') }}">Dashboard</a>
-        <a href="{{ route('pelangganadmin') }}">Pelanggan</a>
-        <a href="{{ route('reservasiadmin') }}">Reservasi</a>
-        <a href="{{ route('kamaradmin') }}">Kamar</a>
-        <a href="{{ route('pembayaranadmin') }}">Pembayaran</a>
+        <div class="menu">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/pelangganadmin">Pelanggan</a>
+    <a href="/reservasiadmin">Reservasi</a>
+    <a href="/kamaradmin">Kamar</a>
+    <a href="/pembayaranadmin">Pembayaran</a>
+</div>
     </div>
+
 </div>
 
 <!-- Content -->
 <div class="container">
 
     <div class="topbar">
+
         <div>
             <h1>Kamar</h1>
             <p>Kelola data kamar hotel</p>
@@ -182,12 +198,17 @@ td{
         <div class="search">
             <input type="text" placeholder="Cari kamar...">
         </div>
+
     </div>
 
-    <a href="#" class="btn">+ Tambah Kamar</a>
+    <a href="#" class="btn">
+        + Tambah Kamar
+    </a>
 
     <div class="table-box">
+
         <table>
+
             <tr>
                 <th>ID</th>
                 <th>Nama Kamar</th>
@@ -232,36 +253,59 @@ td{
                 <td class="status-tersedia">Tersedia</td>
                 <td>Edit | Hapus</td>
             </tr>
+
         </table>
+
     </div>
 
 </div>
 
 <!-- Footer -->
 <div class="footer">
+
     <div class="footer-box">
+
         <div>
             <h3>EloraStay</h3>
-            <p>Platform booking hotel terpercaya<br>untuk pengalaman menginap terbaik.</p>
+
+            <p>
+                Platform booking hotel terpercaya
+                <br>
+                untuk pengalaman menginap terbaik.
+            </p>
         </div>
 
         <div>
             <h3>Link</h3>
-            <p>Dashboard</p>
-            <p>Pelanggan</p>
-            <p>Reservasi</p>
+
+            <p>
+                <a href="{{ url('/dashboard') }}">Dashboard</a><br>
+
+                <a href="{{ url('/pelangganadmin') }}">Pelanggan</a><br>
+
+                <a href="{{ url('/reservasiadmin') }}">Reservasi</a><br>
+
+                <a href="{{ url('/kamaradmin') }}">Kamar</a><br>
+
+                <a href="{{ url('/pembayaranadmin') }}">Pembayaran</a>
+            </p>
         </div>
 
         <div>
             <h3>Hubungi Kami</h3>
-            <p>Email: info@elorastay.com</p>
-            <p>Telepon: +62 123 456 7890</p>
+
+            <p>
+                Email: info@elorastay.com<br>
+                Telepon: +62 123 456 7890
+            </p>
         </div>
+
     </div>
 
     <div class="copy">
         © 2026 EloraStay. All rights reserved.
     </div>
+
 </div>
 
 </body>

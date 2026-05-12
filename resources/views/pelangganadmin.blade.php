@@ -38,6 +38,11 @@ body{
     margin-left:30px;
     font-size:18px;
     font-weight:bold;
+    transition:0.3s;
+}
+
+.menu a:hover{
+    color:#ffe6f2;
 }
 
 /* Content */
@@ -131,6 +136,11 @@ th{
     font-size:18px;
 }
 
+.footer a{
+    color:white;
+    text-decoration:none;
+}
+
 .copy{
     background:#e282b7;
     color:white;
@@ -148,11 +158,11 @@ th{
     <div class="logo">EloraStay</div>
 
     <div class="menu">
-        <a href="{{ route('dashboard') }}">Dashboard</a>
-        <a href="{{ route('pelangganadmin') }}">Pelanggan</a>
-        <a href="{{ route('reservasiadmin') }}">Reservasi</a>
-        <a href="{{ route('kamaradmin') }}">Kamar</a>
-        <a href="{{ route('pembayaranadmin') }}">Pembayaran</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/pelangganadmin">Pelanggan</a>
+        <a href="/reservasiadmin">Reservasi</a>
+        <a href="/kamaradmin">Kamar</a>
+        <a href="/pembayaranadmin">Pembayaran</a>
     </div>
 
 </div>
@@ -250,9 +260,11 @@ th{
     <div>
         <h3>Link</h3>
         <p>
-            Beranda<br>
-            Daftar Kamar<br>
-            Reservasi Saya
+            <a href="{{ url('/dashboard') }}">Dashboard</a><br>
+            <a href="{{ url('/pelangganadmin') }}">Pelanggan</a><br>
+            <a href="{{ url('/reservasiadmin') }}">Reservasi</a><br>
+            <a href="{{ url('/kamaradmin') }}">Kamar</a><br>
+            <a href="{{ url('/pembayaranadmin') }}">Pembayaran</a>
         </p>
     </div>
 

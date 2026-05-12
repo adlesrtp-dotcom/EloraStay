@@ -38,6 +38,11 @@ body{
     margin-left:25px;
     font-size:16px;
     font-weight:bold;
+    transition:0.3s;
+}
+
+.menu a:hover{
+    color:#ffe6f2;
 }
 
 /* Container */
@@ -132,10 +137,20 @@ body{
     margin-top:50px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
+    gap:30px;
 }
 
 .footer h3{
     margin-bottom:10px;
+}
+
+.footer p{
+    line-height:30px;
+}
+
+.footer a{
+    color:white;
+    text-decoration:none;
 }
 
 .copy{
@@ -150,14 +165,17 @@ body{
 
 <!-- Navbar -->
 <div class="navbar">
+
     <div class="logo">EloraStay</div>
+
     <div class="menu">
-        <a href="{{ route('dashboard') }}">Dashboard</a>
-        <a href="{{ route('pelangganadmin') }}">Pelanggan</a>
-        <a href="{{ route('reservasiadmin') }}">Reservasi</a>
-        <a href="{{ route('kamaradmin') }}">Kamar</a>
-        <a href="{{ route('pembayaranadmin') }}">Pembayaran</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/pelangganadmin">Pelanggan</a>
+        <a href="/reservasiadmin">Reservasi</a>
+        <a href="/kamaradmin">Kamar</a>
+        <a href="/pembayaranadmin">Pembayaran</a>
     </div>
+
 </div>
 
 <!-- Content -->
@@ -182,7 +200,9 @@ body{
 
     <!-- Table -->
     <div class="table-wrapper">
+
         <table class="table-reservasi">
+
             <thead>
                 <tr>
                     <th>ID</th>
@@ -196,8 +216,11 @@ body{
             </thead>
 
             <tbody>
+
                 @forelse($reservasi as $row)
+
                 <tr>
+
                     <td>{{ $row->id }}</td>
 
                     <td>{{ $row->pelanggan->nama ?? '-' }}</td>
@@ -212,55 +235,102 @@ body{
 
                     <td>
                         @if($row->status == 'Menunggu')
-                            <span class="status-menunggu">Menunggu</span>
+
+                            <span class="status-menunggu">
+                                Menunggu
+                            </span>
+
                         @else
-                            <span class="status-checkin">Check-in</span>
+
+                            <span class="status-checkin">
+                                Check-in
+                            </span>
+
                         @endif
                     </td>
 
                     <td>
-                        <a href="{{ route('reservasi.edit', $row->id) }}">Edit</a> |
 
-                        <form action="{{ route('reservasi.destroy', $row->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('reservasi.edit', $row->id) }}">
+                            Edit
+                        </a>
+
+                        |
+
+                        <form action="{{ route('reservasi.destroy', $row->id) }}"
+                              method="POST"
+                              style="display:inline;">
+
                             @csrf
                             @method('DELETE')
-                            <button type="submit" style="border:none;background:none;color:red;cursor:pointer;">
+
+                            <button type="submit"
+                                    style="border:none;background:none;color:red;cursor:pointer;">
+
                                 Hapus
+
                             </button>
+
                         </form>
+
                     </td>
+
                 </tr>
 
                 @empty
+
                 <tr>
                     <td colspan="7" style="text-align:center;">
                         Tidak ada data reservasi
                     </td>
                 </tr>
+
                 @endforelse
+
             </tbody>
 
         </table>
+
     </div>
 
 </div>
 
 <!-- Footer -->
 <div class="footer">
+
     <div>
         <h3>EloraStay</h3>
-        <p>Platform booking hotel terpercaya untuk pengalaman terbaik Anda.</p>
+
+        <p>
+            Platform booking hotel terpercaya untuk pengalaman terbaik Anda.
+        </p>
     </div>
 
     <div>
         <h3>Link</h3>
-        <p>Beranda<br>Daftar Kamar<br>Reservasi Saya</p>
+
+        <p>
+            <a href="{{ url('/dashboard') }}">Dashboard</a><br>
+
+            <a href="{{ url('/pelangganadmin') }}">Pelanggan</a><br>
+
+            <a href="{{ url('/reservasiadmin') }}">Reservasi</a><br>
+
+            <a href="{{ url('/kamaradmin') }}">Kamar</a><br>
+
+            <a href="{{ url('/pembayaranadmin') }}">Pembayaran</a>
+        </p>
     </div>
 
     <div>
         <h3>Hubungi Kami</h3>
-        <p>Email: info@elorastay.com<br>Telepon: +62 123 456 7890</p>
+
+        <p>
+            Email: info@elorastay.com<br>
+            Telepon: +62 123 456 7890
+        </p>
     </div>
+
 </div>
 
 <div class="copy">
