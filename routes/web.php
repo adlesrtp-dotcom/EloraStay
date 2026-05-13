@@ -23,9 +23,8 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::post('/login', function () {
-    return "Login diproses";
-})->name('login.process');
+Route::post('/login', [AuthController::class, 'login'])
+    ->name('login.process');
 
 Route::get('/registrasi', function () {
     return view('registrasi');
@@ -54,6 +53,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/dashboardadmin', function () {
+    return view('dashboardadmin');
+})->name('dashboardadmin');
 
 Route::get('/pelangganadmin', function () {
     return view('pelangganadmin');

@@ -1,287 +1,491 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Admin - EloraStay</title>
+    <meta charset="UTF-8">
+    <title>Dashboard - EloraStay</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffe4ec;
+        }
 
-body{
-    font-family:Arial, sans-serif;
-    background:#f7eef3;
-}
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(to right, #f472b6, #ec4899);
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.wrapper{
-    width:100%;
-    min-height:100vh;
-}
+        /* Logo */
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
 
-/* Navbar */
-.navbar{
-    width:100%;
-    background:#e89ac2;
-    padding:18px 50px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+        /* Menu */
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
 
-.logo{
-    color:white;
-    font-size:32px;
-    font-weight:bold;
-}
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            position: relative;
+            transition: 0.3s;
+        }
 
-.menu a{
-    color:white;
-    text-decoration:none;
-    margin-left:35px;
-    font-size:20px;
-    font-weight:bold;
-}
+        /* Hover underline effect */
+        .nav-menu a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: white;
+            left: 0;
+            bottom: -4px;
+            transition: 0.3s;
+        }
 
-/* Content */
-.container{
-    width:100%;
-    padding:40px 50px;
-}
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
 
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:35px;
-}
+        /* Login button */
+        .login-btn {
+            background: white;
+            color: #ec4899;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            text-decoration: none;
+        }
 
-.topbar h1{
-    font-size:42px;
-}
+        .login-btn:hover {
+            background: #ffe4ec;
+        }
 
-.search{
-    width:350px;
-    padding:14px 18px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:18px;
-}
+        /* Hero Image */
+        .hero {
+            height: 300px;
+            background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
 
-/* Cards */
-.cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:30px;
-    margin-bottom:40px;
-}
+        /* Overlay */
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(236, 72, 153, 0.4);
+            top: 0;
+            left: 0;
+        }
 
-.card{
-    background:#f1dbe4;
-    border-radius:20px;
-    padding:35px;
-    min-height:190px;
-}
+        /* Text */
+        .hero-content {
+            position: relative;
+            color: white;
+            text-align: center;
+        }
 
-.card h3{
-    font-size:28px;
-    margin-bottom:25px;
-}
+        .hero-content h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
 
-.card p{
-    color:#e91e63;
-    font-size:38px;
-    font-weight:bold;
-}
+        .hero-content p {
+            margin-bottom: 15px;
+        }
 
-/* Table */
-.table-box{
-    background:#f1dbe4;
-    padding:30px;
-    border-radius:20px;
-}
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 40px 20px;
+            text-align: center;
+        }
 
-.table-box h2{
-    margin-bottom:25px;
-    font-size:30px;
-}
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-}
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
 
-th,td{
-    padding:18px;
-    text-align:left;
-    border-bottom:1px solid #aaa;
-    font-size:18px;
-}
+        .icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
 
-th{
-    font-size:20px;
-}
+        .feature-card h3 {
+            margin-bottom: 10px;
+        }
 
-/* Footer */
-.footer{
-    margin-top:50px;
-    background:#e89ac2;
-    color:white;
-    padding:35px 50px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:30px;
-}
+        .feature-card p {
+            font-size: 14px;
+            color: #666;
+        }
 
-.footer h3{
-    margin-bottom:15px;
-    font-size:26px;
-}
+        /* Lihat Semua */
+        .lihat-semua {
+            color: #ec4899;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+        }
 
-.footer p{
-    font-size:18px;
-    line-height:30px;
-}
+        .lihat-semua:hover {
+            color: #db2777;
+            gap: 10px;
+        }
 
-.copy{
-    background:#d67ca8;
-    text-align:center;
-    color:white;
-    padding:18px;
-    font-size:18px;
-}
-</style>
+        /* Room */
+        .room-section {
+            padding: 20px;
+        }
+
+        .room-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img{
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta {
+            background-color: #f472b6;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+
+        .btn-daftar {
+            display: inline-block;
+            margin-top: 15px;
+            background: white;
+            color: #ec4899;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-daftar:hover {
+            background: #ffe4ec;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(to right, #f472b6, #ec4899);
+            color: white;
+            margin-top: 40px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 30px 20px;
+            gap: 20px;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 10px;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-section a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .footer-section a:hover {
+            transform: translateX(5px);
+            color: #ffe4ec;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(0,0,0,0.1);
+            font-size: 13px;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="wrapper">
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">EloraStay</div>
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <div class="logo">EloraStay</div>
-
-        <div class="menu">
-            <a href="{{ route('dashboard') }}">Dashboard</a>
-            <a href="{{ route('pelangganadmin') }}">Pelanggan</a>
-            <a href="{{ route('reservasiadmin') }}">Reservasi</a>
-            <a href="{{ route('kamaradmin') }}">Kamar</a>
-            <a href="{{ route('pembayaranadmin') }}">Pembayaran</a>
-        </div>
+    <div class="nav-menu">
+        <a href="/">Beranda</a>
+        <a href="/kamar">Daftar Kamar</a>
+        <a href="/pembayaran">Pembayaran</a>
+        <a href="/reservasi">Reservasi</a>
     </div>
 
-    <!-- Content -->
-    <div class="container">
+    <a href="/login" class="login-btn" id="loginBtn">Login</a>
+</div>
 
-        <div class="topbar">
-            <h1>Dashboard</h1>
-            <input type="text" class="search" placeholder="Cari Data...">
-        </div>
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>Temukan Hotel Impian Anda</h1>
+        <p>Booking mudah, cepat, dan terpercaya hanya di EloraStay</p>
+    </div>
+</div>
 
-        <!-- Cards -->
-        <div class="cards">
+<!-- Features -->
+<div class="features">
 
-            <div class="card">
-                <h3>Total Pelanggan</h3>
-                <p>320</p>
-            </div>
-
-            <div class="card">
-                <h3>Total Reservasi</h3>
-                <p>150</p>
-            </div>
-
-            <div class="card">
-                <h3>Total Kamar</h3>
-                <p>60</p>
-            </div>
-
-            <div class="card">
-                <h3>Pendapatan</h3>
-                <p>Rp 9.800.000</p>
-            </div>
-
-        </div>
-
-        <!-- Table -->
-        <div class="table-box">
-            <h2>Reservasi Terbaru</h2>
-
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Nama</th>
-                    <th>Check In</th>
-                    <th>Status</th>
-                </tr>
-
-                <tr>
-                    <td>RS-001</td>
-                    <td>John Doe</td>
-                    <td>11 Apr 2026</td>
-                    <td style="color:red;">Menunggu</td>
-                </tr>
-
-                <tr>
-                    <td>RS-002</td>
-                    <td>Jane Smith</td>
-                    <td>12 Apr 2026</td>
-                    <td style="color:green;">Check In</td>
-                </tr>
-
-                <tr>
-                    <td>RS-003</td>
-                    <td>Michael Chen</td>
-                    <td>13 Apr 2026</td>
-                    <td style="color:red;">Menunggu</td>
-                </tr>
-
-                <tr>
-                    <td>RS-004</td>
-                    <td>Siti Rahma</td>
-                    <td>14 Apr 2026</td>
-                    <td style="color:green;">Check In</td>
-                </tr>
-            </table>
-        </div>
-
+    <div class="feature-card">
+        <div class="icon">🏨</div>
+        <h3>Hotel Terpercaya</h3>
+        <p>
+            Kami bekerja sama dengan hotel terbaik untuk memastikan 
+            kenyamanan dan kualitas menginap Anda.
+        </p>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-
-        <div>
-            <h3>EloraStay</h3>
-            <p>Platform booking hotel terpercaya untuk pengalaman menginap terbaik Anda.</p>
-        </div>
-
-        <div>
-            <h3>Link</h3>
-            <p>
-                Dashboard<br>
-                Pelanggan<br>
-                Reservasi<br>
-                Kamar
-            </p>
-        </div>
-
-        <div>
-            <h3>Hubungi Kami</h3>
-            <p>
-                Email: info@elorastay.com<br>
-                Telepon: +62 123 456 7890
-            </p>
-        </div>
-
+    <div class="feature-card">
+        <div class="icon">⭐</div>
+        <h3>Rating Terbaik</h3>
+        <p>
+            Semua kamar memiliki ulasan tinggi dari pelanggan 
+            yang telah merasakan pengalaman menginap.
+        </p>
     </div>
 
-    <div class="copy">
-        © 2026 EloraStay. All rights reserved.
+    <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h3>Booking Instan</h3>
+        <p>
+            Pesan kamar hanya dalam beberapa klik tanpa proses 
+            yang ribet dan langsung terkonfirmasi.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <div class="icon">📞</div>
+        <h3>Dukungan 24/7</h3>
+        <p>
+            Tim kami siap membantu Anda kapan saja jika terjadi 
+            kendala saat reservasi atau menginap.
+        </p>
     </div>
 
 </div>
+
+<!-- Room -->
+<div class="room-section">
+
+    <div class="room-header">
+        <h3>Pilihan kamar terpopuler</h3>
+
+        <a href="/kamar" class="lihat-semua">
+            Lihat Semua →
+        </a>
+    </div>
+
+    <div class="room-grid">
+
+        <!-- CARD 1 -->
+        <div class="card" onclick="window.location.href='/kamar'">
+
+             <img src="{{ asset('img/kamar/deluxe.jpeg') }}" alt="Deluxe Room">
+
+            <h4>Deluxe Room</h4>
+
+            <p>
+                Kamar nyaman dengan desain modern dan pemandangan kota 
+                yang menenangkan. Cocok untuk Anda yang menginginkan 
+                istirahat berkualitas dengan suasana hangat dan fasilitas lengkap.
+            </p>
+
+            <b style="color:#ec4899;">Rp. 500.000</b>
+
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="card" onclick="window.location.href='/kamar'">
+
+             <img src="/img/kamar/suite.jpeg" alt="Superior Suite">
+
+            <h4>Superior Suite</h4>
+
+            <p>
+                Suite mewah dengan ruang tamu terpisah, fasilitas premium, 
+                dan pemandangan indah. Ideal untuk Anda yang menginginkan 
+                pengalaman menginap yang lebih eksklusif dan nyaman.
+            </p>
+
+            <b style="color:#ec4899;">Rp. 750.000</b>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+
+    <div class="cta-section" id="daftarSection">
+
+        <h3>Siap untuk pengalaman terbaik?</h3>
+
+        <p>Daftar sekarang dan dapatkan promo</p>
+
+        <button class="btn-daftar"
+            onclick="window.location.href='/registrasi'">
+
+            Daftar Sekarang
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- Brand -->
+        <div class="footer-section">
+            <h3>EloraStay</h3>
+
+            <p>
+                Platform booking hotel terpercaya dengan pengalaman 
+                terbaik untuk Anda.
+            </p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="footer-section">
+
+            <h4>Menu</h4>
+
+            <a href="/">🏠 Beranda</a>
+            <a href="/kamar">🛏️ Daftar Kamar</a>
+            <a href="/reservasi">📄 Reservasi</a>
+            <a href="/pembayaran">💳 Pembayaran</a>
+
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-section">
+
+            <h4>Kontak</h4>
+
+            <p>📧 email@elorastay.com</p>
+            <p>📞 +62 123 456 7890</p>
+            <p>📍 Indonesia</p>
+
+        </div>
+
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+        <p>© 2026 EloraStay. All rights reserved.</p>
+    </div>
+
+</footer>
+
+<script>
+window.onload = function() {
+
+    const isLogin = localStorage.getItem("isLogin");
+
+    if (isLogin === "true") {
+
+        // sembunyikan tombol login
+        const loginBtn = document.getElementById("loginBtn");
+
+        if (loginBtn) {
+            loginBtn.style.display = "none";
+        }
+
+        // sembunyikan daftar sekarang
+        const daftarSection = document.getElementById("daftarSection");
+
+        if (daftarSection) {
+            daftarSection.style.display = "none";
+        }
+    }
+}
+</script>
 
 </body>
 </html>
