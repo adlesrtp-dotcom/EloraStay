@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Dashboard - EloraStay</title>
 
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #ffe4ec;
         }
 
@@ -15,7 +16,7 @@
         .navbar {
             background: linear-gradient(to right, #f472b6, #ec4899);
             color: white;
-            padding: 15px 25px;
+            padding: 18px 35px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -30,32 +31,48 @@
         /* Menu */
         .nav-menu {
             display: flex;
-            gap: 20px;
+            gap: 35px;
+
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            position: relative;
-            transition: 0.3s;
+        position: relative;
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        padding-bottom: 5px;
+        transition: 0.3s;
         }
 
-        /* Hover underline effect */
         .nav-menu a::after {
-            content: "";
-            position: absolute;
-            width: 0%;
-            height: 2px;
-            background: white;
-            left: 0;
-            bottom: -4px;
-            transition: 0.3s;
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+
+        width: 0%;
+        height: 3px;
+
+        background: white;
+        border-radius: 10px;
+
+        transition: 0.3s;
         }
 
+        /* Hover */
         .nav-menu a:hover::after {
             width: 100%;
         }
+
+        /* Active */
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
 
         /* Login button */
         .login-btn {
@@ -294,7 +311,20 @@
         <a href="/reservasi">Reservasi</a>
     </div>
 
-    <a href="/login" class="login-btn" id="loginBtn">Login</a>
+    <!-- tombol login -->
+    <a href="/login" class="login-btn" id="loginBtn">
+        Login
+    </a>
+
+    <!-- tombol logout -->
+    <button class="login-btn"
+        id="logoutBtn"
+        onclick="logout()"
+        style="display:none;">
+
+        Logout
+
+    </button>
 </div>
 
 <!-- Hero -->
@@ -464,27 +494,66 @@
 </footer>
 
 <script>
-window.onload = function() {
+
+window.onload = function () {
 
     const isLogin = localStorage.getItem("isLogin");
 
+    const loginBtn = document.getElementById("loginBtn");
+
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    const daftarSection = document.getElementById("daftarSection");
+
+    // jika sudah login
     if (isLogin === "true") {
 
-        // sembunyikan tombol login
-        const loginBtn = document.getElementById("loginBtn");
-
+        // sembunyikan login
         if (loginBtn) {
             loginBtn.style.display = "none";
         }
 
-        // sembunyikan daftar sekarang
-        const daftarSection = document.getElementById("daftarSection");
+        // tampilkan logout
+        if (logoutBtn) {
+            logoutBtn.style.display = "inline-block";
+        }
 
+        // sembunyikan daftar sekarang
         if (daftarSection) {
             daftarSection.style.display = "none";
         }
     }
+
+    // jika belum login
+    else {
+
+        // tampilkan login
+        if (loginBtn) {
+            loginBtn.style.display = "inline-block";
+        }
+
+        // sembunyikan logout
+        if (logoutBtn) {
+            logoutBtn.style.display = "none";
+        }
+
+        // tampilkan daftar sekarang
+        if (daftarSection) {
+            daftarSection.style.display = "block";
+        }
+    }
 }
+
+// logout
+function logout() {
+
+    localStorage.removeItem("isLogin");
+
+    alert("Logout berhasil");
+
+    window.location.href = "/dashboard";
+}
+
 </script>
 
 </body>

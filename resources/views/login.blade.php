@@ -323,40 +323,36 @@ input {
 
     </div>
 <script>
+
 function fakeLogin(e) {
-    e.preventDefault(); // ❌ stop submit ke backend
+
+    e.preventDefault();
 
     let email = document.querySelector('input[name="email"]').value;
+
     let password = document.querySelector('input[name="password"]').value;
 
     // validasi sederhana
     if (email === "" || password === "") {
+
         alert("Isi email dan password dulu!");
+
         return false;
     }
 
     // simpan status login
     localStorage.setItem("isLogin", "true");
+
     localStorage.setItem("userEmail", email);
 
-    // redirect ke beranda
-    window.location.href = "/";
+    alert("Login berhasil!");
+
+    // redirect ke dashboard
+    window.location.href = "/dashboard";
 
     return false;
 }
 
-window.onload = function() {
-    const isLogin = localStorage.getItem("isLogin");
-
-    if (isLogin) {
-        const loginBtn = document.querySelector(".login-btn");
-
-        if (loginBtn) {
-            // 🔥 SEMBUNYIKAN tombol login (sesuai request kamu)
-            loginBtn.style.display = "none";
-        }
-    }
-}
 </script>
 
 </body>

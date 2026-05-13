@@ -200,23 +200,34 @@ input {
 </div>
 
 <!-- FOOTER -->
+
 <footer class="footer">
     <div class="footer-container">
+
+        <!-- Brand -->
         <div class="footer-section">
             <h3>EloraStay</h3>
-            <p>Platform booking hotel terpercaya.</p>
+            <p>Platform booking hotel terpercaya dengan pengalaman terbaik untuk Anda.</p>
         </div>
 
+        <!-- Navigation -->
         <div class="footer-section">
-            <a href="/">Beranda</a>
-            <a href="/kamar">Daftar Kamar</a>
+            <h4>Menu</h4>
+            <a href="/">🏠 Beranda</a>
+            <a href="/kamar">🛏️ Daftar Kamar</a>
+            <a href="/reservasi">📄 Reservasi</a>
+            <a href="/pembayaran">💳 Pembayaran</a>
         </div>
 
+        <!-- Contact -->
         <div class="footer-section">
-            <p>Email: email@elorastay.com</p>
+            <h4>Kontak</h4>
+            <p>📧 email@elorastay.com</p>
+            <p>📞 +62 123 456 7890</p>
+            <p>📍 Indonesia</p>
         </div>
+
     </div>
-</footer>
 
 </body>
 </html>

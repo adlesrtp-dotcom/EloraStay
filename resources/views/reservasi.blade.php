@@ -2,42 +2,96 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <title>Reservasi Saya - EloraStay</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #ffe4ec;
 }
 
 /* Navbar */
+/* Navbar */
 .navbar {
     background: linear-gradient(to right, #f472b6, #ec4899);
     color: white;
-    padding: 15px 25px;
+    padding: 18px 35px;
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
+    position: relative;
 }
 
-.logo { font-size: 20px; font-weight: bold; }
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
 
-.nav-menu { display: flex; gap: 20px; }
+/* Menu Tengah */
+.nav-menu {
+    display: flex;
+    gap: 35px;
 
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Link */
 .nav-menu a {
+    position: relative;
     color: white;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    padding-bottom: 5px;
+    transition: 0.3s;
 }
 
+/* Garis bawah */
+.nav-menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+
+    width: 0%;
+    height: 3px;
+
+    background: white;
+    border-radius: 10px;
+
+    transition: 0.3s;
+}
+
+/* Hover */
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* Active */
+.nav-menu a.active::after {
+    width: 100%;
+}
+
+/* Tombol Logout */
 .login-btn {
     background: white;
     color: #ec4899;
     border: none;
-    padding: 6px 14px;
-    border-radius: 20px;
+    padding: 10px 22px;
+    border-radius: 25px;
     cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #ffe4ec;
 }
 
 /* Hero */
@@ -211,13 +265,39 @@ hr { border: 1px solid #f9a8d4; margin: 15px 0; }
 
 <!-- Navbar -->
 <div class="navbar">
+
+    <!-- Logo -->
     <div class="logo">EloraStay</div>
+
+    <!-- Menu Tengah -->
     <div class="nav-menu">
-        <a href="/">Beranda</a>
-        <a href="/kamar">Daftar Kamar</a>
-        <a href="/pembayaran">Pembayaran</a>
-        <a href="/reservasi">Reservasi</a>
+
+        <a href="/"
+           class="{{ request()->path() == '/' ? 'active' : '' }}">
+           Beranda
+        </a>
+
+        <a href="/kamar"
+           class="{{ request()->is('kamar') ? 'active' : '' }}">
+           Daftar Kamar
+        </a>
+
+        <a href="/pembayaran"
+           class="{{ request()->is('pembayaran') ? 'active' : '' }}">
+           Pembayaran
+        </a>
+
+        <a href="/reservasi"
+           class="{{ request()->is('reservasi') ? 'active' : '' }}">
+           Reservasi
+        </a>
+
     </div>
+
+    <!-- Logout -->
+    <button class="login-btn" onclick="logout()">
+        Logout
+    </button>
 
 </div>
 
@@ -373,6 +453,25 @@ function hapus(resi){
 
 // init
 render();
+
+const isLogin = localStorage.getItem("isLogin");
+
+if (isLogin !== "true") {
+
+    alert("Silakan login terlebih dahulu!");
+
+    window.location.href = "/dashboard";
+}
+
+// logout
+function logout() {
+
+    localStorage.removeItem("isLogin");
+
+    alert("Logout berhasil");
+
+    window.location.href = "/dashboard";
+}
 
 </script>
 

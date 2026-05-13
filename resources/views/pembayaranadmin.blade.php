@@ -172,7 +172,7 @@ td{
     <div class="logo">EloraStay Admin</div>
 
     <div class="menu">
-        <a href="/dashboard">Dashboard</a>
+        <a href="/dashboardadmin">Dashboard</a>
         <a href="/pelangganadmin">Pelanggan</a>
         <a href="/reservasiadmin">Reservasi</a>
         <a href="/kamaradmin">Kamar</a>
