@@ -1,310 +1,242 @@
-<!-- resources/views/kamar.blade.php -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EloraStay - Kamar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamar Admin - EloraStay</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial, sans-serif;
-    background:#f7edf3;
-}
-
-/* Navbar */
-.navbar{
-    width:100%;
-    background:#ee9cc8;
-    padding:18px 50px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    color:white;
-    font-size:28px;
-    font-weight:bold;
-}
-
-.menu a{
-    color:white;
-    text-decoration:none;
-    margin-left:25px;
-    font-size:17px;
-    font-weight:bold;
-    transition:0.3s;
-}
-
-.menu a:hover{
-    color:#ffe6f2;
-}
-
-/* Container */
-.container{
-    width:95%;
-    max-width:1600px;
-    margin:auto;
-    padding:35px 0;
-}
-
-/* Top */
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-.topbar h1{
-    font-size:38px;
-}
-
-.topbar p{
-    font-size:20px;
-    color:#444;
-    margin-top:8px;
-}
-
-.search input{
-    padding:12px 18px;
-    width:300px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:16px;
-}
-
-/* Button */
-.btn{
-    display:inline-block;
-    margin-bottom:25px;
-    background:#ee9cc8;
-    color:white;
-    padding:14px 28px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:bold;
-    font-size:18px;
-}
-
-/* Table */
-.table-box{
-    background:white;
-    border-radius:18px;
-    padding:25px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th{
-    text-align:left;
-    padding:16px;
-    font-size:18px;
-    border-bottom:2px solid #ddd;
-}
-
-td{
-    padding:16px;
-    font-size:17px;
-    border-bottom:1px solid #eee;
-}
-
-.status-tersedia{
-    color:green;
-    font-weight:bold;
-}
-
-.status-penuh{
-    color:red;
-    font-weight:bold;
-}
-
-/* Footer */
-.footer{
-    background:#ee9cc8;
-    color:white;
-    margin-top:50px;
-    padding:40px 50px;
-}
-
-.footer-box{
-    display:flex;
-    justify-content:space-between;
-    gap:30px;
-}
-
-.footer h3{
-    margin-bottom:12px;
-}
-
-.footer p{
-    line-height:1.8;
-    font-size:16px;
-}
-
-.footer a{
-    color:white;
-    text-decoration:none;
-}
-
-.copy{
-    text-align:center;
-    margin-top:25px;
-    padding-top:15px;
-    border-top:1px solid rgba(255,255,255,0.4);
-}
-</style>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<!-- Navbar -->
-<div class="navbar">
+<body class="bg-pink-50 font-sans text-gray-800">
 
-    <div class="logo">EloraStay</div>
+<div class="w-full min-h-screen">
 
-    <div class="menu">
-        <div class="menu">
-    <a href="/dashboardadmin">Dashboard</a>
-    <a href="/pelangganadmin">Pelanggan</a>
-    <a href="/reservasiadmin">Reservasi</a>
-    <a href="/kamaradmin">Kamar</a>
-    <a href="/pembayaranadmin">Pembayaran</a>
-</div>
-    </div>
+    <!-- Navbar -->
+    <nav class="w-full bg-pink-500 px-10 py-5 flex justify-between items-center">
 
-</div>
-
-<!-- Content -->
-<div class="container">
-
-    <div class="topbar">
-
-        <div>
-            <h1>Kamar</h1>
-            <p>Kelola data kamar hotel</p>
+        <div class="text-white text-3xl font-bold">
+            EloraStay
         </div>
 
-        <div class="search">
-            <input type="text" placeholder="Cari kamar...">
+        <div class="space-x-6">
+            <a href="{{ route('dashboardadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Dashboard
+            </a>
+
+            <a href="{{ route('pelangganadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Pelanggan
+            </a>
+
+            <a href="{{ route('reservasiadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Reservasi
+            </a>
+
+            <a href="{{ route('kamaradmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Kamar
+            </a>
+
+            <a href="{{ route('pembayaranadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Pembayaran
+            </a>
         </div>
 
-    </div>
+    </nav>
 
-    <a href="#" class="btn">
-        + Tambah Kamar
-    </a>
-
-    <div class="table-box">
-
-        <table>
-
-            <tr>
-                <th>ID</th>
-                <th>Nama Kamar</th>
-                <th>Tipe</th>
-                <th>Harga</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-
-            <tr>
-                <td>KM-001</td>
-                <td>Suite Premium</td>
-                <td>VIP</td>
-                <td>Rp 3.500.000</td>
-                <td class="status-tersedia">Tersedia</td>
-                <td>Edit | Hapus</td>
-            </tr>
-
-            <tr>
-                <td>KM-002</td>
-                <td>Deluxe Room</td>
-                <td>Deluxe</td>
-                <td>Rp 2.500.000</td>
-                <td class="status-penuh">Penuh</td>
-                <td>Edit | Hapus</td>
-            </tr>
-
-            <tr>
-                <td>KM-003</td>
-                <td>Standard Room</td>
-                <td>Standard</td>
-                <td>Rp 1.500.000</td>
-                <td class="status-tersedia">Tersedia</td>
-                <td>Edit | Hapus</td>
-            </tr>
-
-            <tr>
-                <td>KM-004</td>
-                <td>Family Room</td>
-                <td>Family</td>
-                <td>Rp 2.800.000</td>
-                <td class="status-tersedia">Tersedia</td>
-                <td>Edit | Hapus</td>
-            </tr>
-
-        </table>
-
-    </div>
-
-</div>
-
-<!-- Footer -->
-<div class="footer">
-
-    <div class="footer-box">
+    <!-- Hero -->
+    <section
+        class="w-full h-[260px] bg-cover bg-center flex items-center justify-center text-center text-white"
+        style="background-image:
+        linear-gradient(rgba(240,92,168,0.45), rgba(240,92,168,0.45)),
+        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1400&auto=format&fit=crop');">
 
         <div>
-            <h3>EloraStay</h3>
+            <h1 class="text-5xl font-bold mb-3">
+                Data Kamar Hotel
+            </h1>
 
-            <p>
-                Platform booking hotel terpercaya
-                <br>
-                untuk pengalaman menginap terbaik.
+            <p class="text-lg">
+                Kelola data kamar hotel dengan tampilan modern.
             </p>
         </div>
 
-        <div>
-            <h3>Link</h3>
+    </section>
 
-            <p>
-                <a href="{{ url('/dashboard') }}">Dashboard</a><br>
+    <!-- Content -->
+    <div class="p-10">
 
-                <a href="{{ url('/pelangganadmin') }}">Pelanggan</a><br>
+        <!-- Topbar -->
+        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 mb-8">
 
-                <a href="{{ url('/reservasiadmin') }}">Reservasi</a><br>
+            <!-- Title -->
+            <div>
+                <h2 class="text-4xl font-bold mb-2">
+                    Daftar Kamar
+                </h2>
 
-                <a href="{{ url('/kamaradmin') }}">Kamar</a><br>
+                <p class="text-gray-600">
+                    Kelola data kamar hotel
+                </p>
+            </div>
 
-                <a href="{{ url('/pembayaranadmin') }}">Pembayaran</a>
-            </p>
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+
+                <input
+                    type="text"
+                    placeholder="Cari kamar..."
+                    class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-300">
+
+                <button
+                    class="bg-pink-500 hover:bg-pink-600 transition text-white font-bold px-6 py-3 rounded-xl">
+                    + Tambah Kamar
+                </button>
+
+            </div>
+
         </div>
 
-        <div>
-            <h3>Hubungi Kami</h3>
+        <!-- Table -->
+        <div class="bg-white p-8 rounded-3xl shadow overflow-x-auto">
 
-            <p>
-                Email: info@elorastay.com<br>
-                Telepon: +62 123 456 7890
-            </p>
+            <table class="w-full border-collapse min-w-[900px]">
+
+                <thead>
+
+                    <tr class="bg-pink-100 text-gray-700">
+
+                        <th class="p-5 text-left">ID</th>
+                        <th class="p-5 text-left">Nama Kamar</th>
+                        <th class="p-5 text-left">Tipe</th>
+                        <th class="p-5 text-left">Harga</th>
+                        <th class="p-5 text-left">Status</th>
+                        <th class="p-5 text-left">Aksi</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">KM-001</td>
+                        <td class="p-5">Suite Premium</td>
+                        <td class="p-5">VIP</td>
+                        <td class="p-5">Rp 3.500.000</td>
+
+                        <td class="p-5">
+                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Tersedia
+                            </span>
+                        </td>
+
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
+
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">KM-002</td>
+                        <td class="p-5">Deluxe Room</td>
+                        <td class="p-5">Deluxe</td>
+                        <td class="p-5">Rp 2.500.000</td>
+
+                        <td class="p-5">
+                            <span class="bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Penuh
+                            </span>
+                        </td>
+
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
+
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">KM-003</td>
+                        <td class="p-5">Standard Room</td>
+                        <td class="p-5">Standard</td>
+                        <td class="p-5">Rp 1.500.000</td>
+
+                        <td class="p-5">
+                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Tersedia
+                            </span>
+                        </td>
+
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
+
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    <tr class="hover:bg-pink-50 transition">
+
+                        <td class="p-5">KM-004</td>
+                        <td class="p-5">Family Room</td>
+                        <td class="p-5">Family</td>
+                        <td class="p-5">Rp 2.800.000</td>
+
+                        <td class="p-5">
+                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Tersedia
+                            </span>
+                        </td>
+
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
+
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
         </div>
 
     </div>
+    
+        <div class="bg-pink-600 text-center py-4">
+            © 2026 EloraStay. All rights reserved.
+        </div>
 
-    <div class="copy">
-        © 2026 EloraStay. All rights reserved.
-    </div>
+    </footer>
 
 </div>
 

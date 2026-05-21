@@ -1,311 +1,235 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EloraStay - Admin Pembayaran</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Admin - EloraStay</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial, sans-serif;
-    background:#f8edf3;
-}
-
-/* Navbar */
-.navbar{
-    background:#ee9cc8;
-    padding:18px 50px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    color:white;
-    font-size:28px;
-    font-weight:bold;
-}
-
-.menu a{
-    color:white;
-    text-decoration:none;
-    margin-left:25px;
-    font-weight:bold;
-    font-size:17px;
-    transition:0.3s;
-}
-
-.menu a:hover{
-    color:#ffe6f2;
-}
-
-/* Container */
-.container{
-    width:95%;
-    max-width:1600px;
-    margin:auto;
-    padding:35px 0;
-}
-
-/* Header */
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-.topbar h1{
-    font-size:38px;
-}
-
-.topbar p{
-    margin-top:8px;
-    font-size:19px;
-    color:#555;
-}
-
-.search input{
-    width:300px;
-    padding:12px 18px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:16px;
-}
-
-/* Button */
-.btn{
-    display:inline-block;
-    margin-bottom:25px;
-    background:#ee9cc8;
-    color:white;
-    padding:14px 28px;
-    border-radius:10px;
-    text-decoration:none;
-    font-size:18px;
-    font-weight:bold;
-}
-
-/* Table */
-.table-box{
-    background:white;
-    padding:25px;
-    border-radius:18px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th{
-    text-align:left;
-    padding:16px;
-    font-size:18px;
-    border-bottom:2px solid #ddd;
-}
-
-td{
-    padding:16px;
-    font-size:17px;
-    border-bottom:1px solid #eee;
-}
-
-.status-lunas{
-    color:green;
-    font-weight:bold;
-}
-
-.status-pending{
-    color:red;
-    font-weight:bold;
-}
-
-/* Footer */
-.footer{
-    background:#ee9cc8;
-    color:white;
-    margin-top:50px;
-    padding:40px 50px;
-}
-
-.footer-box{
-    display:flex;
-    justify-content:space-between;
-    gap:30px;
-}
-
-.footer h3{
-    margin-bottom:12px;
-}
-
-.footer p{
-    line-height:1.8;
-    font-size:16px;
-}
-
-.footer a{
-    color:white;
-    text-decoration:none;
-}
-
-.copy{
-    text-align:center;
-    margin-top:25px;
-    padding-top:15px;
-    border-top:1px solid rgba(255,255,255,0.4);
-}
-</style>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<!-- Navbar -->
-<div class="navbar">
+<body class="bg-pink-50 font-sans text-gray-800">
 
-    <div class="logo">EloraStay Admin</div>
+<div class="w-full min-h-screen">
 
-    <div class="menu">
-        <a href="/dashboardadmin">Dashboard</a>
-        <a href="/pelangganadmin">Pelanggan</a>
-        <a href="/reservasiadmin">Reservasi</a>
-        <a href="/kamaradmin">Kamar</a>
-        <a href="/pembayaranadmin">Pembayaran</a>
-    </div>
+    <!-- Navbar -->
+    <nav class="w-full bg-pink-500 px-10 py-5 flex justify-between items-center">
 
-</div>
-
-<!-- Content -->
-<div class="container">
-
-    <div class="topbar">
-
-        <div>
-            <h1>Pembayaran</h1>
-            <p>Kelola transaksi pembayaran hotel</p>
+        <div class="text-white text-3xl font-bold">
+            EloraStay Admin
         </div>
 
-        <div class="search">
-            <input type="text" placeholder="Cari pembayaran...">
+        <div class="space-x-6">
+            <a href="{{ route('dashboardadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Dashboard
+            </a>
+
+            <a href="{{ route('pelangganadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Pelanggan
+            </a>
+
+            <a href="{{ route('reservasiadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Reservasi
+            </a>
+
+            <a href="{{ route('kamaradmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Kamar
+            </a>
+
+            <a href="{{ route('pembayaranadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Pembayaran
+            </a>
         </div>
 
-    </div>
+    </nav>
 
-    <a href="#" class="btn">
-        + Tambah Pembayaran
-    </a>
-
-    <div class="table-box">
-
-        <table>
-
-            <tr>
-                <th>ID</th>
-                <th>Nama</th>
-                <th>Reservasi</th>
-                <th>Metode</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-
-            <tr>
-                <td>PB-001</td>
-                <td>John Doe</td>
-                <td>RS-001</td>
-                <td>Transfer</td>
-                <td>Rp 3.500.000</td>
-                <td class="status-lunas">Lunas</td>
-                <td>Detail</td>
-            </tr>
-
-            <tr>
-                <td>PB-002</td>
-                <td>Jane Smith</td>
-                <td>RS-002</td>
-                <td>Cash</td>
-                <td>Rp 2.500.000</td>
-                <td class="status-pending">Pending</td>
-                <td>Detail</td>
-            </tr>
-
-            <tr>
-                <td>PB-003</td>
-                <td>Ahmad Rahman</td>
-                <td>RS-003</td>
-                <td>QRIS</td>
-                <td>Rp 2.000.000</td>
-                <td class="status-lunas">Lunas</td>
-                <td>Detail</td>
-            </tr>
-
-            <tr>
-                <td>PB-004</td>
-                <td>Siti Rahma</td>
-                <td>RS-004</td>
-                <td>Transfer</td>
-                <td>Rp 3.500.000</td>
-                <td class="status-pending">Pending</td>
-                <td>Detail</td>
-            </tr>
-
-        </table>
-
-    </div>
-
-</div>
-
-<!-- Footer -->
-<div class="footer">
-
-    <div class="footer-box">
+    <!-- Hero -->
+    <section
+        class="w-full h-[260px] bg-cover bg-center flex items-center justify-center text-center text-white"
+        style="background-image:
+        linear-gradient(rgba(240,92,168,0.45), rgba(240,92,168,0.45)),
+        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1400&auto=format&fit=crop');">
 
         <div>
-            <h3>EloraStay</h3>
+            <h1 class="text-5xl font-bold mb-3">
+                Pembayaran Hotel
+            </h1>
 
-            <p>
-                Platform booking hotel terpercaya
-                <br>
-                untuk pengalaman menginap terbaik.
+            <p class="text-lg">
+                Kelola transaksi pembayaran hotel dengan tampilan modern.
             </p>
         </div>
 
-        <div>
-            <h3>Menu</h3>
+    </section>
 
-            <p>
-                <a href="{{ url('/dashboard') }}">Dashboard</a><br>
+    <!-- Content -->
+    <div class="p-10">
 
-                <a href="{{ url('/pelangganadmin') }}">Pelanggan</a><br>
+        <!-- Topbar -->
+        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 mb-8">
 
-                <a href="{{ url('/reservasiadmin') }}">Reservasi</a><br>
+            <!-- Title -->
+            <div>
+                <h2 class="text-4xl font-bold mb-2">
+                    Daftar Pembayaran
+                </h2>
 
-                <a href="{{ url('/kamaradmin') }}">Kamar</a><br>
+                <p class="text-gray-600">
+                    Kelola transaksi pembayaran hotel
+                </p>
+            </div>
 
-                <a href="{{ url('/pembayaranadmin') }}">Pembayaran</a>
-            </p>
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+
+                <input
+                    type="text"
+                    placeholder="Cari pembayaran..."
+                    class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-300">
+
+                <button
+                    class="bg-pink-500 hover:bg-pink-600 transition text-white font-bold px-6 py-3 rounded-xl">
+                    + Tambah Pembayaran
+                </button>
+
+            </div>
+
         </div>
 
-        <div>
-            <h3>Hubungi Kami</h3>
+        <!-- Table -->
+        <div class="bg-white p-8 rounded-3xl shadow overflow-x-auto">
 
-            <p>
-                Email: info@elorastay.com<br>
-                Telepon: +62 123 456 7890
-            </p>
+            <table class="w-full border-collapse min-w-[1000px]">
+
+                <thead>
+
+                    <tr class="bg-pink-100 text-gray-700">
+
+                        <th class="p-5 text-left">ID</th>
+                        <th class="p-5 text-left">Nama</th>
+                        <th class="p-5 text-left">Reservasi</th>
+                        <th class="p-5 text-left">Metode</th>
+                        <th class="p-5 text-left">Total</th>
+                        <th class="p-5 text-left">Status</th>
+                        <th class="p-5 text-left">Aksi</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">PB-001</td>
+                        <td class="p-5">John Doe</td>
+                        <td class="p-5">RS-001</td>
+                        <td class="p-5">Transfer</td>
+                        <td class="p-5">Rp 3.500.000</td>
+
+                        <td class="p-5">
+                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Lunas
+                            </span>
+                        </td>
+
+                        <td class="p-5">
+                            <a href="#"
+                               class="text-pink-500 font-bold hover:underline">
+                                Detail
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">PB-002</td>
+                        <td class="p-5">Jane Smith</td>
+                        <td class="p-5">RS-002</td>
+                        <td class="p-5">Cash</td>
+                        <td class="p-5">Rp 2.500.000</td>
+
+                        <td class="p-5">
+                            <span class="bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Pending
+                            </span>
+                        </td>
+
+                        <td class="p-5">
+                            <a href="#"
+                               class="text-pink-500 font-bold hover:underline">
+                                Detail
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">PB-003</td>
+                        <td class="p-5">Ahmad Rahman</td>
+                        <td class="p-5">RS-003</td>
+                        <td class="p-5">QRIS</td>
+                        <td class="p-5">Rp 2.000.000</td>
+
+                        <td class="p-5">
+                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Lunas
+                            </span>
+                        </td>
+
+                        <td class="p-5">
+                            <a href="#"
+                               class="text-pink-500 font-bold hover:underline">
+                                Detail
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    <tr class="hover:bg-pink-50 transition">
+
+                        <td class="p-5">PB-004</td>
+                        <td class="p-5">Siti Rahma</td>
+                        <td class="p-5">RS-004</td>
+                        <td class="p-5">Transfer</td>
+                        <td class="p-5">Rp 3.500.000</td>
+
+                        <td class="p-5">
+                            <span class="bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Pending
+                            </span>
+                        </td>
+
+                        <td class="p-5">
+                            <a href="#"
+                               class="text-pink-500 font-bold hover:underline">
+                                Detail
+                            </a>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
         </div>
 
     </div>
 
-    <div class="copy">
-        © 2026 EloraStay Admin. All rights reserved.
-    </div>
+        <div class="bg-pink-600 text-center py-4">
+            © 2026 EloraStay Admin. All rights reserved.
+        </div>
+
+    </footer>
 
 </div>
 

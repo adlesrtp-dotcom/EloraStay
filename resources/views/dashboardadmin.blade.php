@@ -1,285 +1,213 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Admin - EloraStay</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - EloraStay</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial, sans-serif;
-    background:#f7eef3;
-}
-
-.wrapper{
-    width:100%;
-    min-height:100vh;
-}
-
-/* Navbar */
-.navbar{
-    width:100%;
-    background:#e89ac2;
-    padding:18px 50px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    color:white;
-    font-size:32px;
-    font-weight:bold;
-}
-
-.menu a{
-    color:white;
-    text-decoration:none;
-    margin-left:35px;
-    font-size:20px;
-    font-weight:bold;
-}
-
-/* Content */
-.container{
-    width:100%;
-    padding:40px 50px;
-}
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:35px;
-}
-
-.topbar h1{
-    font-size:42px;
-}
-
-.search{
-    width:350px;
-    padding:14px 18px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:18px;
-}
-
-/* Cards */
-.cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:30px;
-    margin-bottom:40px;
-}
-
-.card{
-    background:#f1dbe4;
-    border-radius:20px;
-    padding:35px;
-    min-height:190px;
-}
-
-.card h3{
-    font-size:28px;
-    margin-bottom:25px;
-}
-
-.card p{
-    color:#e91e63;
-    font-size:38px;
-    font-weight:bold;
-}
-
-/* Table */
-.table-box{
-    background:#f1dbe4;
-    padding:30px;
-    border-radius:20px;
-}
-
-.table-box h2{
-    margin-bottom:25px;
-    font-size:30px;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,td{
-    padding:18px;
-    text-align:left;
-    border-bottom:1px solid #aaa;
-    font-size:18px;
-}
-
-th{
-    font-size:20px;
-}
-
-/* Footer */
-.footer{
-    margin-top:50px;
-    background:#e89ac2;
-    color:white;
-    padding:35px 50px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:30px;
-}
-
-.footer h3{
-    margin-bottom:15px;
-    font-size:26px;
-}
-
-.footer p{
-    font-size:18px;
-    line-height:30px;
-}
-
-.copy{
-    background:#d67ca8;
-    text-align:center;
-    color:white;
-    padding:18px;
-    font-size:18px;
-}
-</style>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-pink-50 font-sans">
 
-<div class="wrapper">
+<div class="w-full min-h-screen">
 
     <!-- Navbar -->
-    <div class="navbar">
-        <div class="logo">EloraStay</div>
+    <nav class="w-full bg-pink-500 px-10 py-5 flex justify-between items-center">
 
-        <div class="menu">
-            <a href="{{ route('dashboard') }}">Dashboard</a>
-            <a href="{{ route('pelangganadmin') }}">Pelanggan</a>
-            <a href="{{ route('reservasiadmin') }}">Reservasi</a>
-            <a href="{{ route('kamaradmin') }}">Kamar</a>
-            <a href="{{ route('pembayaranadmin') }}">Pembayaran</a>
+        <div class="text-white text-3xl font-bold">
+            EloraStay
         </div>
-    </div>
+
+        <div class="space-x-6">
+            <a href="{{ route('dashboardadmin') }}" class="text-white font-semibold hover:text-pink-100">
+                Dashboard
+            </a>
+
+            <a href="{{ route('pelangganadmin') }}" class="text-white font-semibold hover:text-pink-100">
+                Pelanggan
+            </a>
+
+            <a href="{{ route('reservasiadmin') }}" class="text-white font-semibold hover:text-pink-100">
+                Reservasi
+            </a>
+
+            <a href="{{ route('kamaradmin') }}" class="text-white font-semibold hover:text-pink-100">
+                Kamar
+            </a>
+
+            <a href="{{ route('pembayaranadmin') }}" class="text-white font-semibold hover:text-pink-100">
+                Pembayaran
+            </a>
+        </div>
+
+    </nav>
+
+    <!-- Hero -->
+    <section 
+        class="w-full h-[320px] bg-cover bg-center flex items-center justify-center text-center text-white"
+        style="background-image:
+        linear-gradient(rgba(240,92,168,0.4), rgba(240,92,168,0.4)),
+        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1400&auto=format&fit=crop');">
+
+        <div>
+            <h1 class="text-5xl font-bold mb-3">
+                Dashboard Admin EloraStay
+            </h1>
+
+            <p class="text-lg">
+                Kelola data hotel, reservasi, pelanggan, dan pembayaran dengan mudah.
+            </p>
+        </div>
+
+    </section>
 
     <!-- Content -->
-    <div class="container">
-
-        <div class="topbar">
-            <h1>Dashboard</h1>
-            <input type="text" class="search" placeholder="Cari Data...">
-        </div>
+    <div class="p-10">
 
         <!-- Cards -->
-        <div class="cards">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
 
-            <div class="card">
-                <h3>Total Pelanggan</h3>
-                <p>320</p>
+            <div class="bg-white p-8 rounded-2xl shadow text-center">
+                <h3 class="text-xl text-gray-700 mb-4 font-semibold">
+                    Total Pelanggan
+                </h3>
+
+                <p class="text-4xl font-bold text-pink-500">
+                    320
+                </p>
             </div>
 
-            <div class="card">
-                <h3>Total Reservasi</h3>
-                <p>150</p>
+            <div class="bg-white p-8 rounded-2xl shadow text-center">
+                <h3 class="text-xl text-gray-700 mb-4 font-semibold">
+                    Total Reservasi
+                </h3>
+
+                <p class="text-4xl font-bold text-pink-500">
+                    150
+                </p>
             </div>
 
-            <div class="card">
-                <h3>Total Kamar</h3>
-                <p>60</p>
+            <div class="bg-white p-8 rounded-2xl shadow text-center">
+                <h3 class="text-xl text-gray-700 mb-4 font-semibold">
+                    Total Kamar
+                </h3>
+
+                <p class="text-4xl font-bold text-pink-500">
+                    60
+                </p>
             </div>
 
-            <div class="card">
-                <h3>Pendapatan</h3>
-                <p>Rp 9.800.000</p>
+            <div class="bg-white p-8 rounded-2xl shadow text-center">
+                <h3 class="text-xl text-gray-700 mb-4 font-semibold">
+                    Pendapatan
+                </h3>
+
+                <p class="text-4xl font-bold text-pink-500">
+                    Rp 9.8JT
+                </p>
             </div>
 
         </div>
 
         <!-- Table -->
-        <div class="table-box">
-            <h2>Reservasi Terbaru</h2>
+        <div class="bg-white p-8 rounded-2xl shadow mb-10 overflow-x-auto">
 
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Nama</th>
-                    <th>Check In</th>
-                    <th>Status</th>
-                </tr>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                Reservasi Terbaru
+            </h2>
 
-                <tr>
-                    <td>RS-001</td>
-                    <td>John Doe</td>
-                    <td>11 Apr 2026</td>
-                    <td style="color:red;">Menunggu</td>
-                </tr>
+            <table class="w-full border-collapse">
 
-                <tr>
-                    <td>RS-002</td>
-                    <td>Jane Smith</td>
-                    <td>12 Apr 2026</td>
-                    <td style="color:green;">Check In</td>
-                </tr>
+                <thead>
+                    <tr class="bg-pink-100 text-gray-700">
+                        <th class="p-4 text-left">ID</th>
+                        <th class="p-4 text-left">Nama</th>
+                        <th class="p-4 text-left">Check In</th>
+                        <th class="p-4 text-left">Status</th>
+                    </tr>
+                </thead>
 
-                <tr>
-                    <td>RS-003</td>
-                    <td>Michael Chen</td>
-                    <td>13 Apr 2026</td>
-                    <td style="color:red;">Menunggu</td>
-                </tr>
+                <tbody>
 
-                <tr>
-                    <td>RS-004</td>
-                    <td>Siti Rahma</td>
-                    <td>14 Apr 2026</td>
-                    <td style="color:green;">Check In</td>
-                </tr>
+                    <tr class="border-b">
+                        <td class="p-4">RS-001</td>
+                        <td class="p-4">John Doe</td>
+                        <td class="p-4">11 Apr 2026</td>
+                        <td class="p-4 text-red-500 font-bold">Menunggu</td>
+                    </tr>
+
+                    <tr class="border-b">
+                        <td class="p-4">RS-002</td>
+                        <td class="p-4">Jane Smith</td>
+                        <td class="p-4">12 Apr 2026</td>
+                        <td class="p-4 text-green-500 font-bold">Check In</td>
+                    </tr>
+
+                    <tr class="border-b">
+                        <td class="p-4">RS-003</td>
+                        <td class="p-4">Michael Chen</td>
+                        <td class="p-4">13 Apr 2026</td>
+                        <td class="p-4 text-red-500 font-bold">Menunggu</td>
+                    </tr>
+
+                    <tr>
+                        <td class="p-4">RS-004</td>
+                        <td class="p-4">Siti Rahma</td>
+                        <td class="p-4">14 Apr 2026</td>
+                        <td class="p-4 text-green-500 font-bold">Check In</td>
+                    </tr>
+
+                </tbody>
+
             </table>
+
+        </div>
+
+        <!-- Features -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <div class="bg-white p-7 rounded-2xl shadow text-center">
+                <h3 class="text-pink-500 text-xl font-bold mb-4">
+                    Kelola Reservasi
+                </h3>
+
+                <p class="text-gray-600">
+                    Mempermudah admin dalam memantau semua reservasi pelanggan.
+                </p>
+            </div>
+
+            <div class="bg-white p-7 rounded-2xl shadow text-center">
+                <h3 class="text-pink-500 text-xl font-bold mb-4">
+                    Data Pelanggan
+                </h3>
+
+                <p class="text-gray-600">
+                    Mengelola informasi pelanggan secara cepat dan aman.
+                </p>
+            </div>
+
+            <div class="bg-white p-7 rounded-2xl shadow text-center">
+                <h3 class="text-pink-500 text-xl font-bold mb-4">
+                    Pembayaran Hotel
+                </h3>
+
+                <p class="text-gray-600">
+                    Melihat transaksi pembayaran hotel dengan mudah.
+                </p>
+            </div>
+
         </div>
 
     </div>
 
     <!-- Footer -->
-    <div class="footer">
 
-        <div>
-            <h3>EloraStay</h3>
-            <p>Platform booking hotel terpercaya untuk pengalaman menginap terbaik Anda.</p>
+        <div class="bg-pink-600 text-center py-4">
+            © 2026 EloraStay. All rights reserved.
         </div>
 
-        <div>
-            <h3>Link</h3>
-            <p>
-                Dashboard<br>
-                Pelanggan<br>
-                Reservasi<br>
-                Kamar
-            </p>
-        </div>
-
-        <div>
-            <h3>Hubungi Kami</h3>
-            <p>
-                Email: info@elorastay.com<br>
-                Telepon: +62 123 456 7890
-            </p>
-        </div>
-
-    </div>
-
-    <div class="copy">
-        © 2026 EloraStay. All rights reserved.
-    </div>
+    </footer>
 
 </div>
 

@@ -1,340 +1,248 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reservasi Admin - EloraStay</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservasi Admin - EloraStay</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial, sans-serif;
-    background:#f8eef4;
-}
-
-/* Navbar */
-.navbar{
-    background:#ea97c4;
-    padding:18px 50px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    color:white;
-    font-size:28px;
-    font-weight:bold;
-}
-
-.menu a{
-    color:white;
-    text-decoration:none;
-    margin-left:25px;
-    font-size:16px;
-    font-weight:bold;
-    transition:0.3s;
-}
-
-.menu a:hover{
-    color:#ffe6f2;
-}
-
-/* Container */
-.container{
-    padding:40px 60px;
-}
-
-/* Top */
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.search{
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:6px;
-}
-
-/* Title */
-.section-title{
-    margin:20px 0;
-}
-
-.section-title h2{
-    font-size:28px;
-}
-
-.section-title p{
-    font-size:18px;
-}
-
-/* Button */
-.btn-area{
-    text-align:right;
-    margin:20px 0;
-}
-
-.btn{
-    background:#f3a7cf;
-    color:white;
-    padding:12px 25px;
-    border-radius:20px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-/* Table */
-.table-wrapper{
-    background:#efefef;
-    border-radius:50px;
-    padding:35px;
-    margin-top:30px;
-}
-
-.table-reservasi{
-    width:100%;
-    border-collapse:collapse;
-}
-
-.table-reservasi th{
-    text-align:left;
-    font-size:20px;
-    padding:12px;
-    border-bottom:3px solid #777;
-}
-
-.table-reservasi td{
-    padding:12px;
-    border-bottom:2px solid #aaa;
-    font-size:16px;
-}
-
-/* Status */
-.status-menunggu{
-    color:#d9534f;
-    font-weight:bold;
-}
-
-.status-checkin{
-    color:#5cb85c;
-    font-weight:bold;
-}
-
-/* Footer */
-.footer{
-    background:#ea97c4;
-    color:white;
-    padding:35px 60px;
-    margin-top:50px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:30px;
-}
-
-.footer h3{
-    margin-bottom:10px;
-}
-
-.footer p{
-    line-height:30px;
-}
-
-.footer a{
-    color:white;
-    text-decoration:none;
-}
-
-.copy{
-    background:#e282b7;
-    text-align:center;
-    padding:12px;
-    color:white;
-}
-</style>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<!-- Navbar -->
-<div class="navbar">
+<body class="bg-pink-50 font-sans text-gray-800">
 
-    <div class="logo">EloraStay</div>
+<div class="w-full min-h-screen">
 
-    <div class="menu">
-        <a href="/dashboardadmin">Dashboard</a>
-        <a href="/pelangganadmin">Pelanggan</a>
-        <a href="/reservasiadmin">Reservasi</a>
-        <a href="/kamaradmin">Kamar</a>
-        <a href="/pembayaranadmin">Pembayaran</a>
-    </div>
+    <!-- Navbar -->
+    <nav class="w-full bg-pink-500 px-10 py-5 flex justify-between items-center">
 
-</div>
+        <div class="text-white text-3xl font-bold">
+            EloraStay
+        </div>
 
-<!-- Content -->
-<div class="container">
+        <div class="space-x-6">
+            <a href="{{ route('dashboardadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Dashboard
+            </a>
 
-    <!-- Topbar -->
-    <div class="topbar">
-        <h4>Reservasi</h4>
-        <input type="text" class="search" placeholder="Cari....">
-    </div>
+            <a href="{{ route('pelangganadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Pelanggan
+            </a>
 
-    <!-- Title -->
-    <div class="section-title">
-        <h2>Daftar Reservasi</h2>
-        <p>Kelola reservasi kamar hotel</p>
-    </div>
+            <a href="{{ route('reservasiadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Reservasi
+            </a>
 
-    <!-- Button -->
-    <div class="btn-area">
-        <a href="#" class="btn">+ Tambah Reservasi</a>
-    </div>
+            <a href="{{ route('kamaradmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Kamar
+            </a>
 
-    <!-- Table -->
-    <div class="table-wrapper">
+            <a href="{{ route('pembayaranadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Pembayaran
+            </a>
+        </div>
 
-        <table class="table-reservasi">
+    </nav>
 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nama</th>
-                    <th>Kamar</th>
-                    <th>Check-in</th>
-                    <th>Harga</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
+    <!-- Hero -->
+    <section
+        class="w-full h-[260px] bg-cover bg-center flex items-center justify-center text-center text-white"
+        style="background-image:
+        linear-gradient(rgba(240,92,168,0.45), rgba(240,92,168,0.45)),
+        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1400&auto=format&fit=crop');">
 
-            <tbody>
+        <div>
+            <h1 class="text-5xl font-bold mb-3">
+                Reservasi Hotel
+            </h1>
 
-                @forelse($reservasi as $row)
+            <p class="text-lg">
+                Kelola data reservasi hotel dengan tampilan modern.
+            </p>
+        </div>
 
-                <tr>
+    </section>
 
-                    <td>{{ $row->id }}</td>
+    <!-- Content -->
+    <div class="p-10">
 
-                    <td>{{ $row->pelanggan->nama ?? '-' }}</td>
+        <!-- Topbar -->
+        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 mb-8">
 
-                    <td>{{ $row->kamar->nama_kamar ?? '-' }}</td>
+            <!-- Title -->
+            <div>
+                <h2 class="text-4xl font-bold mb-2">
+                    Daftar Reservasi
+                </h2>
 
-                    <td>{{ $row->checkin }}</td>
+                <p class="text-gray-600">
+                    Kelola reservasi kamar hotel
+                </p>
+            </div>
 
-                    <td>
-                        Rp {{ number_format($row->harga ?? 0,0,',','.') }}
-                    </td>
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
 
-                    <td>
-                        @if($row->status == 'Menunggu')
+                <input
+                    type="text"
+                    placeholder="Cari reservasi..."
+                    class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-300">
 
-                            <span class="status-menunggu">
+                <button
+                    class="bg-pink-500 hover:bg-pink-600 transition text-white font-bold px-6 py-3 rounded-xl">
+                    + Tambah Reservasi
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white p-8 rounded-3xl shadow overflow-x-auto">
+
+            <table class="w-full border-collapse min-w-[1000px]">
+
+                <thead>
+
+                    <tr class="bg-pink-100 text-gray-700">
+
+                        <th class="p-5 text-left">ID</th>
+                        <th class="p-5 text-left">Nama</th>
+                        <th class="p-5 text-left">Kamar</th>
+                        <th class="p-5 text-left">Check-in</th>
+                        <th class="p-5 text-left">Harga</th>
+                        <th class="p-5 text-left">Status</th>
+                        <th class="p-5 text-left">Aksi</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">RS-001</td>
+                        <td class="p-5">John Doe</td>
+                        <td class="p-5">Deluxe Room</td>
+                        <td class="p-5">11 Apr 2026</td>
+                        <td class="p-5">Rp 500.000</td>
+
+                        <td class="p-5">
+                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Check In
+                            </span>
+                        </td>
+
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
+
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">RS-002</td>
+                        <td class="p-5">Jane Smith</td>
+                        <td class="p-5">Superior Room</td>
+                        <td class="p-5">12 Apr 2026</td>
+                        <td class="p-5">Rp 650.000</td>
+
+                        <td class="p-5">
+                            <span class="bg-yellow-100 text-yellow-600 px-4 py-2 rounded-full text-sm font-bold">
                                 Menunggu
                             </span>
+                        </td>
 
-                        @else
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
 
-                            <span class="status-checkin">
-                                Check-in
-                            </span>
-
-                        @endif
-                    </td>
-
-                    <td>
-
-                        <a href="{{ route('reservasi.edit', $row->id) }}">
-                            Edit
-                        </a>
-
-                        |
-
-                        <form action="{{ route('reservasi.destroy', $row->id) }}"
-                              method="POST"
-                              style="display:inline;">
-
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit"
-                                    style="border:none;background:none;color:red;cursor:pointer;">
-
+                            <a href="#" class="text-red-500 font-bold hover:underline">
                                 Hapus
+                            </a>
+                        </td>
 
-                            </button>
+                    </tr>
 
-                        </form>
+                    <tr class="border-b hover:bg-pink-50 transition">
 
-                    </td>
+                        <td class="p-5">RS-003</td>
+                        <td class="p-5">Michael Chen</td>
+                        <td class="p-5">Suite Room</td>
+                        <td class="p-5">13 Apr 2026</td>
+                        <td class="p-5">Rp 900.000</td>
 
-                </tr>
+                        <td class="p-5">
+                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Check In
+                            </span>
+                        </td>
 
-                @empty
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
 
-                <tr>
-                    <td colspan="7" style="text-align:center;">
-                        Tidak ada data reservasi
-                    </td>
-                </tr>
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
 
-                @endforelse
+                    </tr>
 
-            </tbody>
+                    <tr class="hover:bg-pink-50 transition">
 
-        </table>
+                        <td class="p-5">RS-004</td>
+                        <td class="p-5">Siti Rahma</td>
+                        <td class="p-5">Family Room</td>
+                        <td class="p-5">14 Apr 2026</td>
+                        <td class="p-5">Rp 750.000</td>
+
+                        <td class="p-5">
+                            <span class="bg-yellow-100 text-yellow-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Menunggu
+                            </span>
+                        </td>
+
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
+
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
-</div>
+        <div class="bg-pink-600 text-center py-4">
+            © 2026 EloraStay. All rights reserved.
+        </div>
 
-<!-- Footer -->
-<div class="footer">
+    </footer>
 
-    <div>
-        <h3>EloraStay</h3>
-
-        <p>
-            Platform booking hotel terpercaya untuk pengalaman terbaik Anda.
-        </p>
-    </div>
-
-    <div>
-        <h3>Link</h3>
-
-        <p>
-            <a href="{{ url('/dashboard') }}">Dashboard</a><br>
-
-            <a href="{{ url('/pelangganadmin') }}">Pelanggan</a><br>
-
-            <a href="{{ url('/reservasiadmin') }}">Reservasi</a><br>
-
-            <a href="{{ url('/kamaradmin') }}">Kamar</a><br>
-
-            <a href="{{ url('/pembayaranadmin') }}">Pembayaran</a>
-        </p>
-    </div>
-
-    <div>
-        <h3>Hubungi Kami</h3>
-
-        <p>
-            Email: info@elorastay.com<br>
-            Telepon: +62 123 456 7890
-        </p>
-    </div>
-
-</div>
-
-<div class="copy">
-    © 2026 EloraStay. All rights reserved.
 </div>
 
 </body>

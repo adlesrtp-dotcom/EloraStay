@@ -1,286 +1,243 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pelanggan - EloraStay</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Pelanggan - EloraStay</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial, sans-serif;
-    background:#f8eef4;
-}
-
-/* Navbar */
-.navbar{
-    background:#ea97c4;
-    padding:18px 50px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    color:white;
-    font-size:32px;
-    font-weight:bold;
-}
-
-.menu a{
-    color:white;
-    text-decoration:none;
-    margin-left:30px;
-    font-size:18px;
-    font-weight:bold;
-    transition:0.3s;
-}
-
-.menu a:hover{
-    color:#ffe6f2;
-}
-
-/* Content */
-.container{
-    width:100%;
-    padding:40px 60px;
-    min-height:700px;
-}
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-.title h2{
-    font-size:38px;
-    margin-bottom:8px;
-}
-
-.title p{
-    font-size:22px;
-}
-
-.search{
-    width:320px;
-    padding:14px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:17px;
-}
-
-/* Button */
-.btn-area{
-    text-align:right;
-    margin:30px 0;
-}
-
-.btn{
-    background:#f3a7cf;
-    color:white;
-    text-decoration:none;
-    padding:14px 28px;
-    border-radius:30px;
-    font-size:18px;
-    font-weight:bold;
-}
-
-/* Table */
-.table-box{
-    background:#f3f3f3;
-    border-radius:30px;
-    padding:35px;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,td{
-    padding:18px 12px;
-    border-bottom:1px solid #999;
-    text-align:left;
-    font-size:18px;
-}
-
-th{
-    font-size:22px;
-    font-weight:bold;
-}
-
-/* Footer */
-.footer{
-    background:#ea97c4;
-    color:white;
-    padding:35px 60px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:30px;
-}
-
-.footer h3{
-    margin-bottom:15px;
-    font-size:26px;
-}
-
-.footer p{
-    line-height:30px;
-    font-size:18px;
-}
-
-.footer a{
-    color:white;
-    text-decoration:none;
-}
-
-.copy{
-    background:#e282b7;
-    color:white;
-    text-align:center;
-    padding:15px;
-    font-size:18px;
-}
-</style>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<!-- Navbar -->
-<div class="navbar">
+<body class="bg-pink-50 font-sans text-gray-800">
 
-    <div class="logo">EloraStay</div>
+<div class="w-full min-h-screen">
 
-    <div class="menu">
-        <a href="/dashboardadmin">Dashboard</a>
-        <a href="/pelangganadmin">Pelanggan</a>
-        <a href="/reservasiadmin">Reservasi</a>
-        <a href="/kamaradmin">Kamar</a>
-        <a href="/pembayaranadmin">Pembayaran</a>
-    </div>
+    <!-- Navbar -->
+    <nav class="w-full bg-pink-500 px-10 py-5 flex justify-between items-center">
 
-</div>
-
-<!-- Content -->
-<div class="container">
-
-    <div class="topbar">
-
-        <div class="title">
-            <h2>Daftar Pelanggan</h2>
-            <p>Kelola data pelanggan hotel</p>
+        <div class="text-white text-3xl font-bold">
+            EloraStay
         </div>
 
-        <input type="text" class="search" placeholder="Cari....">
+        <div class="space-x-6">
+            <a href="{{ route('dashboardadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Dashboard
+            </a>
+
+            <a href="{{ route('pelangganadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Pelanggan
+            </a>
+
+            <a href="{{ route('reservasiadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Reservasi
+            </a>
+
+            <a href="{{ route('kamaradmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Kamar
+            </a>
+
+            <a href="{{ route('pembayaranadmin') }}"
+               class="text-white font-semibold hover:text-pink-100 transition">
+                Pembayaran
+            </a>
+        </div>
+
+    </nav>
+
+    <!-- Hero -->
+    <section
+        class="w-full h-[260px] bg-cover bg-center flex items-center justify-center text-center text-white"
+        style="background-image:
+        linear-gradient(rgba(240,92,168,0.45), rgba(240,92,168,0.45)),
+        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1400&auto=format&fit=crop');">
+
+        <div>
+            <h1 class="text-5xl font-bold mb-3">
+                Daftar Pelanggan
+            </h1>
+
+            <p class="text-lg">
+                Kelola data pelanggan hotel dengan mudah dan modern.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- Content -->
+    <div class="p-10">
+
+        <!-- Topbar -->
+        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 mb-8">
+
+            <!-- Title -->
+            <div>
+                <h2 class="text-4xl font-bold mb-2">
+                    Daftar Pelanggan
+                </h2>
+
+                <p class="text-gray-600">
+                    Kelola data pelanggan hotel
+                </p>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+
+                <input
+                    type="text"
+                    placeholder="Cari pelanggan..."
+                    class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-300">
+
+                <button
+                    class="bg-pink-500 hover:bg-pink-600 transition text-white font-bold px-6 py-3 rounded-xl">
+                    + Tambah Pelanggan
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white p-8 rounded-3xl shadow overflow-x-auto">
+
+            <table class="w-full border-collapse min-w-[900px]">
+
+                <thead>
+
+                    <tr class="bg-pink-100 text-gray-700">
+
+                        <th class="p-5 text-left">ID</th>
+                        <th class="p-5 text-left">Nama</th>
+                        <th class="p-5 text-left">Email</th>
+                        <th class="p-5 text-left">Telepon</th>
+                        <th class="p-5 text-left">Alamat</th>
+                        <th class="p-5 text-left">Aksi</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">PL-001</td>
+                        <td class="p-5">John Doe</td>
+                        <td class="p-5">john@example.com</td>
+                        <td class="p-5">+62 812 3456 7890</td>
+                        <td class="p-5">Jakarta</td>
+
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
+
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">PL-002</td>
+                        <td class="p-5">Jane Smith</td>
+                        <td class="p-5">jane@example.com</td>
+                        <td class="p-5">+62 812 1111 2222</td>
+                        <td class="p-5">Bandung</td>
+
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
+
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">PL-003</td>
+                        <td class="p-5">Ahmad Rahman</td>
+                        <td class="p-5">ahmad@example.com</td>
+                        <td class="p-5">+62 813 5555 4444</td>
+                        <td class="p-5">Bali</td>
+
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
+
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    <tr class="border-b hover:bg-pink-50 transition">
+
+                        <td class="p-5">PL-004</td>
+                        <td class="p-5">Sarah Johnson</td>
+                        <td class="p-5">sarah@example.com</td>
+                        <td class="p-5">+62 812 9876 5432</td>
+                        <td class="p-5">Yogyakarta</td>
+
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
+
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    <tr class="hover:bg-pink-50 transition">
+
+                        <td class="p-5">PL-005</td>
+                        <td class="p-5">Michael Chen</td>
+                        <td class="p-5">michael@example.com</td>
+                        <td class="p-5">+62 812 3333 7777</td>
+                        <td class="p-5">Jakarta</td>
+
+                        <td class="p-5 space-x-3">
+                            <a href="#" class="text-pink-500 font-bold hover:underline">
+                                Edit
+                            </a>
+
+                            <a href="#" class="text-red-500 font-bold hover:underline">
+                                Hapus
+                            </a>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
-    <div class="btn-area">
-        <a href="#" class="btn">+ Tambah Pelanggan</a>
-    </div>
+        <div class="bg-pink-600 text-center py-4">
+            © 2026 EloraStay. All rights reserved.
+        </div>
 
-    <!-- Table -->
-    <div class="table-box">
+    </footer>
 
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Telepon</th>
-                <th>Alamat</th>
-                <th>Aksi</th>
-            </tr>
-
-            <tr>
-                <td>PL-001</td>
-                <td>John Doe</td>
-                <td>john@example.com</td>
-                <td>+62 812 3456 7890</td>
-                <td>Jakarta</td>
-                <td>Edit | Hapus</td>
-            </tr>
-
-            <tr>
-                <td>PL-002</td>
-                <td>Jane Smith</td>
-                <td>jane@example.com</td>
-                <td>+62 812 1111 2222</td>
-                <td>Bandung</td>
-                <td>Edit | Hapus</td>
-            </tr>
-
-            <tr>
-                <td>PL-003</td>
-                <td>Ahmad Rahman</td>
-                <td>ahmad@example.com</td>
-                <td>+62 813 5555 4444</td>
-                <td>Bali</td>
-                <td>Edit | Hapus</td>
-            </tr>
-
-            <tr>
-                <td>PL-004</td>
-                <td>Sarah Johnson</td>
-                <td>sarah@example.com</td>
-                <td>+62 812 9876 5432</td>
-                <td>Yogyakarta</td>
-                <td>Edit | Hapus</td>
-            </tr>
-
-            <tr>
-                <td>PL-005</td>
-                <td>Michael Chen</td>
-                <td>michael@example.com</td>
-                <td>+62 812 3333 7777</td>
-                <td>Jakarta</td>
-                <td>Edit | Hapus</td>
-            </tr>
-
-        </table>
-
-    </div>
-
-</div>
-
-<!-- Footer -->
-<div class="footer">
-
-    <div>
-        <h3>EloraStay</h3>
-        <p>Platform booking hotel terpercaya untuk pengalaman menginap terbaik Anda.</p>
-    </div>
-
-    <div>
-        <h3>Link</h3>
-        <p>
-            <a href="{{ url('/dashboard') }}">Dashboard</a><br>
-            <a href="{{ url('/pelangganadmin') }}">Pelanggan</a><br>
-            <a href="{{ url('/reservasiadmin') }}">Reservasi</a><br>
-            <a href="{{ url('/kamaradmin') }}">Kamar</a><br>
-            <a href="{{ url('/pembayaranadmin') }}">Pembayaran</a>
-        </p>
-    </div>
-
-    <div>
-        <h3>Hubungi Kami</h3>
-        <p>
-            Email: info@elorastay.com<br>
-            Telepon: +62 123 456 7890<br>
-            Instagram: @elorastay
-        </p>
-    </div>
-
-</div>
-
-<div class="copy">
-    © 2026 EloraStay. All rights reserved.
 </div>
 
 </body>
