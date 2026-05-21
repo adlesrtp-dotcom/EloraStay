@@ -5,334 +5,254 @@
 <title>Login - EloraStay</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5e6ee;
-}
-/* Navbar */
-        .navbar {
-            background: linear-gradient(to right, #f472b6, #ec4899);
-            color: white;
-            padding: 15px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- TAILWIND -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            fontFamily: {
+                poppins: ['Poppins', 'sans-serif']
+            }
         }
-
-/* Logo */
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-            position: center;
-        }
-
-/* LAYOUT */
-.wrapper {
-    display: flex;
-    height: calc(100vh - 70px);
-}
-
-/* LEFT IMAGE */
-.left {
-    flex: 1;
-    background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover no-repeat;
-    position: relative;
-}
-
-.left::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(236,72,153,0.5);
-}
-
-/* TEXT ON IMAGE */
-.left-text {
-    position: absolute;
-    bottom: 50px;
-    left: 40px;
-    color: white;
-    max-width: 400px;
-}
-
-.left-text h1 {
-    margin: 0;
-    font-size: 28px;
-}
-
-.left-text p {
-    margin-top: 10px;
-}
-
-/* RIGHT FORM */
-.right {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* CARD */
-.card {
-    background: white;
-    padding: 40px;
-    width: 350px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-/* HEADER */
-.card-header {
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    color: white;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* INPUT */
-input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 25px;
-    border: 1px solid #ddd;
-}
-
-/* FORGOT */
-.forgot {
-    text-align: right;
-    font-size: 12px;
-    color: #ec4899;
-    margin-bottom: 15px;
-}
-
-/* BUTTON */
-.btn {
-    width: 100%;
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* DIVIDER */
-.divider {
-    text-align: center;
-    margin: 15px 0;
-    font-size: 12px;
-}
-
-/* GOOGLE */
-.btn-google {
-    width: 100%;
-    padding: 10px;
-    border-radius: 25px;
-    border: 1px solid #ddd;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.btn-google img {
-    width: 18px;
-    margin-right: 8px;
-}
-
-/* REGISTER */
-.register {
-    text-align: center;
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-.register a {
-    color: #ec4899;
-    text-decoration: none;
-}
-
-/* ALERT */
-.alert {
-    font-size: 13px;
-    margin-bottom: 10px;
-}
-
-.alert-error { color: red; }
-.alert-success { color: green; }
-
-/* RESPONSIVE */
-@media(max-width: 768px){
-    .wrapper {
-        flex-direction: column;
-    }
-
-    .left {
-        height: 200px;
     }
 }
+</script>
 
-/* Footer */
-            
-        .footer {
-            background: linear-gradient(to right, #f472b6, #ec4899);
-            color: white;
-            margin-top: 40px;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            padding: 30px 20px;
-            gap: 20px;
-        }
-
-        .footer-section h3,
-        .footer-section h4 {
-            margin-bottom: 10px;
-        }
-
-        .footer-section p {
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .footer-section a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            margin-bottom: 8px;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .footer-section a:hover {
-            transform: translateX(5px);
-            color: #ffe4ec;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding: 15px;
-            background-color: rgba(0,0,0,0.1);
-            font-size: 13px;
-        }
-</style>
 </head>
 
-<body>
+<body class="bg-pink-100 font-poppins">
 
-<div class="navbar">
-    <div class="logo">EloraStay</div>
-</div>
-<!-- MAIN -->
-<div class="wrapper">
+<!-- Navbar -->
+<nav class="bg-gradient-to-r from-pink-400 to-pink-500 text-white px-6 py-4 flex justify-between items-center">
 
-    <!-- LEFT IMAGE -->
-    <div class="left">
-        <div class="left-text">
-            <h1>Temukan Hotel Impian Anda</h1>
-            <p>Booking mudah, cepat, dan terpercaya hanya di EloraStay</p>
-        </div>
+    <div class="text-2xl font-bold">
+        EloraStay
     </div>
 
-    <!-- RIGHT FORM -->
-    <div class="right">
-        <div class="card">
+</nav>
 
-            <div class="card-header">
-                <h3>Selamat Datang</h3>
-                <small>Login untuk mengakses akun Anda</small>
+<!-- MAIN -->
+<div class="flex flex-col md:flex-row min-h-[calc(100vh-72px)]">
+
+    <!-- LEFT -->
+    <div
+        class="flex-1 bg-cover bg-center relative"
+        style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945')">
+
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-pink-500/50"></div>
+
+        <!-- Text -->
+        <div class="absolute bottom-12 left-10 text-white max-w-md z-10">
+
+            <h1 class="text-4xl font-bold mb-3">
+                Temukan Hotel Impian Anda
+            </h1>
+
+            <p class="text-lg leading-7">
+                Booking mudah, cepat, dan terpercaya hanya di EloraStay
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="flex-1 flex justify-center items-center p-6">
+
+        <!-- Card -->
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-xl p-8">
+
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-pink-400 to-pink-500 text-white rounded-2xl p-6 text-center mb-6">
+
+                <h3 class="text-2xl font-bold">
+                    Selamat Datang
+                </h3>
+
+                <p class="text-sm mt-2">
+                    Login untuk mengakses akun Anda
+                </p>
+
             </div>
-
-            <!-- ALERT -->
-            @if(session('error'))
-                <div class="alert alert-error">
-                    {{ session('error') }}
-                </div>
-            @endif
-
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
 
             <!-- FORM -->
             <form onsubmit="return fakeLogin(event)">
 
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <!-- Email -->
+                <div class="mb-4">
 
-                <div class="forgot">
-                <a href="/lupa-password" style="color:#ec4899;">Lupa password?</a>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        required
+                        class="w-full px-5 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400">
+
                 </div>
-                <button type="submit" class="btn">Masuk</button>
 
-                <div class="divider">atau</div>
+                <!-- Password -->
+                <div class="mb-2">
 
-                <button type="button" class="btn-google">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png">
-                    Lanjutkan dengan Google
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        required
+                        class="w-full px-5 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400">
+
+                </div>
+
+                <!-- Forgot -->
+                <div class="text-right mb-5">
+
+                    <a
+                        href="/lupa-password"
+                        class="text-pink-500 text-sm hover:underline">
+
+                        Lupa password?
+                    </a>
+
+                </div>
+
+                <!-- Button -->
+                <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-pink-400 to-pink-500 text-white py-3 rounded-full font-bold hover:opacity-90 transition">
+
+                    Masuk
                 </button>
 
-                <div class="register">
-                    Belum punya akun? <a href="/registrasi">Daftar sekarang</a>
+                <!-- Divider -->
+                <div class="text-center text-sm text-gray-400 my-5">
+                    atau
                 </div>
+
+                <!-- Google -->
+                <button
+                    type="button"
+                    class="w-full border border-gray-300 py-3 rounded-full flex items-center justify-center gap-3 hover:bg-gray-50 transition">
+
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png"
+                        class="w-5 h-5">
+
+                    Lanjutkan dengan Google
+
+                </button>
+
+                <!-- Register -->
+                <div class="text-center text-sm mt-5">
+
+                    Belum punya akun?
+
+                    <a
+                        href="/registrasi"
+                        class="text-pink-500 font-semibold hover:underline">
+
+                        Daftar sekarang
+                    </a>
+
+                </div>
+
             </form>
 
         </div>
+
     </div>
 
 </div>
 
 <!-- Footer -->
-<footer class="footer">
-    <div class="footer-container">
+<footer class="bg-gradient-to-r from-pink-400 to-pink-500 text-white mt-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 py-10">
 
         <!-- Brand -->
-        <div class="footer-section">
-            <h3>EloraStay</h3>
-            <p>Platform booking hotel terpercaya dengan pengalaman terbaik untuk Anda.</p>
+        <div>
+
+            <h3 class="text-2xl font-bold mb-3">
+                EloraStay
+            </h3>
+
+            <p class="text-sm leading-6">
+                Platform booking hotel terpercaya dengan pengalaman terbaik untuk Anda.
+            </p>
+
         </div>
 
-        <!-- Navigation -->
-        <div class="footer-section">
-            <h4>Menu</h4>
-            <a href="/">🏠 Beranda</a>
-            <a href="/kamar">🛏️ Daftar Kamar</a>
-            <a href="/reservasi">📄 Reservasi</a>
-            <a href="/pembayaran">💳 Pembayaran</a>
+        <!-- Menu -->
+        <div>
+
+            <h4 class="text-xl font-semibold mb-3">
+                Menu
+            </h4>
+
+            <div class="space-y-2 text-sm">
+
+                <a href="/" class="block hover:translate-x-2 transition">
+                    🏠 Beranda
+                </a>
+
+                <a href="/kamar" class="block hover:translate-x-2 transition">
+                    🛏️ Daftar Kamar
+                </a>
+
+                <a href="/reservasi" class="block hover:translate-x-2 transition">
+                    📄 Reservasi
+                </a>
+
+                <a href="/pembayaran" class="block hover:translate-x-2 transition">
+                    💳 Pembayaran
+                </a>
+
+            </div>
+
         </div>
 
         <!-- Contact -->
-        <div class="footer-section">
-            <h4>Kontak</h4>
-            <p>📧 email@elorastay.com</p>
-            <p>📞 +62 123 456 7890</p>
-            <p>📍 Indonesia</p>
+        <div>
+
+            <h4 class="text-xl font-semibold mb-3">
+                Kontak
+            </h4>
+
+            <div class="space-y-2 text-sm">
+
+                <p>📧 email@elorastay.com</p>
+                <p>📞 +62 123 456 7890</p>
+                <p>📍 Indonesia</p>
+
+            </div>
+
         </div>
 
     </div>
+
+    <!-- Bottom -->
+    <div class="text-center py-4 bg-black/10 text-sm">
+        © 2026 EloraStay. All rights reserved.
+    </div>
+
+</footer>
+
 <script>
 
 function fakeLogin(e) {
 
     e.preventDefault();
 
-    let email = document.querySelector('input[name="email"]').value;
+    let email =
+        document.querySelector('input[name="email"]').value;
 
-    let password = document.querySelector('input[name="password"]').value;
+    let password =
+        document.querySelector('input[name="password"]').value;
 
-    // validasi sederhana
     if (email === "" || password === "") {
 
         alert("Isi email dan password dulu!");
@@ -340,14 +260,14 @@ function fakeLogin(e) {
         return false;
     }
 
-    // simpan status login
+    // simpan login
     localStorage.setItem("isLogin", "true");
 
     localStorage.setItem("userEmail", email);
 
     alert("Login berhasil!");
 
-    // redirect ke dashboard
+    // redirect home
     window.location.href = "/dashboard";
 
     return false;

@@ -2,468 +2,432 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <title>Reservasi Saya - EloraStay</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #ffe4ec;
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- TAILWIND -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            fontFamily: {
+                poppins: ['Poppins', 'sans-serif']
+            }
+        }
+    }
 }
+</script>
 
-/* Navbar */
-/* Navbar */
-.navbar {
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    color: white;
-    padding: 18px 35px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    position: relative;
-}
-
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* Menu Tengah */
-.nav-menu {
-    display: flex;
-    gap: 35px;
-
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Link */
-.nav-menu a {
-    position: relative;
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
-    padding-bottom: 5px;
-    transition: 0.3s;
-}
-
-/* Garis bawah */
-.nav-menu a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-
-    width: 0%;
-    height: 3px;
-
-    background: white;
-    border-radius: 10px;
-
-    transition: 0.3s;
-}
-
-/* Hover */
-.nav-menu a:hover::after {
-    width: 100%;
-}
-
-/* Active */
-.nav-menu a.active::after {
-    width: 100%;
-}
-
-/* Tombol Logout */
-.login-btn {
-    background: white;
-    color: #ec4899;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.login-btn:hover {
-    background: #ffe4ec;
-}
-
-/* Hero */
-.hero {
-    height: 300px;
-    background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 100%; height: 100%;
-    background: rgba(236,72,153,0.4);
-}
-
-.hero-content {
-    position: relative;
-    color: white;
-    text-align: center;
-}
-
-/* Header */
-.header { padding: 20px; }
-
-/* Container */
-.container { padding: 0 20px; }
-
-/* Card */
-.card {
-    background: white;
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-}
-
-.sub-text { color: #888; font-size: 14px; }
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    text-align: center;
-    margin-top: 15px;
-}
-
-hr { border: 1px solid #f9a8d4; margin: 15px 0; }
-
-.bottom {
-    display: flex;
-    justify-content: space-between;
-}
-
-.price {
-    color: #ec4899;
-    font-weight: bold;
-}
-
-/* Button */
-.btn-group {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.btn {
-    flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background-color: #ec4899;
-    color: white;
-}
-
-.btn-secondary {
-    background-color: #fbcfe8;
-}
-
-/* Status badge */
-.badge {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-.lunas { background:#d1fae5; color:#065f46; }
-.menunggu { background:#fef3c7; color:#92400e; }
-
-/* MODAL */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left:0; top:0;
-    width:100%; height:100%;
-    background: rgba(0,0,0,0.6);
-}
-
-.modal-content {
-    background: white;
-    width: 90%;
-    max-width: 500px;
-    margin: 80px auto;
-    padding: 20px;
-    border-radius: 15px;
-}
-
-.close {
-    float:right;
-    cursor:pointer;
-    font-size:20px;
-}
-
-/* Footer */
-.footer {
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    color: white;
-    margin-top: 40px;
-}
-
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 30px 20px;
-    gap: 20px;
-}
-
-.footer-section h3,
-.footer-section h4 {
-    margin-bottom: 10px;
-}
-
-.footer-section p {
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.footer-section a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    margin-bottom: 8px;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.footer-section a:hover {
-    transform: translateX(5px);
-    color: #ffe4ec;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding: 15px;
-    background-color: rgba(0,0,0,0.1);
-    font-size: 13px;
-}
-</style>
 </head>
 
-<body>
+<body class="bg-pink-100 font-poppins">
 
 <!-- Navbar -->
-<div class="navbar">
+<nav class="bg-gradient-to-r from-pink-400 to-pink-500 text-white px-8 py-5 flex items-center justify-between relative">
 
     <!-- Logo -->
-    <div class="logo">EloraStay</div>
+    <div class="text-xl font-bold">
+        EloraStay
+    </div>
 
-    <!-- Menu Tengah -->
-    <div class="nav-menu">
+    <!-- Menu -->
+    <div class="absolute left-1/2 -translate-x-1/2 flex gap-8">
 
-        <a href="/"
-           class="{{ request()->path() == '/' ? 'active' : '' }}">
-           Beranda
+        <a href="/dashboard"
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->path() == '/' ? 'after:w-full font-semibold' : '' }}">
+            Beranda
         </a>
 
         <a href="/kamar"
-           class="{{ request()->is('kamar') ? 'active' : '' }}">
-           Daftar Kamar
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->is('kamar') ? 'after:w-full font-semibold' : '' }}">
+            Daftar Kamar
         </a>
 
         <a href="/pembayaran"
-           class="{{ request()->is('pembayaran') ? 'active' : '' }}">
-           Pembayaran
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->is('pembayaran') ? 'after:w-full font-semibold' : '' }}">
+            Pembayaran
         </a>
 
         <a href="/reservasi"
-           class="{{ request()->is('reservasi') ? 'active' : '' }}">
-           Reservasi
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->is('reservasi') ? 'after:w-full font-semibold' : '' }}">
+            Reservasi
         </a>
 
     </div>
 
     <!-- Logout -->
-    <button class="login-btn" onclick="logout()">
+    <button
+        onclick="logout()"
+        class="bg-white text-pink-500 px-5 py-2 rounded-full font-bold hover:bg-pink-100 transition">
+
         Logout
     </button>
 
-</div>
+</nav>
 
 <!-- Hero -->
-<div class="hero">
-    <div class="hero-content">
-        <h1>Temukan Hotel Impian Anda</h1>
-        <p>Booking mudah, cepat, dan terpercaya</p>
+<section
+    class="h-[300px] bg-cover bg-center flex items-center justify-center relative"
+    style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945')">
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-pink-500/40"></div>
+
+    <!-- Content -->
+    <div class="relative text-center text-white px-4">
+
+        <h1 class="text-4xl font-bold mb-3">
+            Temukan Hotel Impian Anda
+        </h1>
+
+        <p class="text-lg">
+            Booking mudah, cepat, dan terpercaya
+        </p>
+
     </div>
-</div>
+
+</section>
 
 <!-- Header -->
-<div class="header">
-    <h2>Reservasi Saya</h2>
-    <p>Kelola dan lihat detail reservasi Anda</p>
-</div>
+<section class="px-6 py-8">
+
+    <h2 class="text-3xl font-bold text-gray-800 mb-2">
+        Reservasi Saya
+    </h2>
+
+    <p class="text-gray-600">
+        Kelola dan lihat detail reservasi Anda
+    </p>
+
+</section>
 
 <!-- LIST -->
-<div class="container" id="reservasiList"></div>
+<section
+    id="reservasiList"
+    class="px-6 pb-10">
+</section>
 
-<!-- MODAL DETAIL -->
-<div id="detailModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">✖</span>
+<!-- MODAL -->
+<div
+    id="detailModal"
+    class="hidden fixed inset-0 bg-black/60 z-50">
+
+    <div class="bg-white w-[90%] max-w-lg mx-auto mt-24 rounded-2xl p-6 relative">
+
+        <!-- Close -->
+        <button
+            onclick="closeModal()"
+            class="absolute top-4 right-5 text-2xl text-gray-500 hover:text-pink-500">
+
+            ✖
+        </button>
+
+        <!-- Body -->
         <div id="modalBody"></div>
+
     </div>
+
 </div>
 
 <!-- Footer -->
-<footer class="footer">
-    <div class="footer-container">
+<footer class="bg-gradient-to-r from-pink-400 to-pink-500 text-white mt-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 py-10">
 
         <!-- Brand -->
-        <div class="footer-section">
-            <h3>EloraStay</h3>
-            <p>Platform booking hotel terpercaya dengan pengalaman terbaik untuk Anda.</p>
+        <div>
+
+            <h3 class="text-2xl font-bold mb-3">
+                EloraStay
+            </h3>
+
+            <p class="text-sm leading-6">
+                Platform booking hotel terpercaya dengan pengalaman terbaik untuk Anda.
+            </p>
+
         </div>
 
         <!-- Navigation -->
-        <div class="footer-section">
-            <h4>Menu</h4>
-            <a href="/">🏠 Beranda</a>
-            <a href="/kamar">🛏️ Daftar Kamar</a>
-            <a href="/reservasi">📄 Reservasi</a>
-            <a href="/pembayaran">💳 Pembayaran</a>
+        <div>
+
+            <h4 class="text-xl font-semibold mb-3">
+                Menu
+            </h4>
+
+            <div class="space-y-2 text-sm">
+
+                <a href="/" class="block hover:translate-x-2 transition">
+                    🏠 Beranda
+                </a>
+
+                <a href="/kamar" class="block hover:translate-x-2 transition">
+                    🛏️ Daftar Kamar
+                </a>
+
+                <a href="/reservasi" class="block hover:translate-x-2 transition">
+                    📄 Reservasi
+                </a>
+
+                <a href="/pembayaran" class="block hover:translate-x-2 transition">
+                    💳 Pembayaran
+                </a>
+
+            </div>
+
         </div>
 
         <!-- Contact -->
-        <div class="footer-section">
-            <h4>Kontak</h4>
-            <p>📧 email@elorastay.com</p>
-            <p>📞 +62 123 456 7890</p>
-            <p>📍 Indonesia</p>
+        <div>
+
+            <h4 class="text-xl font-semibold mb-3">
+                Kontak
+            </h4>
+
+            <div class="space-y-2 text-sm">
+
+                <p>📧 email@elorastay.com</p>
+                <p>📞 +62 123 456 7890</p>
+                <p>📍 Indonesia</p>
+
+            </div>
+
         </div>
 
+    </div>
+
+    <!-- Bottom -->
+    <div class="text-center py-4 bg-black/10 text-sm">
+        © 2026 EloraStay. All rights reserved.
     </div>
 
 </footer>
 
 <script>
 
-// ambil data
+// Ambil data
 function getData() {
     return JSON.parse(localStorage.getItem("reservations")) || [];
 }
 
-// render
+// Render data
 function render() {
+
     const list = document.getElementById("reservasiList");
+
     list.innerHTML = "";
 
     const data = getData();
 
-    if(data.length === 0){
-        list.innerHTML = "<p>Tidak ada reservasi</p>";
+    if (data.length === 0) {
+
+        list.innerHTML = `
+            <div class="bg-white rounded-2xl p-8 text-center shadow-md">
+                <p class="text-gray-500">
+                    Tidak ada reservasi
+                </p>
+            </div>
+        `;
+
         return;
     }
 
     data.reverse().forEach(res => {
 
-        const statusClass = res.status === "Lunas" ? "lunas" : "menunggu";
+        const statusClass =
+            res.status === "Lunas"
+            ? "bg-green-100 text-green-700"
+            : "bg-yellow-100 text-yellow-700";
 
         list.innerHTML += `
-        <div class="card">
-            <h3>${res.room}</h3>
-            <p class="sub-text">EloraStay Jakarta</p>
+        <div class="bg-white rounded-3xl p-6 mb-6 shadow-md hover:shadow-xl transition">
 
-            <span class="badge ${statusClass}">${res.status}</span>
+            <h3 class="text-2xl font-bold text-gray-800">
+                ${res.room}
+            </h3>
 
-            <div class="info-grid">
+            <p class="text-sm text-gray-400 mt-1">
+                EloraStay Jakarta
+            </p>
+
+            <span class="inline-block mt-4 px-4 py-1 rounded-full text-sm font-semibold ${statusClass}">
+                ${res.status}
+            </span>
+
+            <!-- Info -->
+            <div class="grid grid-cols-1 md:grid-cols-3 text-center gap-4 mt-6">
+
                 <div>
-                    <p>Check-in</p>
-                    <p>${res.checkin}</p>
+                    <p class="text-gray-400 text-sm">
+                        Check-in
+                    </p>
+
+                    <p class="font-semibold text-gray-700">
+                        ${res.checkin}
+                    </p>
                 </div>
+
                 <div>
-                    <p>Check-out</p>
-                    <p>${res.checkout}</p>
+                    <p class="text-gray-400 text-sm">
+                        Check-out
+                    </p>
+
+                    <p class="font-semibold text-gray-700">
+                        ${res.checkout}
+                    </p>
                 </div>
+
                 <div>
-                    <p>Tamu</p>
-                    <p>${res.guest}</p>
+                    <p class="text-gray-400 text-sm">
+                        Tamu
+                    </p>
+
+                    <p class="font-semibold text-gray-700">
+                        ${res.guest}
+                    </p>
                 </div>
+
             </div>
 
-            <hr>
+            <!-- Divider -->
+            <div class="border-t border-pink-200 my-6"></div>
 
-            <div class="bottom">
+            <!-- Bottom -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
                 <div>
-                    <p class="sub-text">Kode</p>
-                    <p>${res.resi}</p>
+
+                    <p class="text-gray-400 text-sm">
+                        Kode
+                    </p>
+
+                    <p class="font-semibold text-gray-700">
+                        ${res.resi}
+                    </p>
+
                 </div>
+
                 <div>
-                    <p class="sub-text">Total</p>
-                    <p class="price">Rp ${res.total.toLocaleString()}</p>
+
+                    <p class="text-gray-400 text-sm">
+                        Total
+                    </p>
+
+                    <p class="text-pink-500 font-bold text-xl">
+                        Rp ${res.total.toLocaleString()}
+                    </p>
+
                 </div>
+
             </div>
 
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="detail('${res.resi}')">Lihat Detail</button>
-                <button class="btn btn-secondary" onclick="hapus('${res.resi}')">Batalkan</button>
+            <!-- Button -->
+            <div class="flex gap-4 mt-6">
+
+                <button
+                    onclick="detail('${res.resi}')"
+                    class="flex-1 bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+
+                    Lihat Detail
+                </button>
+
+                <button
+                    onclick="hapus('${res.resi}')"
+                    class="flex-1 bg-pink-200 hover:bg-pink-300 text-gray-700 py-3 rounded-xl font-semibold transition">
+
+                    Batalkan
+                </button>
+
             </div>
-        </div>`;
+
+        </div>
+        `;
     });
 }
 
-// detail modal
-function detail(resi){
-    const data = getData().find(r => r.resi === resi);
+// Detail modal
+function detail(resi) {
 
-    document.getElementById("detailModal").style.display = "block";
+    const data =
+        getData().find(r => r.resi === resi);
+
+    document
+        .getElementById("detailModal")
+        .classList.remove("hidden");
 
     document.getElementById("modalBody").innerHTML = `
-        <h2>${data.room}</h2>
-        <p>Kode: ${data.resi}</p>
-        <p>Status: ${data.status}</p>
-        <p>Metode: ${data.method}</p>
-        <p>Tanggal: ${data.checkin} - ${data.checkout}</p>
-        <p>Tamu: ${data.guest}</p>
-        <h3 style="color:#ec4899;">Rp ${data.total.toLocaleString()}</h3>
+
+        <h2 class="text-3xl font-bold text-gray-800 mb-5">
+            ${data.room}
+        </h2>
+
+        <div class="space-y-3 text-gray-700">
+
+            <p>
+                <span class="font-semibold">Kode:</span>
+                ${data.resi}
+            </p>
+
+            <p>
+                <span class="font-semibold">Status:</span>
+                ${data.status}
+            </p>
+
+            <p>
+                <span class="font-semibold">Metode:</span>
+                ${data.method}
+            </p>
+
+            <p>
+                <span class="font-semibold">Tanggal:</span>
+                ${data.checkin} - ${data.checkout}
+            </p>
+
+            <p>
+                <span class="font-semibold">Tamu:</span>
+                ${data.guest}
+            </p>
+
+        </div>
+
+        <h3 class="text-pink-500 text-2xl font-bold mt-6">
+            Rp ${data.total.toLocaleString()}
+        </h3>
     `;
 }
 
-function closeModal(){
-    document.getElementById("detailModal").style.display = "none";
+// Close modal
+function closeModal() {
+
+    document
+        .getElementById("detailModal")
+        .classList.add("hidden");
 }
 
-// hapus
-function hapus(resi){
-    let data = getData().filter(r => r.resi !== resi);
-    localStorage.setItem("reservations", JSON.stringify(data));
+// Hapus reservasi
+function hapus(resi) {
+
+    let data =
+        getData().filter(r => r.resi !== resi);
+
+    localStorage.setItem(
+        "reservations",
+        JSON.stringify(data)
+    );
+
     render();
 }
 
-// init
+// Init
 render();
 
-const isLogin = localStorage.getItem("isLogin");
 
-if (isLogin !== "true") {
 
-    alert("Silakan login terlebih dahulu!");
-
-    window.location.href = "/dashboard";
-}
-
-// logout
+// Logout
 function logout() {
 
     localStorage.removeItem("isLogin");
@@ -474,7 +438,6 @@ function logout() {
 }
 
 </script>
-
 
 </body>
 </html>

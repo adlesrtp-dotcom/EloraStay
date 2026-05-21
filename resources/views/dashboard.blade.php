@@ -2,493 +2,351 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <title>Dashboard - EloraStay</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: #ffe4ec;
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
         }
+    </script>
 
-        /* Navbar */
-        .navbar {
-            background: linear-gradient(to right, #f472b6, #ec4899);
-            color: white;
-            padding: 18px 35px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Logo */
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        /* Menu */
-        .nav-menu {
-            display: flex;
-            gap: 35px;
-
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .nav-menu a {
-        position: relative;
-        color: white;
-        text-decoration: none;
-        font-size: 15px;
-        font-weight: 600;
-        padding-bottom: 5px;
-        transition: 0.3s;
-        }
-
-        .nav-menu a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -6px;
-
-        width: 0%;
-        height: 3px;
-
-        background: white;
-        border-radius: 10px;
-
-        transition: 0.3s;
-        }
-
-        /* Hover */
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        /* Active */
-        .nav-menu a.active::after {
-            width: 100%;
-        }
-
-
-        /* Login button */
-        .login-btn {
-            background: white;
-            color: #ec4899;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            text-decoration: none;
-        }
-
-        .login-btn:hover {
-            background: #ffe4ec;
-        }
-
-        /* Hero Image */
-        .hero {
-            height: 300px;
-            background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        /* Overlay */
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(236, 72, 153, 0.4);
-            top: 0;
-            left: 0;
-        }
-
-        /* Text */
-        .hero-content {
-            position: relative;
-            color: white;
-            text-align: center;
-        }
-
-        .hero-content h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        .hero-content p {
-            margin-bottom: 15px;
-        }
-
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .icon {
-            font-size: 35px;
-            margin-bottom: 10px;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            font-size: 14px;
-            color: #666;
-        }
-
-        /* Lihat Semua */
-        .lihat-semua {
-            color: #ec4899;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: 0.3s;
-        }
-
-        .lihat-semua:hover {
-            color: #db2777;
-            gap: 10px;
-        }
-
-        /* Room */
-        .room-section {
-            padding: 20px;
-        }
-
-        .room-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .room-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card img{
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 10px;
-            display: block;
-        }
-
-        .card p {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* CTA */
-        .cta {
-            background-color: #f472b6;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 40px;
-        }
-
-        .btn-daftar {
-            display: inline-block;
-            margin-top: 15px;
-            background: white;
-            color: #ec4899;
-            padding: 12px 24px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn-daftar:hover {
-            background: #ffe4ec;
-        }
-
-        /* Footer */
-        .footer {
-            background: linear-gradient(to right, #f472b6, #ec4899);
-            color: white;
-            margin-top: 40px;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            padding: 30px 20px;
-            gap: 20px;
-        }
-
-        .footer-section h3,
-        .footer-section h4 {
-            margin-bottom: 10px;
-        }
-
-        .footer-section p {
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .footer-section a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            margin-bottom: 8px;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .footer-section a:hover {
-            transform: translateX(5px);
-            color: #ffe4ec;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding: 15px;
-            background-color: rgba(0,0,0,0.1);
-            font-size: 13px;
-        }
-    </style>
 </head>
 
-<body>
+<body class="bg-pink-100 font-poppins">
 
 <!-- Navbar -->
-<div class="navbar">
-    <div class="logo">EloraStay</div>
+<nav class="bg-gradient-to-r from-pink-400 to-pink-500 text-white px-8 py-5 flex items-center justify-between relative">
 
-    <div class="nav-menu">
-        <a href="/">Beranda</a>
-        <a href="/kamar">Daftar Kamar</a>
-        <a href="/pembayaran">Pembayaran</a>
-        <a href="/reservasi">Reservasi</a>
+    <!-- Logo -->
+    <div class="text-xl font-bold">
+        EloraStay
     </div>
 
-    <!-- tombol login -->
-    <a href="/login" class="login-btn" id="loginBtn">
+    <!-- Menu -->
+    <div class="absolute left-1/2 -translate-x-1/2 flex gap-8">
+
+        <a href="/"
+           class="relative font-semibold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full hover:after:w-full after:transition-all">
+
+            Beranda
+        </a>
+
+        <a href="/kamar"
+           class="relative font-semibold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full hover:after:w-full after:transition-all">
+
+            Daftar Kamar
+        </a>
+
+        <a href="/pembayaran"
+           class="relative font-semibold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full hover:after:w-full after:transition-all">
+
+            Pembayaran
+        </a>
+
+        <a href="/reservasi"
+           class="relative font-semibold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full hover:after:w-full after:transition-all">
+
+            Reservasi
+        </a>
+
+    </div>
+
+    <!-- Login -->
+    <a href="/login"
+       id="loginBtn"
+       class="bg-white text-pink-500 px-4 py-2 rounded-full font-bold hover:bg-pink-100 transition">
+
         Login
     </a>
 
-    <!-- tombol logout -->
-    <button class="login-btn"
+    <!-- Logout -->
+    <button
         id="logoutBtn"
         onclick="logout()"
-        style="display:none;">
+        class="hidden bg-white text-pink-500 px-4 py-2 rounded-full font-bold hover:bg-pink-100 transition">
 
         Logout
-
     </button>
-</div>
+
+</nav>
 
 <!-- Hero -->
-<div class="hero">
-    <div class="hero-content">
-        <h1>Temukan Hotel Impian Anda</h1>
-        <p>Booking mudah, cepat, dan terpercaya hanya di EloraStay</p>
+<section
+    class="h-[300px] bg-cover bg-center flex items-center justify-center relative"
+    style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945')">
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-pink-500/40"></div>
+
+    <!-- Content -->
+    <div class="relative text-center text-white px-4">
+
+        <h1 class="text-4xl font-bold mb-3">
+            Temukan Hotel Impian Anda
+        </h1>
+
+        <p class="text-lg">
+            Booking mudah, cepat, dan terpercaya hanya di EloraStay
+        </p>
+
     </div>
-</div>
+
+</section>
 
 <!-- Features -->
-<div class="features">
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-10">
 
-    <div class="feature-card">
-        <div class="icon">🏨</div>
-        <h3>Hotel Terpercaya</h3>
-        <p>
-            Kami bekerja sama dengan hotel terbaik untuk memastikan 
+    <!-- Card 1 -->
+    <div class="bg-white rounded-2xl p-6 shadow-md hover:-translate-y-2 transition text-center">
+
+        <div class="text-4xl mb-3">🏨</div>
+
+        <h3 class="font-bold text-lg mb-2">
+            Hotel Terpercaya
+        </h3>
+
+        <p class="text-gray-500 text-sm leading-6">
+            Kami bekerja sama dengan hotel terbaik untuk memastikan
             kenyamanan dan kualitas menginap Anda.
         </p>
+
     </div>
 
-    <div class="feature-card">
-        <div class="icon">⭐</div>
-        <h3>Rating Terbaik</h3>
-        <p>
-            Semua kamar memiliki ulasan tinggi dari pelanggan 
+    <!-- Card 2 -->
+    <div class="bg-white rounded-2xl p-6 shadow-md hover:-translate-y-2 transition text-center">
+
+        <div class="text-4xl mb-3">⭐</div>
+
+        <h3 class="font-bold text-lg mb-2">
+            Rating Terbaik
+        </h3>
+
+        <p class="text-gray-500 text-sm leading-6">
+            Semua kamar memiliki ulasan tinggi dari pelanggan
             yang telah merasakan pengalaman menginap.
         </p>
+
     </div>
 
-    <div class="feature-card">
-        <div class="icon">⚡</div>
-        <h3>Booking Instan</h3>
-        <p>
-            Pesan kamar hanya dalam beberapa klik tanpa proses 
+    <!-- Card 3 -->
+    <div class="bg-white rounded-2xl p-6 shadow-md hover:-translate-y-2 transition text-center">
+
+        <div class="text-4xl mb-3">⚡</div>
+
+        <h3 class="font-bold text-lg mb-2">
+            Booking Instan
+        </h3>
+
+        <p class="text-gray-500 text-sm leading-6">
+            Pesan kamar hanya dalam beberapa klik tanpa proses
             yang ribet dan langsung terkonfirmasi.
         </p>
+
     </div>
 
-    <div class="feature-card">
-        <div class="icon">📞</div>
-        <h3>Dukungan 24/7</h3>
-        <p>
-            Tim kami siap membantu Anda kapan saja jika terjadi 
+    <!-- Card 4 -->
+    <div class="bg-white rounded-2xl p-6 shadow-md hover:-translate-y-2 transition text-center">
+
+        <div class="text-4xl mb-3">📞</div>
+
+        <h3 class="font-bold text-lg mb-2">
+            Dukungan 24/7
+        </h3>
+
+        <p class="text-gray-500 text-sm leading-6">
+            Tim kami siap membantu Anda kapan saja jika terjadi
             kendala saat reservasi atau menginap.
         </p>
+
     </div>
 
-</div>
+</section>
 
-<!-- Room -->
-<div class="room-section">
+<!-- Room Section -->
+<section class="px-5 py-6">
 
-    <div class="room-header">
-        <h3>Pilihan kamar terpopuler</h3>
+    <!-- Header -->
+    <div class="flex items-center justify-between">
 
-        <a href="/kamar" class="lihat-semua">
+        <h3 class="text-2xl font-bold">
+            Pilihan kamar terpopuler
+        </h3>
+
+        <a href="/kamar"
+           class="text-pink-500 font-bold hover:text-pink-600 transition hover:translate-x-2 inline-flex items-center gap-2">
+
             Lihat Semua →
         </a>
+
     </div>
 
-    <div class="room-grid">
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
 
         <!-- CARD 1 -->
-        <div class="card" onclick="window.location.href='/kamar'">
+        <div onclick="window.location.href='/kamar'"
+             class="bg-white rounded-2xl p-4 shadow-md hover:-translate-y-2 transition cursor-pointer">
 
-             <img src="{{ asset('img/kamar/deluxe.jpeg') }}" alt="Deluxe Room">
+            <img
+                src="{{ asset('img/kamar/deluxe.jpeg') }}"
+                alt="Deluxe Room"
+                class="w-full h-[220px] object-cover rounded-xl">
 
-            <h4>Deluxe Room</h4>
+            <h4 class="font-bold text-xl mt-4 mb-2">
+                Deluxe Room
+            </h4>
 
-            <p>
-                Kamar nyaman dengan desain modern dan pemandangan kota 
-                yang menenangkan. Cocok untuk Anda yang menginginkan 
+            <p class="text-gray-500 text-sm leading-6">
+                Kamar nyaman dengan desain modern dan pemandangan kota
+                yang menenangkan. Cocok untuk Anda yang menginginkan
                 istirahat berkualitas dengan suasana hangat dan fasilitas lengkap.
             </p>
 
-            <b style="color:#ec4899;">Rp. 500.000</b>
+            <div class="text-pink-500 font-bold mt-4">
+                Rp. 500.000
+            </div>
 
         </div>
 
         <!-- CARD 2 -->
-        <div class="card" onclick="window.location.href='/kamar'">
+        <div onclick="window.location.href='/kamar'"
+             class="bg-white rounded-2xl p-4 shadow-md hover:-translate-y-2 transition cursor-pointer">
 
-             <img src="/img/kamar/suite.jpeg" alt="Superior Suite">
+            <img
+                src="/img/kamar/suite.jpeg"
+                alt="Superior Suite"
+                class="w-full h-[220px] object-cover rounded-xl">
 
-            <h4>Superior Suite</h4>
+            <h4 class="font-bold text-xl mt-4 mb-2">
+                Superior Suite
+            </h4>
 
-            <p>
-                Suite mewah dengan ruang tamu terpisah, fasilitas premium, 
-                dan pemandangan indah. Ideal untuk Anda yang menginginkan 
+            <p class="text-gray-500 text-sm leading-6">
+                Suite mewah dengan ruang tamu terpisah, fasilitas premium,
+                dan pemandangan indah. Ideal untuk Anda yang menginginkan
                 pengalaman menginap yang lebih eksklusif dan nyaman.
             </p>
 
-            <b style="color:#ec4899;">Rp. 750.000</b>
+            <div class="text-pink-500 font-bold mt-4">
+                Rp. 750.000
+            </div>
 
         </div>
 
     </div>
-</div>
 
+</section>
+
+@guest
 <!-- CTA -->
-<div class="cta">
+<section class="bg-pink-400 text-white text-center py-12 px-5 mt-10">
 
-    <div class="cta-section" id="daftarSection">
+    <div id="daftarSection">
 
-        <h3>Siap untuk pengalaman terbaik?</h3>
+        <h3 class="text-3xl font-bold mb-3">
+            Siap untuk pengalaman terbaik?
+        </h3>
 
-        <p>Daftar sekarang dan dapatkan promo</p>
+        <p class="mb-5">
+            Daftar sekarang dan dapatkan promo
+        </p>
 
-        <button class="btn-daftar"
-            onclick="window.location.href='/registrasi'">
+        <button
+            onclick="window.location.href='/registrasi'"
+            class="bg-white text-pink-500 px-6 py-3 rounded-xl font-bold hover:bg-pink-100 transition">
 
             Daftar Sekarang
-
         </button>
 
     </div>
 
-</div>
+</section>
+@endguest
+
 
 <!-- Footer -->
-<footer class="footer">
+<footer class="bg-gradient-to-r from-pink-400 to-pink-500 text-white mt-10">
 
-    <div class="footer-container">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 py-10">
 
         <!-- Brand -->
-        <div class="footer-section">
-            <h3>EloraStay</h3>
+        <div>
 
-            <p>
-                Platform booking hotel terpercaya dengan pengalaman 
+            <h3 class="text-2xl font-bold mb-3">
+                EloraStay
+            </h3>
+
+            <p class="text-sm leading-6">
+                Platform booking hotel terpercaya dengan pengalaman
                 terbaik untuk Anda.
             </p>
+
         </div>
 
-        <!-- Navigation -->
-        <div class="footer-section">
+        <!-- Menu -->
+        <div>
 
-            <h4>Menu</h4>
+            <h4 class="text-xl font-semibold mb-3">
+                Menu
+            </h4>
 
-            <a href="/">🏠 Beranda</a>
-            <a href="/kamar">🛏️ Daftar Kamar</a>
-            <a href="/reservasi">📄 Reservasi</a>
-            <a href="/pembayaran">💳 Pembayaran</a>
+            <div class="space-y-2 text-sm">
+
+                <a href="/" class="block hover:translate-x-2 transition">
+                    🏠 Beranda
+                </a>
+
+                <a href="/kamar" class="block hover:translate-x-2 transition">
+                    🛏️ Daftar Kamar
+                </a>
+
+                <a href="/reservasi" class="block hover:translate-x-2 transition">
+                    📄 Reservasi
+                </a>
+
+                <a href="/pembayaran" class="block hover:translate-x-2 transition">
+                    💳 Pembayaran
+                </a>
+
+            </div>
 
         </div>
 
         <!-- Contact -->
-        <div class="footer-section">
+        <div>
 
-            <h4>Kontak</h4>
+            <h4 class="text-xl font-semibold mb-3">
+                Kontak
+            </h4>
 
-            <p>📧 email@elorastay.com</p>
-            <p>📞 +62 123 456 7890</p>
-            <p>📍 Indonesia</p>
+            <div class="space-y-2 text-sm">
+
+                <p>📧 email@elorastay.com</p>
+                <p>📞 +62 123 456 7890</p>
+                <p>📍 Indonesia</p>
+
+            </div>
 
         </div>
 
     </div>
 
     <!-- Bottom -->
-    <div class="footer-bottom">
-        <p>© 2026 EloraStay. All rights reserved.</p>
+    <div class="text-center py-4 bg-black/10 text-sm">
+        © 2026 EloraStay. All rights reserved.
     </div>
 
 </footer>
@@ -505,46 +363,36 @@ window.onload = function () {
 
     const daftarSection = document.getElementById("daftarSection");
 
-    // jika sudah login
     if (isLogin === "true") {
 
-        // sembunyikan login
         if (loginBtn) {
             loginBtn.style.display = "none";
         }
 
-        // tampilkan logout
         if (logoutBtn) {
             logoutBtn.style.display = "inline-block";
         }
 
-        // sembunyikan daftar sekarang
         if (daftarSection) {
             daftarSection.style.display = "none";
         }
-    }
 
-    // jika belum login
-    else {
+    } else {
 
-        // tampilkan login
         if (loginBtn) {
             loginBtn.style.display = "inline-block";
         }
 
-        // sembunyikan logout
         if (logoutBtn) {
             logoutBtn.style.display = "none";
         }
 
-        // tampilkan daftar sekarang
         if (daftarSection) {
             daftarSection.style.display = "block";
         }
     }
 }
 
-// logout
 function logout() {
 
     localStorage.removeItem("isLogin");

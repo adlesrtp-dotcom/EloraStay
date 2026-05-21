@@ -5,167 +5,183 @@
 <title>Lupa Password - EloraStay</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5e6ee;
-}
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-/* NAVBAR */
-.navbar {
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    padding: 15px 40px;
-    display: flex;
-    justify-content: space-between;
-    color: white;
-}
+<!-- TAILWIND -->
+<script src="https://cdn.tailwindcss.com"></script>
 
-.navbar a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            fontFamily: {
+                poppins: ['Poppins', 'sans-serif']
+            }
+        }
+    }
 }
+</script>
 
-.login-btn {
-    background: white;
-    color: #ec4899;
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-weight: bold;
-}
-
-/* CONTAINER */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-}
-
-/* CARD */
-.card {
-    background: #f9f9f9;
-    padding: 30px;
-    width: 350px;
-    border-radius: 15px;
-    text-align: center;
-}
-
-.card-header {
-    background: #ec4899;
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 15px 0;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-}
-
-.btn {
-    width: 100%;
-    background: #ec4899;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-/* Footer */
-.footer {
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    color: white;
-    margin-top: 40px;
-}
-
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 30px 20px;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding: 10px;
-}
-</style>
 </head>
 
-<body>
+<body class="bg-pink-100 font-poppins min-h-screen flex flex-col">
 
 <!-- NAVBAR -->
-<div class="navbar">
-    <div><b>EloraStay</b></div>
-    
-</div>
+<nav class="bg-gradient-to-r from-pink-400 to-pink-500 text-white px-6 md:px-10 py-4 flex justify-between items-center shadow-md">
 
-<!-- FORM -->
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h3>Lupa Password</h3>
-            <small>Masukkan email untuk reset password</small>
+    <div class="text-2xl font-bold">
+        EloraStay
+    </div>
+
+</nav>
+
+<!-- MAIN -->
+<main class="flex-1 flex items-center justify-center px-4 py-10">
+
+    <!-- CARD -->
+    <div class="bg-white w-full max-w-md rounded-3xl shadow-xl p-8">
+
+        <!-- HEADER -->
+        <div class="bg-gradient-to-r from-pink-400 to-pink-500 text-white rounded-2xl p-6 text-center mb-6">
+
+            <h2 class="text-2xl font-bold mb-2">
+                Lupa Password
+            </h2>
+
+            <p class="text-sm">
+                Masukkan email untuk reset password
+            </p>
+
         </div>
 
+        <!-- FORM -->
         <form onsubmit="resetPassword(event)">
-            <input type="email" id="email" placeholder="Masukkan email" required>
 
-            <button type="submit" class="btn">Kirim Link Reset</button>
+            <!-- INPUT -->
+            <div class="mb-5">
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Masukkan email"
+                    required
+                    class="w-full px-5 py-3 rounded-full border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-400">
+
+            </div>
+
+            <!-- BUTTON -->
+            <button
+                type="submit"
+                class="w-full bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white py-3 rounded-full font-semibold transition duration-300 shadow-md">
+
+                Kirim Link Reset
+            </button>
+
         </form>
 
-        <p style="margin-top:15px; font-size:13px;">
-            Kembali ke <a href="/login" style="color:#ec4899;">Login</a>
+        <!-- LOGIN -->
+        <p class="text-center text-sm text-gray-600 mt-6">
+
+            Kembali ke
+            <a href="/login" class="text-pink-500 font-semibold hover:underline">
+                Login
+            </a>
+
         </p>
+
     </div>
-</div>
+
+</main>
 
 <!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-container">
+<footer class="bg-gradient-to-r from-pink-400 to-pink-500 text-white mt-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 py-10">
+
+        <!-- BRAND -->
         <div>
-            <h3>EloraStay</h3>
-            <p>Platform booking hotel terpercaya.</p>
+
+            <h3 class="text-2xl font-bold mb-3">
+                EloraStay
+            </h3>
+
+            <p class="text-sm leading-6">
+                Platform booking hotel terpercaya dengan pengalaman terbaik untuk Anda.
+            </p>
+
         </div>
+
+        <!-- MENU -->
         <div>
-            <h4>Menu</h4>
-            <p>Beranda</p>
-            <p>Daftar Kamar</p>
+
+            <h4 class="text-xl font-semibold mb-3">
+                Menu
+            </h4>
+
+            <div class="space-y-2 text-sm">
+
+                <p>🏠 Beranda</p>
+                <p>🛏️ Daftar Kamar</p>
+                <p>📄 Reservasi</p>
+                <p>💳 Pembayaran</p>
+
+            </div>
+
         </div>
+
+        <!-- KONTAK -->
         <div>
-            <h4>Kontak</h4>
-            <p>email@elorastay.com</p>
+
+            <h4 class="text-xl font-semibold mb-3">
+                Kontak
+            </h4>
+
+            <div class="space-y-2 text-sm">
+
+                <p>📧 email@elorastay.com</p>
+                <p>📞 +62 123 456 7890</p>
+                <p>📍 Indonesia</p>
+
+            </div>
+
         </div>
+
     </div>
-    <div class="footer-bottom">
-        © 2026 EloraStay
+
+    <!-- BOTTOM -->
+    <div class="text-center py-4 bg-black/10 text-sm">
+        © 2026 EloraStay. All rights reserved.
     </div>
+
 </footer>
 
 <!-- SCRIPT -->
 <script>
+
 function resetPassword(e) {
+
     e.preventDefault();
 
-    const email = document.getElementById("email").value;
+    const email =
+        document.getElementById("email").value;
 
     if (email === "") {
+
         alert("Email wajib diisi!");
+
         return;
     }
 
     // simulasi kirim email
-    alert("Link reset password telah dikirim ke " + email);
+    alert(
+        "Link reset password telah dikirim ke " + email
+    );
 
-    // redirect ke login
+    // redirect login
     window.location.href = "/login";
 }
+
 </script>
 
 </body>

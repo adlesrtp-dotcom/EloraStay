@@ -2,468 +2,439 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <title>Daftar Kamar - EloraStay</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #ffe4ec;
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- TAILWIND -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            fontFamily: {
+                poppins: ['Poppins', 'sans-serif']
+            }
+        }
+    }
 }
+</script>
 
-/* Navbar */
-.navbar {
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    color: white;
-    padding: 18px 35px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    position: relative;
-}
-
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* Menu Tengah */
-.nav-menu {
-    display: flex;
-    gap: 35px;
-
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Link */
-.nav-menu a {
-    position: relative;
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 400;
-    padding-bottom: 5px;
-    transition: 0.3s;
-}
-
-/* Garis bawah */
-.nav-menu a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-
-    width: 0%;
-    height: 3px;
-
-    background: white;
-    border-radius: 10px;
-
-    transition: 0.3s;
-}
-
-/* Hover */
-.nav-menu a:hover::after {
-    width: 100%;
-}
-
-/* Active */
-.nav-menu a.active::after {
-    width: 100%;
-}
-
-/* Tombol Logout */
-.login-btn {
-    background: white;
-    color: #ec4899;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.login-btn:hover {
-    background: #ffe4ec;
-}
-
-/* Hero */
-.hero {
-    height: 300px;
-    background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(236,72,153,0.4);
-}
-
-.hero-content {
-    position: relative;
-    color: white;
-    text-align: center;
-}
-
-/* Room */
-.room-list {
-    padding: 40px;
-
-    display: grid;
-
-    grid-template-columns: repeat(auto-fit, minmax(320px, 380px));
-
-    gap: 30px;
-
-    justify-content: center;
-}
-
-/* Card */
-.card {
-    width: 100%;
-    max-width: 380px;
-
-    background: white;
-
-    border-radius: 18px;
-
-    overflow: hidden;
-
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-
-    transition: 0.3s;
-
-    cursor: pointer;
-}
-
-/* Hover card */
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-/* Image */
-.card img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-}
-
-.card-body {
-    position: relative;
-    padding: 15px;
-    padding-bottom: 60px;
-}
-
-.price {
-    color: #ec4899;
-    font-weight: bold;
-}
-
-/* Tombol */
-.btn-detail {
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
-    background: #ec4899;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.btn-detail:hover {
-    background: #db2777;
-}
-
-.btn-pesan {
-    width: 100%;
-    margin-top: 20px;
-    background: #ec4899;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    overflow-y: auto;
-    padding: 40px 0;
-}
-
-.modal-content {
-    background: white;
-    width: 90%;
-    max-width: 700px;
-    margin: auto;
-    border-radius: 15px;
-    padding: 20px;
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.modal-content img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.close {
-    position: absolute;
-    right: 15px;
-    top: 10px;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-/* Footer */
-.footer {
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    color: white;
-    margin-top: 40px;
-}
-
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 30px 20px;
-    gap: 20px;
-}
-
-.footer-section h3,
-.footer-section h4 {
-    margin-bottom: 10px;
-}
-
-.footer-section p {
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.footer-section a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    margin-bottom: 8px;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.footer-section a:hover {
-    transform: translateX(5px);
-    color: #ffe4ec;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding: 15px;
-    background-color: rgba(0,0,0,0.1);
-    font-size: 13px;
-}
-</style>
 </head>
 
-<body>
+<body class="bg-pink-100 font-poppins">
 
 <!-- Navbar -->
-<div class="navbar">
+<nav class="bg-gradient-to-r from-pink-400 to-pink-500 text-white px-8 py-5 flex items-center justify-between relative">
 
     <!-- Logo -->
-    <div class="logo">EloraStay</div>
+    <div class="text-xl font-bold">
+        EloraStay
+    </div>
 
-    <!-- Menu Tengah -->
-    <div class="nav-menu">
+    <!-- Menu -->
+    <div class="absolute left-1/2 -translate-x-1/2 flex gap-8">
 
-        <a href="/"
-           class="{{ request()->path() == '/' ? 'active' : '' }}">
-           Beranda
+        <a href="/dashboard"
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->path() == '/' ? 'after:w-full font-semibold' : '' }}">
+
+            Beranda
         </a>
 
         <a href="/kamar"
-           class="{{ request()->is('kamar') ? 'active' : '' }}">
-           Daftar Kamar
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->is('kamar') ? 'after:w-full font-semibold' : '' }}">
+
+            Daftar Kamar
         </a>
 
         <a href="/pembayaran"
-           class="{{ request()->is('pembayaran') ? 'active' : '' }}">
-           Pembayaran
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->is('pembayaran') ? 'after:w-full font-semibold' : '' }}">
+
+            Pembayaran
         </a>
 
         <a href="/reservasi"
-           class="{{ request()->is('reservasi') ? 'active' : '' }}">
-           Reservasi
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->is('reservasi') ? 'after:w-full font-semibold' : '' }}">
+
+            Reservasi
         </a>
 
     </div>
 
     <!-- Logout -->
-    <button class="login-btn" onclick="logout()">
+    <button
+        onclick="logout()"
+        class="bg-white text-pink-500 px-5 py-2 rounded-full font-bold hover:bg-pink-100 transition">
+
         Logout
     </button>
 
-</div>
+</nav>
 
-<div class="hero">
-    <div class="hero-content">
-        <h1>Temukan Hotel Impian Anda</h1>
-        <p>Booking mudah, cepat, dan terpercaya hanya di EloraStay</p>
+<!-- Hero -->
+<section
+    class="h-[300px] bg-cover bg-center flex items-center justify-center relative"
+    style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945')">
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-pink-500/40"></div>
+
+    <!-- Content -->
+    <div class="relative text-center text-white px-4">
+
+        <h1 class="text-4xl font-bold mb-3">
+            Temukan Hotel Impian Anda
+        </h1>
+
+        <p class="text-lg">
+            Booking mudah, cepat, dan terpercaya hanya di EloraStay
+        </p>
+
     </div>
-</div>
+
+</section>
 
 <!-- Room List -->
-<div class="room-list">
+<section class="px-6 py-10">
 
-<div class="card" onclick="openModal('deluxe')">
-    <img src="{{ asset('img/kamar/deluxe.jpeg') }}">
-    <div class="card-body">
-        <h4>Deluxe Room</h4>
-        <p>Kamar nyaman dengan desain modern dan pemandangan kota yang menenangkan.</p>
-        <p class="price">Rp 500.000</p>
-        <button class="btn-detail" onclick="openModal('deluxe')">Lihat Detail</button>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center">
+
+        <!-- Deluxe -->
+        <div onclick="openModal('deluxe')"
+             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
+
+            <img src="{{ asset('img/kamar/deluxe.jpeg') }}"
+                 class="w-full h-[240px] object-cover">
+
+            <div class="p-5 relative pb-16">
+
+                <h4 class="text-xl font-bold mb-2">
+                    Deluxe Room
+                </h4>
+
+                <p class="text-gray-500 text-sm leading-6">
+                    Kamar nyaman dengan desain modern dan pemandangan kota yang menenangkan.
+                </p>
+
+                <p class="text-pink-500 font-bold mt-3">
+                    Rp 500.000
+                </p>
+
+                <button
+                    onclick="openModal('deluxe')"
+                    class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
+
+                    Lihat Detail
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Executive -->
+        <div onclick="openModal('executive')"
+             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
+
+            <img src="{{ asset('img/kamar/executive.jpeg') }}"
+                 class="w-full h-[240px] object-cover">
+
+            <div class="p-5 relative pb-16">
+
+                <h4 class="text-xl font-bold mb-2">
+                    Executive Room
+                </h4>
+
+                <p class="text-gray-500 text-sm leading-6">
+                    Kamar eksklusif untuk tamu bisnis dengan fasilitas modern.
+                </p>
+
+                <p class="text-pink-500 font-bold mt-3">
+                    Rp 600.000
+                </p>
+
+                <button
+                    onclick="openModal('executive')"
+                    class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
+
+                    Lihat Detail
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Superior -->
+        <div onclick="openModal('superior')"
+             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
+
+            <img src="{{ asset('img/kamar/suite.jpeg') }}"
+                 class="w-full h-[240px] object-cover">
+
+            <div class="p-5 relative pb-16">
+
+                <h4 class="text-xl font-bold mb-2">
+                    Superior Suite
+                </h4>
+
+                <p class="text-gray-500 text-sm leading-6">
+                    Suite mewah dengan ruang tamu terpisah dan fasilitas premium.
+                </p>
+
+                <p class="text-pink-500 font-bold mt-3">
+                    Rp 700.000
+                </p>
+
+                <button
+                    onclick="openModal('superior')"
+                    class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
+
+                    Lihat Detail
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Family -->
+        <div onclick="openModal('family')"
+             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
+
+            <img src="{{ asset('img/kamar/family.jpeg') }}"
+                 class="w-full h-[240px] object-cover">
+
+            <div class="p-5 relative pb-16">
+
+                <h4 class="text-xl font-bold mb-2">
+                    Family Room
+                </h4>
+
+                <p class="text-gray-500 text-sm leading-6">
+                    Kamar luas cocok untuk keluarga dengan fasilitas lengkap.
+                </p>
+
+                <p class="text-pink-500 font-bold mt-3">
+                    Rp 850.000
+                </p>
+
+                <button
+                    onclick="openModal('family')"
+                    class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
+
+                    Lihat Detail
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Standard -->
+        <div onclick="openModal('standard')"
+             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
+
+            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+                 class="w-full h-[240px] object-cover">
+
+            <div class="p-5 relative pb-16">
+
+                <h4 class="text-xl font-bold mb-2">
+                    Standard Room
+                </h4>
+
+                <p class="text-gray-500 text-sm leading-6">
+                    Kamar minimalis dengan desain sederhana dan nyaman.
+                </p>
+
+                <p class="text-pink-500 font-bold mt-3">
+                    Rp 350.000
+                </p>
+
+                <button
+                    onclick="openModal('standard')"
+                    class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
+
+                    Lihat Detail
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Junior -->
+        <div onclick="openModal('junior')"
+             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
+
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a"
+                 class="w-full h-[240px] object-cover">
+
+            <div class="p-5 relative pb-16">
+
+                <h4 class="text-xl font-bold mb-2">
+                    Junior Suite
+                </h4>
+
+                <p class="text-gray-500 text-sm leading-6">
+                    Suite modern dengan area santai nyaman dan suasana mewah.
+                </p>
+
+                <p class="text-pink-500 font-bold mt-3">
+                    Rp 950.000
+                </p>
+
+                <button
+                    onclick="openModal('junior')"
+                    class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
+
+                    Lihat Detail
+                </button>
+
+            </div>
+
+        </div>
+
     </div>
-</div>
 
-<div class="card" onclick="openModal('executive')">
-    <img src="{{ asset('img/kamar/executive.jpeg') }}">
-    <div class="card-body">
-        <h4>Executive Room</h4>
-        <p>Kamar eksklusif untuk tamu bisnis dengan fasilitas modern Dirancang khusus untuk tamu bisnis.</p>
-        <p class="price">Rp 600.000</p>
-        <button class="btn-detail" onclick="openModal('executive')">Lihat Detail</button>
-    </div>
-</div>
-
-<div class="card" onclick="openModal('superior')">
-    <img src="{{ asset('img/kamar/suite.jpeg') }}">
-    <div class="card-body">
-        <h4>Superior Suite</h4>
-        <p>Suite mewah dengan ruang tamu terpisah, fasilitas premium, dan pemandangan indah.</p>
-        <p class="price">Rp 700.000</p>
-        <button class="btn-detail" onclick="openModal('superior')">Lihat Detail</button>
-    </div>
-</div>
-
-<div class="card" onclick="openModal('family')">
-    <img src="{{ asset('img/kamar/family.jpeg') }}">
-    <div class="card-body">
-        <h4>Family Room</h4>
-        <p>Kamar luas cocok untuk keluarga, dengan fasilitas yang memadai untuk kenyamanan semua anggota keluarga.</p>
-        <p class="price">Rp 850.000</p>
-        <button class="btn-detail" onclick="openModal('family')">Lihat Detail</button>
-    </div>
-</div>
-
-<!-- Standard Room -->
-<div class="card" onclick="openModal('standard')">
-    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85">
-    <div class="card-body">
-        <h4>Standard Room</h4>
-        <p>Kamar minimalis dengan desain sederhana dan nyaman untuk pengalaman menginap praktis.</p>
-        <p class="price">Rp 350.000</p>
-        <button class="btn-detail" onclick="openModal('standard')">
-            Lihat Detail
-        </button>
-    </div>
-</div>
-
-<!-- Junior Suite -->
-<div class="card" onclick="openModal('junior')">
-    <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a">
-    <div class="card-body">
-        <h4>Junior Suite</h4>
-        <p>Suite modern dengan area santai nyaman dan suasana mewah yang menenangkan lengkap dengan fasilitas premium.</p>
-        <p class="price">Rp 950.000</p>
-        <button class="btn-detail" onclick="openModal('junior')">
-            Lihat Detail
-        </button>
-    </div>
-</div>
-
-<!-- Presidential Suite -->
-<div class="card" onclick="openModal('presidential')">
-    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
-    <div class="card-body">
-        <h4>Presidential Suite</h4>
-        <p>Suite mewah dengan ruang tamu pribadi dan fasilitas premium eksklusif.</p>
-        <p class="price">Rp 2.500.000</p>
-        <button class="btn-detail" onclick="openModal('presidential')">
-            Lihat Detail
-        </button>
-    </div>
-</div>
-
-</div>
+</section>
 
 <!-- MODAL -->
-<div id="roomModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">✖</span>
+<div id="roomModal"
+     class="hidden fixed inset-0 z-50 bg-black/60 overflow-y-auto py-10">
+
+    <div class="bg-white w-[90%] max-w-[700px] mx-auto rounded-2xl p-6 relative">
+
+        <!-- Close -->
+        <span onclick="closeModal()"
+              class="absolute top-4 right-5 text-2xl cursor-pointer">
+
+            ✖
+        </span>
+
+        <!-- Content -->
         <div id="modalContent"></div>
+
     </div>
+
 </div>
 
+<!-- Footer -->
+<footer class="bg-gradient-to-r from-pink-400 to-pink-500 text-white mt-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 py-10">
+
+        <!-- Brand -->
+        <div>
+
+            <h3 class="text-2xl font-bold mb-3">
+                EloraStay
+            </h3>
+
+            <p class="text-sm leading-6">
+                Platform booking hotel terpercaya dengan pengalaman terbaik untuk Anda.
+            </p>
+
+        </div>
+
+        <!-- Navigation -->
+        <div>
+
+            <h4 class="text-xl font-semibold mb-3">
+                Menu
+            </h4>
+
+            <div class="space-y-2 text-sm">
+
+                <a href="/" class="block hover:translate-x-2 transition">
+                    🏠 Beranda
+                </a>
+
+                <a href="/kamar" class="block hover:translate-x-2 transition">
+                    🛏️ Daftar Kamar
+                </a>
+
+                <a href="/reservasi" class="block hover:translate-x-2 transition">
+                    📄 Reservasi
+                </a>
+
+                <a href="/pembayaran" class="block hover:translate-x-2 transition">
+                    💳 Pembayaran
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Contact -->
+        <div>
+
+            <h4 class="text-xl font-semibold mb-3">
+                Kontak
+            </h4>
+
+            <div class="space-y-2 text-sm">
+
+                <p>📧 email@elorastay.com</p>
+                <p>📞 +62 123 456 7890</p>
+                <p>📍 Indonesia</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bottom -->
+    <div class="text-center py-4 bg-black/10 text-sm">
+        © 2026 EloraStay. All rights reserved.
+    </div>
+
+</footer>
+
 <script>
+
 const rooms = {
+
     deluxe: {
         name: "Deluxe Room",
         price: 500000,
         img: "/img/kamar/deluxe.jpeg",
-        desc: "Kamar nyaman dengan desain modern dan pemandangan kota yang menenangkan. Cocok untuk Anda yang menginginkan istirahat berkualitas dengan suasana hangat dan fasilitas lengkap.",
+        desc: "Kamar nyaman dengan desain modern dan pemandangan kota yang menenangkan.",
         size: "32m²",
         capacity: "2 Orang",
         rating: "4.8"
     },
+
     executive: {
         name: "Executive Room",
         price: 600000,
         img: "/img/kamar/executive.jpeg",
-        desc: "Dirancang khusus untuk tamu bisnis, kamar ini menawarkan kenyamanan ekstra dengan fasilitas premium dan ruang yang mendukung produktivitas selama menginap.",
+        desc: "Dirancang khusus untuk tamu bisnis dengan fasilitas premium.",
         size: "40m²",
         capacity: "2 Orang",
         rating: "4.7"
     },
+
     superior: {
         name: "Superior Suite",
         price: 700000,
         img: "/img/kamar/suite.jpeg",
-        desc: "Suite mewah dengan ruang tamu terpisah, fasilitas premium, dan pemandangan indah.",
+        desc: "Suite mewah dengan ruang tamu terpisah dan fasilitas premium.",
         size: "45m²",
         capacity: "3 Orang",
         rating: "4.8"
     },
+
     family: {
         name: "Family Room",
         price: 850000,
         img: "/img/kamar/family.jpeg",
-        desc: "Kamar luas yang dirancang untuk keluarga, memberikan kenyamanan maksimal.",
+        desc: "Kamar luas yang dirancang untuk keluarga.",
         size: "55m²",
         capacity: "4 Orang",
         rating: "4.6"
     },
+
     standard: {
         name: "Standard Room",
         price: 350000,
@@ -473,46 +444,46 @@ const rooms = {
         capacity: "2 Orang",
         rating: "4.5"
     },
+
     junior: {
         name: "Junior Suite",
         price: 950000,
         img: "https://images.unsplash.com/photo-1566665797739-1674de7a421a",
-        desc: "Suite modern dengan area santai nyaman dan suasana mewah yang menenangkan.",
+        desc: "Suite modern dengan area santai nyaman dan suasana mewah.",
         size: "40m²",
         capacity: "3 Orang",
         rating: "4.7"
-    },
-    presidential: {
-        name: "Presidential Suite",
-        price: 2500000,
-        img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
-        desc: "Suite mewah dengan ruang tamu pribadi dan fasilitas premium eksklusif.",
-        size: "80m²",
-        capacity: "6 Orang",
-        rating: "4.9"
     }
 };
 
 let selectedRoom = null;
 
 function openModal(type) {
+
     selectedRoom = rooms[type];
 
-    document.getElementById("roomModal").style.display = "block";
+    document.getElementById("roomModal").classList.remove("hidden");
 
     document.getElementById("modalContent").innerHTML = `
-        <img src="${selectedRoom.img}">
 
-        <h2>${selectedRoom.name}</h2>
-        <p>${selectedRoom.desc}</p>
+        <img src="${selectedRoom.img}"
+             class="w-full rounded-xl mb-5 h-[320px] object-cover">
 
-        <p>
-            👥 ${selectedRoom.capacity} |
-            📐 ${selectedRoom.size} |
-            ⭐ ${selectedRoom.rating}
+        <h2 class="text-3xl font-bold mb-3">
+            ${selectedRoom.name}
+        </h2>
+
+        <p class="text-gray-500 leading-7 mb-4">
+            ${selectedRoom.desc}
         </p>
 
-        <ul>
+        <p class="mb-5 text-sm">
+            👥 ${selectedRoom.capacity}
+            • 📐 ${selectedRoom.size}
+            • ⭐ ${selectedRoom.rating}
+        </p>
+
+        <ul class="space-y-2 text-sm text-gray-600 mb-6">
             <li>✔ WiFi Gratis</li>
             <li>✔ AC</li>
             <li>✔ Smart TV</li>
@@ -520,73 +491,44 @@ function openModal(type) {
             <li>✔ Kamar Mandi Dalam</li>
         </ul>
 
-        <h3 style="color:#ec4899;">
+        <h3 class="text-pink-500 text-2xl font-bold mb-5">
             Rp ${selectedRoom.price.toLocaleString()}
         </h3>
 
-        <button class="btn-pesan" onclick="goToPayment()">
+        <button
+            onclick="goToPayment()"
+            class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+
             Pesan Saya
         </button>
     `;
 }
 
 function closeModal() {
-    document.getElementById("roomModal").style.display = "none";
+
+    document.getElementById("roomModal").classList.add("hidden");
 }
 
 window.onclick = function(e) {
+
     if (e.target === document.getElementById("roomModal")) {
         closeModal();
     }
 }
 
 function goToPayment() {
+
     if (!selectedRoom) {
+
         alert("Pilih kamar dulu!");
         return;
     }
 
     localStorage.setItem("bookingData", JSON.stringify(selectedRoom));
+
     window.location.href = "/pembayaran";
 }
-</script>
 
-<!-- Footer -->
-<footer class="footer">
-    <div class="footer-container">
-
-        <!-- Brand -->
-        <div class="footer-section">
-            <h3>EloraStay</h3>
-            <p>Platform booking hotel terpercaya dengan pengalaman terbaik untuk Anda.</p>
-        </div>
-
-        <!-- Navigation -->
-        <div class="footer-section">
-            <h4>Menu</h4>
-            <a href="/">🏠 Beranda</a>
-            <a href="/kamar">🛏️ Daftar Kamar</a>
-            <a href="/reservasi">📄 Reservasi</a>
-            <a href="/pembayaran">💳 Pembayaran</a>
-        </div>
-
-        <!-- Contact -->
-        <div class="footer-section">
-            <h4>Kontak</h4>
-            <p>📧 email@elorastay.com</p>
-            <p>📞 +62 123 456 7890</p>
-            <p>📍 Indonesia</p>
-        </div>
-
-    </div>
-
-    <!-- Bottom -->
-    <div class="footer-bottom">
-        <p>© 2026 EloraStay. All rights reserved.</p>
-    </div>
-</footer>
-
-<script>
 const isLogin = localStorage.getItem("isLogin");
 
 if (isLogin !== "true") {
@@ -596,7 +538,6 @@ if (isLogin !== "true") {
     window.location.href = "/dashboard";
 }
 
-// logout
 function logout() {
 
     localStorage.removeItem("isLogin");
@@ -605,6 +546,7 @@ function logout() {
 
     window.location.href = "/dashboard";
 }
+
 </script>
 
 </body>

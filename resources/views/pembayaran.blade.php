@@ -2,345 +2,332 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <title>Pembayaran - EloraStay</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #ffe4ec;
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- TAILWIND -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            fontFamily: {
+                poppins: ['Poppins', 'sans-serif']
+            }
+        }
+    }
 }
+</script>
 
-/* NAVBAR */
-/* Navbar */
-.navbar {
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    color: white;
-    padding: 18px 35px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    position: relative;
-}
-
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* Menu Tengah */
-.nav-menu {
-    display: flex;
-    gap: 35px;
-
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Link */
-.nav-menu a {
-    position: relative;
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
-    padding-bottom: 5px;
-    transition: 0.3s;
-}
-
-/* Garis bawah */
-.nav-menu a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-
-    width: 0%;
-    height: 3px;
-
-    background: white;
-    border-radius: 10px;
-
-    transition: 0.3s;
-}
-
-/* Hover */
-.nav-menu a:hover::after {
-    width: 100%;
-}
-
-/* Active */
-.nav-menu a.active::after {
-    width: 100%;
-}
-
-/* Tombol Logout */
-.login-btn {
-    background: white;
-    color: #ec4899;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.login-btn:hover {
-    background: #ffe4ec;
-}
-/* Hero Image */
-.hero {
-    height: 300px;
-    background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-/* Overlay biar teks kebaca */
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(236, 72, 153, 0.4); /* pink overlay */
-    top: 0;
-    left: 0;
-}
-
-/* Text */
-.hero-content {
-    position: relative;
-    color: white;
-    text-align: center;
-}
-
-.hero-content h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.hero-content p {
-    margin-bottom: 15px;
-}
-
-.hero-content button {
-    background: white;
-    color: #ec4899;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-}
-/* ================= FITUR PEMBAYARAN ================= */
-
-.container {
-    max-width: 800px;
-    margin: 30px auto;
-}
-
-/* Card */
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-}
-
-/* Input */
-input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 8px;
-    border: none;
-    background: #fce7f3;
-}
-
-/* Button */
-.btn {
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    background: #ec4899;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-/* Total */
-.total {
-    margin-top: 10px;
-    color: #ec4899;
-    font-weight: bold;
-}
-
-/* Result */
-.result {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    display: none;
-}
-/* Footer */
-      
-.footer {
-    background: linear-gradient(to right, #f472b6, #ec4899);
-    color: white;
-    margin-top: 40px;
-}
-
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 30px 20px;
-    gap: 20px;
-}
-
-.footer-section h3,
-.footer-section h4 {
-    margin-bottom: 10px;
-}
-
-.footer-section p {
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.footer-section a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    margin-bottom: 8px;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.footer-section a:hover {
-    transform: translateX(5px);
-    color: #ffe4ec;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding: 15px;
-    background-color: rgba(0,0,0,0.1);
-    font-size: 13px;
-}
-</style>
 </head>
 
-<body>
+<body class="bg-pink-100 font-poppins">
 
 <!-- Navbar -->
-<div class="navbar">
+<nav class="bg-gradient-to-r from-pink-400 to-pink-500 text-white px-8 py-5 flex items-center justify-between relative">
 
     <!-- Logo -->
-    <div class="logo">EloraStay</div>
+    <div class="text-xl font-bold">
+        EloraStay
+    </div>
 
-    <!-- Menu Tengah -->
-    <div class="nav-menu">
+    <!-- Menu -->
+    <div class="absolute left-1/2 -translate-x-1/2 flex gap-8">
 
-        <a href="/"
-           class="{{ request()->path() == '/' ? 'active' : '' }}">
-           Beranda
+        <a href="/dashboard"
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->path() == '/' ? 'after:w-full font-semibold' : '' }}">
+
+            Beranda
         </a>
 
         <a href="/kamar"
-           class="{{ request()->is('kamar') ? 'active' : '' }}">
-           Daftar Kamar
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->is('kamar') ? 'after:w-full font-semibold' : '' }}">
+
+            Daftar Kamar
         </a>
 
         <a href="/pembayaran"
-           class="{{ request()->is('pembayaran') ? 'active' : '' }}">
-           Pembayaran
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->is('pembayaran') ? 'after:w-full font-semibold' : '' }}">
+
+            Pembayaran
         </a>
 
         <a href="/reservasi"
-           class="{{ request()->is('reservasi') ? 'active' : '' }}">
-           Reservasi
+           class="relative pb-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full after:transition-all {{ request()->is('reservasi') ? 'after:w-full font-semibold' : '' }}">
+
+            Reservasi
         </a>
 
     </div>
 
     <!-- Logout -->
-    <button class="login-btn" onclick="logout()">
+    <button
+        onclick="logout()"
+        class="bg-white text-pink-500 px-5 py-2 rounded-full font-bold hover:bg-pink-100 transition">
+
         Logout
     </button>
 
-</div>
-<div class="hero">
-    <div class="hero-content">
-        <h1>Temukan Hotel Impian Anda</h1>
-        <p>Booking mudah, cepat, dan terpercaya hanya di EloraStay</p>
-        
-    </div>
-</div>
+</nav>
 
+<!-- Hero -->
+<section
+    class="h-[300px] bg-cover bg-center flex items-center justify-center relative"
+    style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945')">
 
-<div class="container">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-pink-500/40"></div>
 
-<!-- DATA -->
-<div class="card">
-    <h3>Data Pemesanan</h3>
+    <!-- Content -->
+    <div class="relative text-center text-white px-4">
 
-    <p id="infoKamar"></p>
+        <h1 class="text-4xl font-bold mb-3">
+            Temukan Hotel Impian Anda
+        </h1>
 
-    <label>Nama</label>
-    <input type="text" id="nama">
+        <p class="text-lg">
+            Booking mudah, cepat, dan terpercaya hanya di EloraStay
+        </p>
 
-    <label>Check-in</label>
-    <input type="date" id="checkin">
-
-    <label>Check-out</label>
-    <input type="date" id="checkout">
-
-    <div class="total" id="totalHarga">Total: Rp 0</div>
-</div>
-
-<!-- METODE -->
-<div class="card">
-    <h3>Metode Pembayaran</h3>
-
-    <button class="btn" onclick="pilihMetode('qris')">QRIS</button>
-    <button class="btn" onclick="pilihMetode('cod')">Bayar di Tempat</button>
-
-    <div id="qris" style="display:none; text-align:center;">
-        <p>Scan QR</p>
-        <img src="/img/qris.jpg" width="200">
-        <button class="btn" onclick="bayar('QRIS','Lunas')">Saya Sudah Bayar</button>
     </div>
 
-    <div id="cod" style="display:none;">
-        <p>Bayar di hotel</p>
-        <button class="btn" onclick="bayar('COD','Menunggu')">Konfirmasi</button>
+</section>
+
+<!-- Container -->
+<section class="max-w-4xl mx-auto px-5 py-10">
+
+    <!-- Data Pemesanan -->
+    <div class="bg-white rounded-2xl p-6 shadow-md mb-6">
+
+        <h3 class="text-2xl font-bold mb-5">
+            Data Pemesanan
+        </h3>
+
+        <p id="infoKamar"
+           class="mb-5 text-pink-500 font-semibold">
+        </p>
+
+        <!-- Nama -->
+        <div class="mb-4">
+
+            <label class="block mb-2 font-medium">
+                Nama
+            </label>
+
+            <input
+                type="text"
+                id="nama"
+                class="w-full bg-pink-100 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-pink-400">
+
+        </div>
+
+        <!-- Checkin -->
+        <div class="mb-4">
+
+            <label class="block mb-2 font-medium">
+                Check-in
+            </label>
+
+            <input
+                type="date"
+                id="checkin"
+                class="w-full bg-pink-100 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-pink-400">
+
+        </div>
+
+        <!-- Checkout -->
+        <div class="mb-4">
+
+            <label class="block mb-2 font-medium">
+                Check-out
+            </label>
+
+            <input
+                type="date"
+                id="checkout"
+                class="w-full bg-pink-100 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-pink-400">
+
+        </div>
+
+        <!-- Total -->
+        <div
+            id="totalHarga"
+            class="text-pink-500 font-bold text-lg mt-5">
+
+            Total: Rp 0
+        </div>
+
     </div>
-</div>
 
-<!-- HASIL -->
-<div id="hasil" class="result">
-    <h3>Detail Pembayaran</h3>
+    <!-- Metode Pembayaran -->
+    <div class="bg-white rounded-2xl p-6 shadow-md mb-6">
 
-    <p>Nama: <b id="outNama"></b></p>
-    <p>Kamar: <b id="outKamar"></b></p>
-    <p>Tanggal: <b id="outTanggal"></b></p>
-    <p>Metode: <b id="outMetode"></b></p>
-    <p>Status: <b id="outStatus"></b></p>
-    <p>Total: <b id="outTotal"></b></p>
-</div>
+        <h3 class="text-2xl font-bold mb-5">
+            Metode Pembayaran
+        </h3>
 
-</div>
+        <div class="space-y-4">
+
+            <button
+                onclick="pilihMetode('qris')"
+                class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+
+                QRIS
+            </button>
+
+            <button
+                onclick="pilihMetode('cod')"
+                class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+
+                Bayar di Tempat
+            </button>
+
+        </div>
+
+        <!-- QRIS -->
+        <div id="qris"
+             class="hidden text-center mt-6">
+
+            <p class="mb-4 font-medium">
+                Scan QR
+            </p>
+
+            <img
+                src="/img/qris.jpg"
+                class="w-[220px] mx-auto rounded-xl shadow-md">
+
+            <button
+                onclick="bayar('QRIS','Lunas')"
+                class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition mt-5">
+
+                Saya Sudah Bayar
+            </button>
+
+        </div>
+
+        <!-- COD -->
+        <div id="cod"
+             class="hidden mt-6">
+
+            <p class="mb-4 text-center font-medium">
+                Bayar di hotel
+            </p>
+
+            <button
+                onclick="bayar('COD','Menunggu')"
+                class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+
+                Konfirmasi
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Hasil -->
+    <div
+        id="hasil"
+        class="hidden bg-white rounded-2xl p-6 shadow-md">
+
+        <h3 class="text-2xl font-bold mb-5">
+            Detail Pembayaran
+        </h3>
+
+        <div class="space-y-3 text-gray-700">
+
+            <p>Nama: <b id="outNama"></b></p>
+            <p>Kamar: <b id="outKamar"></b></p>
+            <p>Tanggal: <b id="outTanggal"></b></p>
+            <p>Metode: <b id="outMetode"></b></p>
+            <p>Status: <b id="outStatus"></b></p>
+            <p>Total: <b id="outTotal"></b></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="bg-gradient-to-r from-pink-400 to-pink-500 text-white mt-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 py-10">
+
+        <!-- Brand -->
+        <div>
+
+            <h3 class="text-2xl font-bold mb-3">
+                EloraStay
+            </h3>
+
+            <p class="text-sm leading-6">
+                Platform booking hotel terpercaya dengan pengalaman terbaik untuk Anda.
+            </p>
+
+        </div>
+
+        <!-- Navigation -->
+        <div>
+
+            <h4 class="text-xl font-semibold mb-3">
+                Menu
+            </h4>
+
+            <div class="space-y-2 text-sm">
+
+                <a href="/" class="block hover:translate-x-2 transition">
+                    🏠 Beranda
+                </a>
+
+                <a href="/kamar" class="block hover:translate-x-2 transition">
+                    🛏️ Daftar Kamar
+                </a>
+
+                <a href="/reservasi" class="block hover:translate-x-2 transition">
+                    📄 Reservasi
+                </a>
+
+                <a href="/pembayaran" class="block hover:translate-x-2 transition">
+                    💳 Pembayaran
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Contact -->
+        <div>
+
+            <h4 class="text-xl font-semibold mb-3">
+                Kontak
+            </h4>
+
+            <div class="space-y-2 text-sm">
+
+                <p>📧 email@elorastay.com</p>
+                <p>📞 +62 123 456 7890</p>
+                <p>📍 Indonesia</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bottom -->
+    <div class="text-center py-4 bg-black/10 text-sm">
+        © 2026 EloraStay. All rights reserved.
+    </div>
+
+</footer>
 
 <script>
-// ambil data kamar
+
+// Ambil data kamar
 const data = JSON.parse(localStorage.getItem("bookingData"));
 
 document.getElementById("infoKamar").innerText =
@@ -348,35 +335,44 @@ document.getElementById("infoKamar").innerText =
 
 let total = 0;
 
-// hitung total
+// Hitung total
 function hitung() {
+
     let c1 = new Date(checkin.value);
     let c2 = new Date(checkout.value);
 
     if (c2 > c1) {
-        let malam = (c2 - c1)/(1000*60*60*24);
+
+        let malam = (c2 - c1) / (1000 * 60 * 60 * 24);
+
         total = malam * data.price;
 
-        totalHarga.innerText = "Total: Rp " + total.toLocaleString();
+        totalHarga.innerText =
+            "Total: Rp " + total.toLocaleString();
     }
 }
 
 checkin.onchange = hitung;
 checkout.onchange = hitung;
 
-// metode
+// Metode pembayaran
 function pilihMetode(m) {
-    qris.style.display = "none";
-    cod.style.display = "none";
 
-    if (m == "qris") qris.style.display = "block";
-    else cod.style.display = "block";
+    qris.classList.add("hidden");
+    cod.classList.add("hidden");
+
+    if (m == "qris") {
+        qris.classList.remove("hidden");
+    } else {
+        cod.classList.remove("hidden");
+    }
 }
 
-// bayar
+// Bayar
 function bayar(metode, status) {
 
     if (!nama.value || total <= 0) {
+
         alert("Lengkapi data!");
         return;
     }
@@ -388,67 +384,45 @@ function bayar(metode, status) {
     outStatus.innerText = status;
     outTotal.innerText = "Rp " + total.toLocaleString();
 
-    hasil.style.display = "block";
+    hasil.classList.remove("hidden");
 }
 
+// Simpan reservasi
 function simpanReservasi(status, metode) {
+
     let booking = JSON.parse(localStorage.getItem("bookingData"));
 
     let newData = {
+
         resi: "ELS-" + Math.floor(Math.random() * 1000000),
+
         room: booking.name,
+
         total: booking.price,
+
         checkin: "20 Apr 2026",
+
         checkout: "23 Apr 2026",
+
         guest: "2 orang",
+
         method: metode,
+
         status: status
     };
 
-    let data = JSON.parse(localStorage.getItem("reservations")) || [];
+    let data =
+        JSON.parse(localStorage.getItem("reservations")) || [];
+
     data.push(newData);
 
     localStorage.setItem("reservations", JSON.stringify(data));
 }
+
 simpanReservasi("Lunas","QRIS");
 simpanReservasi("Menunggu","COD");
-</script>
-<!-- Footer -->
-<footer class="footer">
-    <div class="footer-container">
 
-        <!-- Brand -->
-        <div class="footer-section">
-            <h3>EloraStay</h3>
-            <p>Platform booking hotel terpercaya dengan pengalaman terbaik untuk Anda.</p>
-        </div>
-
-        <!-- Navigation -->
-        <div class="footer-section">
-            <h4>Menu</h4>
-            <a href="/">🏠 Beranda</a>
-            <a href="/kamar">🛏️ Daftar Kamar</a>
-            <a href="/reservasi">📄 Reservasi</a>
-            <a href="/pembayaran">💳 Pembayaran</a>
-        </div>
-
-        <!-- Contact -->
-        <div class="footer-section">
-            <h4>Kontak</h4>
-            <p>📧 email@elorastay.com</p>
-            <p>📞 +62 123 456 7890</p>
-            <p>📍 Indonesia</p>
-        </div>
-
-    </div>
-
-    <!-- Bottom -->
-    <div class="footer-bottom">
-        <p>© 2026 EloraStay. All rights reserved.</p>
-    </div>
-</footer>
-<script>
-
+// Login check
 const isLogin = localStorage.getItem("isLogin");
 
 if (isLogin !== "true") {
@@ -458,7 +432,7 @@ if (isLogin !== "true") {
     window.location.href = "/dashboard";
 }
 
-// logout
+// Logout
 function logout() {
 
     localStorage.removeItem("isLogin");
@@ -469,5 +443,6 @@ function logout() {
 }
 
 </script>
+
 </body>
 </html>
