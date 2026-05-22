@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KamarController;
+
+Route::get('/', function () {
+    return redirect('/dashboard');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -19,21 +24,24 @@ Route::get('/dashboard', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::get('/kamar', function () {
-    return view('kamar');
-});
+// HALAMAN KAMAR (SUDAH TERHUBUNG DATABASE)
+Route::get('/kamar', [KamarController::class, 'index'])
+    ->name('kamar');
 
+// HALAMAN BOOKING
 Route::get('/booking', function () {
     return view('booking');
-});
+})->name('booking');
 
+// HALAMAN PEMBAYARAN
 Route::get('/pembayaran', function () {
     return view('pembayaran');
-});
+})->name('pembayaran');
 
+// HALAMAN RESERVASI
 Route::get('/reservasi', function () {
     return view('reservasi');
-});
+})->name('reservasi');
 
 /*
 |--------------------------------------------------------------------------
@@ -41,24 +49,27 @@ Route::get('/reservasi', function () {
 |--------------------------------------------------------------------------
 */
 
+// LOGIN
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 
 Route::post('/login', [AuthController::class, 'login'])
     ->name('login.process');
 
+// REGISTER
 Route::get('/registrasi', function () {
     return view('registrasi');
-});
+})->name('registrasi');
 
 Route::post('/registrasi', function () {
     return redirect('/login');
 })->name('register.process');
 
+// LUPA PASSWORD
 Route::get('/lupa-password', function () {
     return view('lupa-password');
-});
+})->name('lupa-password');
 
 /*
 |--------------------------------------------------------------------------
@@ -66,9 +77,10 @@ Route::get('/lupa-password', function () {
 |--------------------------------------------------------------------------
 */
 
+// TAMBAH PELANGGAN
 Route::get('/tambah_pelanggan', function () {
     return view('tambah_pelanggan');
-});
+})->name('tambah_pelanggan');
 
 Route::post('/tambah_pelanggan', function () {
     return "Data pelanggan berhasil disimpan";
@@ -80,14 +92,17 @@ Route::post('/tambah_pelanggan', function () {
 |--------------------------------------------------------------------------
 */
 
+// DASHBOARD ADMIN
 Route::get('/dashboardadmin', function () {
     return view('dashboardadmin');
 })->name('dashboardadmin');
 
+// DATA PELANGGAN ADMIN
 Route::get('/pelangganadmin', function () {
     return view('pelangganadmin');
 })->name('pelangganadmin');
 
+// DATA RESERVASI ADMIN
 Route::get('/reservasiadmin', function () {
 
     $reservasi = [];
@@ -96,10 +111,12 @@ Route::get('/reservasiadmin', function () {
 
 })->name('reservasiadmin');
 
+// DATA KAMAR ADMIN
 Route::get('/kamaradmin', function () {
     return view('kamaradmin');
 })->name('kamaradmin');
 
+// DATA PEMBAYARAN ADMIN
 Route::get('/pembayaranadmin', function () {
     return view('pembayaranadmin');
 })->name('pembayaranadmin');

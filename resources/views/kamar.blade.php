@@ -98,33 +98,41 @@ tailwind.config = {
 </section>
 
 <!-- Room List -->
+<!-- Room List -->
 <section class="px-6 py-10">
 
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center">
 
-        <!-- Deluxe -->
-        <div onclick="openModal('deluxe')"
-             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
+        @foreach($kamar as $item)
 
-            <img src="{{ asset('img/kamar/deluxe.jpeg') }}"
+        <div
+            class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
+
+            <img src="{{ asset('img/kamar/' . $item->gambar) }}"
                  class="w-full h-[240px] object-cover">
 
             <div class="p-5 relative pb-16">
 
                 <h4 class="text-xl font-bold mb-2">
-                    Deluxe Room
+                    {{ $item->nama_tipe }}
                 </h4>
 
                 <p class="text-gray-500 text-sm leading-6">
-                    Kamar nyaman dengan desain modern dan pemandangan kota yang menenangkan.
+                    {{ $item->deskripsi }}
                 </p>
 
                 <p class="text-pink-500 font-bold mt-3">
-                    Rp 500.000
+                    Rp {{ number_format($item->harga, 0, ',', '.') }}
+                </p>
+
+                <p class="text-sm text-gray-400 mt-2">
+                    Status:
+                    <span class="font-semibold text-green-500">
+                        {{ $item->status }}
+                    </span>
                 </p>
 
                 <button
-                    onclick="openModal('deluxe')"
                     class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
 
                     Lihat Detail
@@ -134,168 +142,9 @@ tailwind.config = {
 
         </div>
 
-        <!-- Executive -->
-        <div onclick="openModal('executive')"
-             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
-
-            <img src="{{ asset('img/kamar/executive.jpeg') }}"
-                 class="w-full h-[240px] object-cover">
-
-            <div class="p-5 relative pb-16">
-
-                <h4 class="text-xl font-bold mb-2">
-                    Executive Room
-                </h4>
-
-                <p class="text-gray-500 text-sm leading-6">
-                    Kamar eksklusif untuk tamu bisnis dengan fasilitas modern.
-                </p>
-
-                <p class="text-pink-500 font-bold mt-3">
-                    Rp 600.000
-                </p>
-
-                <button
-                    onclick="openModal('executive')"
-                    class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
-
-                    Lihat Detail
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- Superior -->
-        <div onclick="openModal('superior')"
-             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
-
-            <img src="{{ asset('img/kamar/suite.jpeg') }}"
-                 class="w-full h-[240px] object-cover">
-
-            <div class="p-5 relative pb-16">
-
-                <h4 class="text-xl font-bold mb-2">
-                    Superior Suite
-                </h4>
-
-                <p class="text-gray-500 text-sm leading-6">
-                    Suite mewah dengan ruang tamu terpisah dan fasilitas premium.
-                </p>
-
-                <p class="text-pink-500 font-bold mt-3">
-                    Rp 700.000
-                </p>
-
-                <button
-                    onclick="openModal('superior')"
-                    class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
-
-                    Lihat Detail
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- Family -->
-        <div onclick="openModal('family')"
-             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
-
-            <img src="{{ asset('img/kamar/family.jpeg') }}"
-                 class="w-full h-[240px] object-cover">
-
-            <div class="p-5 relative pb-16">
-
-                <h4 class="text-xl font-bold mb-2">
-                    Family Room
-                </h4>
-
-                <p class="text-gray-500 text-sm leading-6">
-                    Kamar luas cocok untuk keluarga dengan fasilitas lengkap.
-                </p>
-
-                <p class="text-pink-500 font-bold mt-3">
-                    Rp 850.000
-                </p>
-
-                <button
-                    onclick="openModal('family')"
-                    class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
-
-                    Lihat Detail
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- Standard -->
-        <div onclick="openModal('standard')"
-             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
-
-            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
-                 class="w-full h-[240px] object-cover">
-
-            <div class="p-5 relative pb-16">
-
-                <h4 class="text-xl font-bold mb-2">
-                    Standard Room
-                </h4>
-
-                <p class="text-gray-500 text-sm leading-6">
-                    Kamar minimalis dengan desain sederhana dan nyaman.
-                </p>
-
-                <p class="text-pink-500 font-bold mt-3">
-                    Rp 350.000
-                </p>
-
-                <button
-                    onclick="openModal('standard')"
-                    class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
-
-                    Lihat Detail
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- Junior -->
-        <div onclick="openModal('junior')"
-             class="w-full max-w-[380px] bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 hover:shadow-xl transition cursor-pointer">
-
-            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a"
-                 class="w-full h-[240px] object-cover">
-
-            <div class="p-5 relative pb-16">
-
-                <h4 class="text-xl font-bold mb-2">
-                    Junior Suite
-                </h4>
-
-                <p class="text-gray-500 text-sm leading-6">
-                    Suite modern dengan area santai nyaman dan suasana mewah.
-                </p>
-
-                <p class="text-pink-500 font-bold mt-3">
-                    Rp 950.000
-                </p>
-
-                <button
-                    onclick="openModal('junior')"
-                    class="absolute right-5 bottom-5 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
-
-                    Lihat Detail
-                </button>
-
-            </div>
-
-        </div>
+        @endforeach
 
     </div>
-
 </section>
 
 <!-- MODAL -->
