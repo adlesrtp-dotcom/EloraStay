@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\TipeKamar;
 
-class KamarController extends Controller
+class TipeKamarController extends Controller
 {
     public function index()
     {
         $tipeKamars = TipeKamar::with('kamars')->get();
-
-        return view('kamar', compact('tipeKamars'));
+        return view('tipe_kamar.index', compact('tipeKamars'));
     }
 }

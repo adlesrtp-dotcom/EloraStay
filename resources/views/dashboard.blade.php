@@ -1,87 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+@extends('layouts.app')
 
-    <title>Dashboard - EloraStay</title>
-
-    <!-- FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- TAILWIND -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-
-</head>
-
-<body class="bg-pink-100 font-poppins">
-
-<!-- Navbar -->
-<nav class="bg-gradient-to-r from-pink-400 to-pink-500 text-white px-8 py-5 flex items-center justify-between relative">
-
-    <!-- Logo -->
-    <div class="text-xl font-bold">
-        EloraStay
-    </div>
-
-    <!-- Menu -->
-    <div class="absolute left-1/2 -translate-x-1/2 flex gap-8">
-
-        <a href="/"
-           class="relative font-semibold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full hover:after:w-full after:transition-all">
-
-            Beranda
-        </a>
-
-        <a href="/kamar"
-           class="relative font-semibold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full hover:after:w-full after:transition-all">
-
-            Daftar Kamar
-        </a>
-
-        <a href="/pembayaran"
-           class="relative font-semibold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full hover:after:w-full after:transition-all">
-
-            Pembayaran
-        </a>
-
-        <a href="/reservasi"
-           class="relative font-semibold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-white after:rounded-full hover:after:w-full after:transition-all">
-
-            Reservasi
-        </a>
-
-    </div>
-
-    <!-- Login -->
-    <a href="/login"
-       id="loginBtn"
-       class="bg-white text-pink-500 px-4 py-2 rounded-full font-bold hover:bg-pink-100 transition">
-
-        Login
-    </a>
-
-    <!-- Logout -->
-    <button
-        id="logoutBtn"
-        onclick="logout()"
-        class="hidden bg-white text-pink-500 px-4 py-2 rounded-full font-bold hover:bg-pink-100 transition">
-
-        Logout
-    </button>
-
-</nav>
+@section('content')
 
 <!-- Hero -->
 <section
@@ -277,80 +196,6 @@
 @endguest
 
 
-<!-- Footer -->
-<footer class="bg-gradient-to-r from-pink-400 to-pink-500 text-white mt-10">
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 py-10">
-
-        <!-- Brand -->
-        <div>
-
-            <h3 class="text-2xl font-bold mb-3">
-                EloraStay
-            </h3>
-
-            <p class="text-sm leading-6">
-                Platform booking hotel terpercaya dengan pengalaman
-                terbaik untuk Anda.
-            </p>
-
-        </div>
-
-        <!-- Menu -->
-        <div>
-
-            <h4 class="text-xl font-semibold mb-3">
-                Menu
-            </h4>
-
-            <div class="space-y-2 text-sm">
-
-                <a href="/" class="block hover:translate-x-2 transition">
-                    🏠 Beranda
-                </a>
-
-                <a href="/kamar" class="block hover:translate-x-2 transition">
-                    🛏️ Daftar Kamar
-                </a>
-
-                <a href="/reservasi" class="block hover:translate-x-2 transition">
-                    📄 Reservasi
-                </a>
-
-                <a href="/pembayaran" class="block hover:translate-x-2 transition">
-                    💳 Pembayaran
-                </a>
-
-            </div>
-
-        </div>
-
-        <!-- Contact -->
-        <div>
-
-            <h4 class="text-xl font-semibold mb-3">
-                Kontak
-            </h4>
-
-            <div class="space-y-2 text-sm">
-
-                <p>📧 email@elorastay.com</p>
-                <p>📞 +62 123 456 7890</p>
-                <p>📍 Indonesia</p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Bottom -->
-    <div class="text-center py-4 bg-black/10 text-sm">
-        © 2026 EloraStay. All rights reserved.
-    </div>
-
-</footer>
-
 <script>
 
 window.onload = function () {
@@ -404,5 +249,4 @@ function logout() {
 
 </script>
 
-</body>
-</html>
+@endsection

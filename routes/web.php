@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KamarController;
+use App\Http\Controllers\TipeKamarController;
+
 
 Route::get('/', function () {
     return redirect('/dashboard');
