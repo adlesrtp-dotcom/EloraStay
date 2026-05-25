@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\TipeKamarController;
+use App\Http\Controllers\BookingController;
 
 
 Route::get('/', function () {
@@ -34,6 +35,8 @@ Route::get('/kamar', [KamarController::class, 'index'])
 Route::get('/booking', function () {
     return view('booking');
 })->name('booking');
+Route::post('/booking', [BookingController::class, 'store'])
+    ->name('booking.store');
 
 // HALAMAN PEMBAYARAN
 Route::get('/pembayaran', function () {

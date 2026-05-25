@@ -91,71 +91,124 @@
 
     </div>
 
-    <!-- Metode Pembayaran -->
-    <div class="bg-white rounded-2xl p-6 shadow-md mb-6">
+   <!-- Metode Pembayaran -->
+<div class="bg-white rounded-2xl p-6 shadow-md mb-6">
 
-        <h3 class="text-2xl font-bold mb-5">
-            Metode Pembayaran
-        </h3>
+    <h3 class="text-2xl font-bold mb-5">
+        Metode Pembayaran
+    </h3>
 
-        <div class="space-y-4">
+    <div class="space-y-4">
 
-            <button
-                onclick="pilihMetode('qris')"
-                class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+        <!-- TRANSFER -->
+        <button
+            onclick="pilihMetode('transfer')"
+            class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
 
-                QRIS
-            </button>
-
-            <button
-                onclick="pilihMetode('cod')"
-                class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
-
-                Bayar di Tempat
-            </button>
-
-        </div>
-
-        <!-- QRIS -->
-        <div id="qris"
-             class="hidden text-center mt-6">
-
-            <p class="mb-4 font-medium">
-                Scan QR
-            </p>
-
-            <img
-                src="/img/qris.jpg"
-                class="w-[220px] mx-auto rounded-xl shadow-md">
-
-            <button
-                onclick="bayar('QRIS','Lunas')"
-                class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition mt-5">
-
-                Saya Sudah Bayar
-            </button>
-
-        </div>
+            Transfer Bank
+        </button>
 
         <!-- COD -->
-        <div id="cod"
-             class="hidden mt-6">
+        <button
+            onclick="pilihMetode('cod')"
+            class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
 
-            <p class="mb-4 text-center font-medium">
-                Bayar di hotel
-            </p>
-
-            <button
-                onclick="bayar('COD','Menunggu')"
-                class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
-
-                Konfirmasi
-            </button>
-
-        </div>
+            Bayar di Tempat
+        </button>
 
     </div>
 
+    <!-- TRANSFER -->
+    <div id="transfer"
+         class="hidden text-center mt-6">
+
+        <p class="mb-4 font-medium">
+            Transfer ke rekening berikut:
+        </p>
+
+        <div class="bg-pink-100 rounded-xl p-5 text-left mb-5">
+
+            <p class="font-bold text-lg mb-2">
+                Bank BCA
+            </p>
+
+            <p class="mb-2">
+                1234567890
+            </p>
+
+            <p>
+                A/N EloraStay Hotel
+            </p>
+
+        </div>
+
+        <!-- FORM -->
+        <form action="/booking" method="POST">
+
+            @csrf
+
+            <input type="hidden"
+                   name="nama_kamar"
+                   id="formKamar">
+
+            <input type="hidden"
+                   name="total"
+                   id="formTotal">
+
+            <input type="hidden"
+                   name="metode"
+                   value="Transfer Bank">
+
+            <button
+                type="submit"
+                onclick="bayar('Transfer Bank','Menunggu Verifikasi')"
+                class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+
+                Saya Sudah Transfer
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- COD -->
+    <div id="cod"
+         class="hidden mt-6">
+
+        <p class="mb-4 text-center font-medium">
+            Bayar langsung di hotel
+        </p>
+
+        <!-- FORM -->
+        <form action="/booking" method="POST">
+
+            @csrf
+
+            <input type="hidden"
+                   name="nama_kamar"
+                   id="formKamar2">
+
+            <input type="hidden"
+                   name="total"
+                   id="formTotal2">
+
+            <input type="hidden"
+                   name="metode"
+                   value="COD">
+
+            <button
+                type="submit"
+                onclick="bayar('COD','Menunggu')"
+                class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+
+                Konfirmasi Booking
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
     <!-- Hasil -->
     <div
         id="hasil"
@@ -182,15 +235,24 @@
 
 <script>
 
-// Ambil data kamar
-const data = JSON.parse(localStorage.getItem("bookingData"));
+// AMBIL DATA DARI LOCAL STORAGE
+const data = JSON.parse(localStorage.getItem("booking"));
 
+if (!data) {
+
+    alert("Silakan pilih kamar terlebih dahulu!");
+
+    window.location.href = "/kamar";
+}
+
+// TAMPILKAN INFO KAMAR
 document.getElementById("infoKamar").innerText =
-    data.name + " | Rp " + data.price.toLocaleString();
+    data.nama_tipe + " | Rp " +
+    parseInt(data.harga).toLocaleString('id-ID');
 
 let total = 0;
 
-// Hitung total
+// HITUNG TOTAL HARGA
 function hitung() {
 
     let c1 = new Date(checkin.value);
@@ -198,86 +260,108 @@ function hitung() {
 
     if (c2 > c1) {
 
-        let malam = (c2 - c1) / (1000 * 60 * 60 * 24);
+        let malam =
+            (c2 - c1) / (1000 * 60 * 60 * 24);
 
-        total = malam * data.price;
+        total = malam * data.harga;
 
         totalHarga.innerText =
-            "Total: Rp " + total.toLocaleString();
+            "Total: Rp " +
+            total.toLocaleString('id-ID');
     }
 }
 
 checkin.onchange = hitung;
 checkout.onchange = hitung;
 
-// Metode pembayaran
+// PILIH METODE
 function pilihMetode(m) {
 
-    qris.classList.add("hidden");
+    transfer.classList.add("hidden");
     cod.classList.add("hidden");
 
-    if (m == "qris") {
-        qris.classList.remove("hidden");
+    if (m == "transfer") {
+
+        transfer.classList.remove("hidden");
+
     } else {
+
         cod.classList.remove("hidden");
     }
 }
 
-// Bayar
+// BAYAR
 function bayar(metode, status) {
 
-    if (!nama.value || total <= 0) {
+    if (
+        !nama.value ||
+        !checkin.value ||
+        !checkout.value ||
+        total <= 0
+    ) {
 
-        alert("Lengkapi data!");
+        alert("Lengkapi data terlebih dahulu!");
         return;
     }
 
+    // OUTPUT
     outNama.innerText = nama.value;
-    outKamar.innerText = data.name;
-    outTanggal.innerText = checkin.value + " - " + checkout.value;
+
+    outKamar.innerText =
+        data.nama_tipe;
+
+    outTanggal.innerText =
+        checkin.value + " - " + checkout.value;
+
     outMetode.innerText = metode;
+
     outStatus.innerText = status;
-    outTotal.innerText = "Rp " + total.toLocaleString();
+
+    outTotal.innerText =
+        "Rp " + total.toLocaleString('id-ID');
 
     hasil.classList.remove("hidden");
+
+    // SIMPAN RESERVASI
+    simpanReservasi(status, metode);
 }
 
-// Simpan reservasi
+// SIMPAN RESERVASI
 function simpanReservasi(status, metode) {
-
-    let booking = JSON.parse(localStorage.getItem("bookingData"));
 
     let newData = {
 
-        resi: "ELS-" + Math.floor(Math.random() * 1000000),
+        resi:
+            "ELS-" +
+            Math.floor(Math.random() * 1000000),
 
-        room: booking.name,
+        room: data.nama_tipe,
 
-        total: booking.price,
+        total: total,
 
-        checkin: "20 Apr 2026",
+        checkin: checkin.value,
 
-        checkout: "23 Apr 2026",
+        checkout: checkout.value,
 
-        guest: "2 orang",
+        guest: "2 Orang",
 
         method: metode,
 
         status: status
     };
 
-    let data =
+    let reservations =
         JSON.parse(localStorage.getItem("reservations")) || [];
 
-    data.push(newData);
+    reservations.push(newData);
 
-    localStorage.setItem("reservations", JSON.stringify(data));
+    localStorage.setItem(
+        "reservations",
+        JSON.stringify(reservations)
+    );
 }
 
-simpanReservasi("Lunas","QRIS");
-simpanReservasi("Menunggu","COD");
-
-// Login check
+// LOGIN CHECK
 const isLogin = localStorage.getItem("isLogin");
 
 if (isLogin !== "true") {
@@ -287,7 +371,7 @@ if (isLogin !== "true") {
     window.location.href = "/dashboard";
 }
 
-// Logout
+// LOGOUT
 function logout() {
 
     localStorage.removeItem("isLogin");
