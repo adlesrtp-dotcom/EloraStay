@@ -18,7 +18,7 @@ Route::get('/', function () {
 */
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+     return view('dashboard');
 })->name('dashboard');
 
 /*
@@ -67,9 +67,8 @@ Route::get('/registrasi', function () {
     return view('registrasi');
 })->name('registrasi');
 
-Route::post('/registrasi', function () {
-    return redirect('/login');
-})->name('register.process');
+Route::post('/registrasi', [AuthController::class, 'register'])
+    ->name('register.process');
 
 // LUPA PASSWORD
 Route::get('/lupa-password', function () {
@@ -104,7 +103,7 @@ Route::get('/dashboardadmin', function () {
 
 // DATA PELANGGAN ADMIN
 Route::get('/pelangganadmin', function () {
-    return view('pelangganadmin');
+    return redirect('/dashboard-admin');
 })->name('pelangganadmin');
 
 // DATA RESERVASI ADMIN
