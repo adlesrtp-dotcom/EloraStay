@@ -91,7 +91,7 @@
 
     </div>
 
-   <!-- Metode Pembayaran -->
+ <!-- Metode Pembayaran -->
 <div class="bg-white rounded-2xl p-6 shadow-md mb-6">
 
     <h3 class="text-2xl font-bold mb-5">
@@ -100,113 +100,89 @@
 
     <div class="space-y-4">
 
-        <!-- TRANSFER -->
         <button
             onclick="pilihMetode('transfer')"
+            type="button"
             class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
 
             Transfer Bank
+
         </button>
 
-        <!-- COD -->
         <button
             onclick="pilihMetode('cod')"
+            type="button"
             class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
 
             Bayar di Tempat
+
         </button>
 
     </div>
 
-    <!-- TRANSFER -->
-    <div id="transfer"
-         class="hidden text-center mt-6">
+    <form action="{{ route('reservasi.store') }}" method="POST" class="mt-6">
 
-        <p class="mb-4 font-medium">
-            Transfer ke rekening berikut:
-        </p>
+        @csrf
 
-        <div class="bg-pink-100 rounded-xl p-5 text-left mb-5">
+        <input type="hidden" name="tipe_kamar_id" id="tipeKamarId">
+        <input type="hidden" name="harga" id="hargaKamar">
+        <input type="hidden" name="checkin" id="checkinHidden">
+        <input type="hidden" name="checkout" id="checkoutHidden">
+        <input type="hidden" name="metode" id="metodePembayaran">
 
-            <p class="font-bold text-lg mb-2">
-                Bank BCA
+        <!-- TRANSFER -->
+        <div id="transfer" class="hidden">
+
+            <p class="mb-4 text-center font-medium">
+                Transfer ke rekening berikut:
             </p>
 
-            <p class="mb-2">
-                1234567890
-            </p>
+            <div class="bg-pink-100 rounded-xl p-5 text-left mb-5">
 
-            <p>
-                A/N EloraStay Hotel
-            </p>
+                <p class="font-bold text-lg mb-2">
+                    Bank BCA
+                </p>
 
-        </div>
+                <p class="mb-2">
+                    1234567890
+                </p>
 
-        <!-- FORM -->
-        <form action="/booking" method="POST">
+                <p>
+                    A/N EloraStay Hotel
+                </p>
 
-            @csrf
-
-            <input type="hidden"
-                   name="nama_kamar"
-                   id="formKamar">
-
-            <input type="hidden"
-                   name="total"
-                   id="formTotal">
-
-            <input type="hidden"
-                   name="metode"
-                   value="Transfer Bank">
+            </div>
 
             <button
                 type="submit"
-                onclick="bayar('Transfer Bank','Menunggu Verifikasi')"
+                onclick="return bayar('Transfer Bank','Menunggu Verifikasi')"
                 class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
 
                 Saya Sudah Transfer
+
             </button>
 
-        </form>
+        </div>
 
-    </div>
+        <!-- COD -->
+        <div id="cod" class="hidden">
 
-    <!-- COD -->
-    <div id="cod"
-         class="hidden mt-6">
-
-        <p class="mb-4 text-center font-medium">
-            Bayar langsung di hotel
-        </p>
-
-        <!-- FORM -->
-        <form action="/booking" method="POST">
-
-            @csrf
-
-            <input type="hidden"
-                   name="nama_kamar"
-                   id="formKamar2">
-
-            <input type="hidden"
-                   name="total"
-                   id="formTotal2">
-
-            <input type="hidden"
-                   name="metode"
-                   value="COD">
+            <p class="mb-4 text-center font-medium">
+                Bayar langsung di hotel
+            </p>
 
             <button
                 type="submit"
-                onclick="bayar('COD','Menunggu')"
+                onclick="return bayar('COD','Menunggu')"
                 class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
 
                 Konfirmasi Booking
+
             </button>
 
-        </form>
+        </div>
 
-    </div>
+    </form>
 
 </div>
     <!-- Hasil -->
@@ -235,25 +211,53 @@
 
 <script>
 
-// AMBIL DATA DARI LOCAL STORAGE
+// ===============================
+// AMBIL DATA KAMAR DARI LOCALSTORAGE
+// ===============================
+
 const data = JSON.parse(localStorage.getItem("booking"));
 
 if (!data) {
-
-    alert("Silakan pilih kamar terlebih dahulu!");
-
-    window.location.href = "/kamar";
+        alert("Silakan pilih kamar terlebih dahulu!");
+         window.location.href = "/kamar";
 }
 
+document.getElementById("tipeKamarId").value =
+    data.tipe_kamar_id;
+
+document.getElementById("hargaKamar").value =
+    data.harga;
+
+const tipeKamarId = document.getElementById("tipeKamarId");
+const hargaKamar = document.getElementById("hargaKamar");
+
+if (tipeKamarId) tipeKamarId.value = data.tipe_kamar_id;
+if (hargaKamar) hargaKamar.value = data.harga;
+
+// ===============================
 // TAMPILKAN INFO KAMAR
+// ===============================
+
 document.getElementById("infoKamar").innerText =
-    data.nama_tipe + " | Rp " +
+    data.nama_tipe +
+    " | Rp " +
     parseInt(data.harga).toLocaleString('id-ID');
+
+
+// ===============================
+// HITUNG TOTAL HARGA
+// ===============================
 
 let total = 0;
 
-// HITUNG TOTAL HARGA
+const nama = document.getElementById("nama");
+const checkin = document.getElementById("checkin");
+const checkout = document.getElementById("checkout");
+const totalHarga = document.getElementById("totalHarga");
+
 function hitung() {
+
+    if (!checkin.value || !checkout.value) return;
 
     let c1 = new Date(checkin.value);
     let c2 = new Date(checkout.value);
@@ -269,30 +273,52 @@ function hitung() {
             "Total: Rp " +
             total.toLocaleString('id-ID');
     }
-}
+    else {
 
-checkin.onchange = hitung;
-checkout.onchange = hitung;
+        total = 0;
 
-// PILIH METODE
-function pilihMetode(m) {
-
-    transfer.classList.add("hidden");
-    cod.classList.add("hidden");
-
-    if (m == "transfer") {
-
-        transfer.classList.remove("hidden");
-
-    } else {
-
-        cod.classList.remove("hidden");
+        totalHarga.innerText =
+            "Total: Rp 0";
     }
 }
 
-// BAYAR
-function bayar(metode, status) {
+checkin.addEventListener("change", hitung);
+checkout.addEventListener("change", hitung);
 
+
+// ===============================
+// PILIH METODE PEMBAYARAN
+// ===============================
+
+function pilihMetode(metode) {
+
+    document
+        .getElementById("transfer")
+        .classList.add("hidden");
+
+    document
+        .getElementById("cod")
+        .classList.add("hidden");
+
+    if (metode === "transfer") {
+
+        document
+            .getElementById("transfer")
+            .classList.remove("hidden");
+
+    } else {
+
+        document
+            .getElementById("cod")
+            .classList.remove("hidden");
+    }
+}
+
+// ===============================
+// VALIDASI SEBELUM SUBMIT
+// ===============================
+function bayar(metode, status)
+{
     if (
         !nama.value ||
         !checkin.value ||
@@ -301,77 +327,38 @@ function bayar(metode, status) {
     ) {
 
         alert("Lengkapi data terlebih dahulu!");
-        return;
+        return false;
     }
 
-    // OUTPUT
-    outNama.innerText = nama.value;
+    document.getElementById("checkinHidden").value =
+        checkin.value;
 
-    outKamar.innerText =
-        data.nama_tipe;
+    document.getElementById("checkoutHidden").value =
+        checkout.value;
 
-    outTanggal.innerText =
-        checkin.value + " - " + checkout.value;
+    document.getElementById("metodePembayaran").value =
+        metode;
 
-    outMetode.innerText = metode;
-
-    outStatus.innerText = status;
-
-    outTotal.innerText =
-        "Rp " + total.toLocaleString('id-ID');
-
-    hasil.classList.remove("hidden");
-
-    // SIMPAN RESERVASI
-    simpanReservasi(status, metode);
+    return true;
 }
 
-// SIMPAN RESERVASI
-function simpanReservasi(status, metode) {
 
-    let newData = {
+// ===============================
+// CEK LOGIN
+// ===============================
 
-        resi:
-            "ELS-" +
-            Math.floor(Math.random() * 1000000),
-
-        room: data.nama_tipe,
-
-        total: total,
-
-        checkin: checkin.value,
-
-        checkout: checkout.value,
-
-        guest: "2 Orang",
-
-        method: metode,
-
-        status: status
-    };
-
-    let reservations =
-        JSON.parse(localStorage.getItem("reservations")) || [];
-
-    reservations.push(newData);
-
-    localStorage.setItem(
-        "reservations",
-        JSON.stringify(reservations)
-    );
-}
-
-// LOGIN CHECK
 const isLogin = localStorage.getItem("isLogin");
 
 if (isLogin !== "true") {
-
-    alert("Silakan login terlebih dahulu!");
-
+     alert("Silakan login terlebih dahulu!");
     window.location.href = "/dashboard";
 }
 
+
+// ===============================
 // LOGOUT
+// ===============================
+
 function logout() {
 
     localStorage.removeItem("isLogin");
@@ -381,6 +368,4 @@ function logout() {
     window.location.href = "/dashboard";
 }
 
-</script>
-
-@endsection
+    </script>

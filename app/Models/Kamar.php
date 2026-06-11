@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\TipeKamar;
+use App\Models\Reservasi;
 
 class Kamar extends Model
 {
@@ -14,13 +16,21 @@ class Kamar extends Model
         'status'
     ];
 
+    /**
+     * Relasi ke Tipe Kamar
+     * Satu kamar dimiliki oleh satu tipe kamar
+     */
     public function tipeKamar()
     {
         return $this->belongsTo(TipeKamar::class, 'tipe_kamar_id');
     }
 
-    public function bookings()
+    /**
+     * Relasi ke Reservasi
+     * Satu kamar dapat memiliki banyak reservasi
+     */
+    public function reservasis()
     {
-        return $this->hasMany(Booking::class);
+        return $this->hasMany(Reservasi::class, 'kamar_id');
     }
 }

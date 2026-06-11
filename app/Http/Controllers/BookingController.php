@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BookingController extends Controller
 {
     public function store(Request $request)
-    {
+    {   
         $kamar = Kamar::where('tipe_kamar_id', $request->tipe_kamar_id)
                       ->where('status', 'tersedia')
                       ->first();
