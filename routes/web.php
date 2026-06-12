@@ -31,22 +31,6 @@ Route::get('/dashboard', function () {
 Route::get('/kamar', [KamarController::class, 'index'])
     ->name('kamar');
 
-// HALAMAN RESERVASI
-Route::get('/reservasi', function () {
-    return view('reservasi');
-})->name('reservasi');
-Route::post('/reservasi/store', [ReservasiController::class, 'store'])
-    ->name('reservasi.store');
-
-// HALAMAN PEMBAYARAN
-Route::get('/pembayaran', function () {
-    return view('pembayaran');
-})->name('pembayaran');
-
-// HALAMAN RESERVASI
-Route::get('/reservasi', function () {
-    return view('reservasi');
-})->name('reservasi');
 
 /*
 |--------------------------------------------------------------------------

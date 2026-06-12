@@ -1,6 +1,6 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 
-@section('content') 
+@section('content')
 
 <!-- Hero -->
 <section
@@ -26,7 +26,7 @@
 </section>
 
 <!-- Container -->
-<section class="max-w-4xl mx-auto px-5 py-10">
+    <section class="max-w-4xl mx-auto px-5 py-10">
 
     <!-- Data Pemesanan -->
     <div class="bg-white rounded-2xl p-6 shadow-md mb-6">
@@ -49,6 +49,7 @@
             <input
                 type="text"
                 id="nama"
+                name="nama"
                 class="w-full bg-pink-100 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-pink-400">
 
         </div>

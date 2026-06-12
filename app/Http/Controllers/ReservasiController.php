@@ -10,6 +10,18 @@ use Carbon\Carbon;
 
 class ReservasiController extends Controller
 {
+    // TAMPILKAN HALAMAN RESERVASI
+    public function index()
+    {
+        $reservasis = Reservasi::with([
+            'kamar.tipeKamar',
+            'pembayaran'
+        ])->latest()->get();
+
+        return view('reservasi', compact('reservasis'));
+    }
+
+    // SIMPAN RESERVASI
     public function store(Request $request)
     {
         // Cari kamar tersedia berdasarkan tipe kamar
@@ -31,7 +43,7 @@ class ReservasiController extends Controller
 
         // Simpan reservasi
         $reservasi = Reservasi::create([
-            'user_id'      => 1, // sementara, nanti diganti Auth::id()
+            'user_id'      => 1, // sementara
             'kamar_id'     => $kamar->id,
             'check_in'     => $request->checkin,
             'check_out'    => $request->checkout,
@@ -56,4 +68,4 @@ class ReservasiController extends Controller
         return redirect('/reservasi')
             ->with('success', 'Reservasi berhasil dibuat');
     }
-}   
+}
