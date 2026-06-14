@@ -8,42 +8,60 @@ use App\Models\LoginPelanggan;
 
 class AuthController extends Controller
 {
-    // FORM LOGIN
-    public function showLogin()
-    {
-        return view('login');
-    }
-
     // LOGIN
     public function login(Request $request)
     {
-        // cek admin
-        $admin = LoginAdmin::where('username', $request->email)
-                    ->where('password', $request->password)
-                    ->first();
+        // Cek admin
+        $admin = LoginAdmin::where(
+            'username',
+            $request->email
+        )->where(
+            'password',
+            $request->password
+        )->first();
 
-        if($admin)
-        {
-            return redirect('/dashboard-admin');
+        if ($admin) {
+            return redirect('/dashboardadmin');
         }
 
-        // cek pelanggan
-        $pelanggan = LoginPelanggan::where('email', $request->email)
-                        ->where('password', $request->password)
-                        ->first();
+        // Cek pelanggan
+        $pelanggan = LoginPelanggan::where(
+            'email',
+            $request->email
+        )->where(
+            'password',
+            $request->password
+        )->first();
 
-        if($pelanggan)
-        {
-            return redirect('/dashboard-pelanggan');
+        if ($pelanggan) {
+            return redirect('/dashboard');
         }
 
-        return back()->with('error','Login gagal');
+        return back()->with(
+            'error',
+            'Email atau password salah'
+        );
     }
 
-    // FORM REGISTER
-    public function showRegister()
+    // LOGIN ADMIN
+    public function loginAdmin(Request $request)
     {
-        return view('registrasi');
+        $admin = LoginAdmin::where(
+            'username',
+            $request->username
+        )->where(
+            'password',
+            $request->password
+        )->first();
+
+        if ($admin) {
+            return redirect('/dashboardadmin');
+        }
+
+        return back()->with(
+            'error',
+            'Username atau password salah'
+        );
     }
 
     // REGISTER
@@ -56,6 +74,9 @@ class AuthController extends Controller
         ]);
 
         return redirect('/login')
-            ->with('success','Registrasi berhasil');
+            ->with(
+                'success',
+                'Registrasi berhasil'
+            );
     }
 }
