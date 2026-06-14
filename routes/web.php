@@ -48,7 +48,7 @@ Route::post('/login', [AuthController::class, 'login'])
 
 // LOGIN ADMIN
 Route::get('/loginadmin', function () {
-    return view('loginadmin');
+    return view('login');
 });
 
 Route::post('/loginadmin',

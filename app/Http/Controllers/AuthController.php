@@ -8,38 +8,47 @@ use App\Models\LoginPelanggan;
 
 class AuthController extends Controller
 {
-    // LOGIN
-    public function loginAdmin(Request $request)
+    // LOGIN ADMIN DAN PELANGGAN
+    public function login(Request $request)
     {
-        // Cek admin
-        $admin = LoginAdmin::where(
-            'username',
-            $request->username
-        )->where(
-            'password',
-            $request->password
-        )->first();
+        $login = $request->login;
+        $password = $request->password;
+
+        // CEK ADMIN
+        $admin = LoginAdmin::where('username', $login)
+            ->where('password', $password)
+            ->first();
 
         if ($admin) {
+
+            session([
+                'login' => true,
+                'role' => 'admin',
+                'nama' => $admin->username
+            ]);
+
             return redirect('/dashboardadmin');
         }
 
-        // Cek pelanggan
-        $pelanggan = LoginPelanggan::where(
-            'email',
-            $request->email
-        )->where(
-            'password',
-            $request->password
-        )->first();
+        // CEK PELANGGAN
+        $pelanggan = LoginPelanggan::where('email', $login)
+            ->where('password', $password)
+            ->first();
 
         if ($pelanggan) {
+
+            session([
+                'login' => true,
+                'role' => 'pelanggan',
+                'nama' => $pelanggan->nama
+            ]);
+
             return redirect('/dashboard');
         }
 
         return back()->with(
             'error',
-            'Email atau password salah'
+            'Username/Email atau password salah'
         );
     }
 
@@ -57,5 +66,13 @@ class AuthController extends Controller
                 'success',
                 'Registrasi berhasil'
             );
+    }
+
+    // LOGOUT
+    public function logout()
+    {
+        session()->flush();
+
+        return redirect('/login');
     }
 }
