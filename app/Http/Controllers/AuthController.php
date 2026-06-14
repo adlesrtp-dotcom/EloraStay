@@ -9,12 +9,12 @@ use App\Models\LoginPelanggan;
 class AuthController extends Controller
 {
     // LOGIN
-    public function login(Request $request)
+    public function loginAdmin(Request $request)
     {
         // Cek admin
         $admin = LoginAdmin::where(
             'username',
-            $request->email
+            $request->username
         )->where(
             'password',
             $request->password
@@ -40,27 +40,6 @@ class AuthController extends Controller
         return back()->with(
             'error',
             'Email atau password salah'
-        );
-    }
-
-    // LOGIN ADMIN
-    public function loginAdmin(Request $request)
-    {
-        $admin = LoginAdmin::where(
-            'username',
-            $request->username
-        )->where(
-            'password',
-            $request->password
-        )->first();
-
-        if ($admin) {
-            return redirect('/dashboardadmin');
-        }
-
-        return back()->with(
-            'error',
-            'Username atau password salah'
         );
     }
 

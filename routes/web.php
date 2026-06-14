@@ -46,6 +46,14 @@ Route::get('/login', function () {
 Route::post('/login', [AuthController::class, 'login'])
     ->name('login.process');
 
+// LOGIN ADMIN
+Route::get('/loginadmin', function () {
+    return view('loginadmin');
+});
+
+Route::post('/loginadmin',
+    [AuthController::class, 'loginAdmin']);
+
 // REGISTER
 Route::get('/registrasi', function () {
     return view('registrasi');
@@ -87,7 +95,7 @@ Route::get('/dashboardadmin', function () {
 
 // DATA PELANGGAN ADMIN
 Route::get('/pelangganadmin', function () {
-    return redirect('/dashboard-admin');
+    return redirect('/dashboardadmin');
 })->name('pelangganadmin');
 
 // DATA RESERVASI ADMIN
