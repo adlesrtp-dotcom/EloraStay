@@ -169,11 +169,10 @@
 
 </section>
 
-@guest
-<!-- CTA -->
+@if(!session('login'))
 <section class="bg-pink-400 text-white text-center py-12 px-5 mt-10">
 
-    <div id="daftarSection">
+    <div>
 
         <h3 class="text-3xl font-bold mb-3">
             Siap untuk pengalaman terbaik?
@@ -185,68 +184,16 @@
 
         <button
             onclick="window.location.href='/registrasi'"
-            class="bg-white text-pink-500 px-6 py-3 rounded-xl font-bold hover:bg-pink-100 transition">
+            class="bg-white text-pink-500 px-6 py-3 rounded-xl font-bold">
 
             Daftar Sekarang
+
         </button>
 
     </div>
 
 </section>
-@endguest
+@endif
 
-
-<script>
-
-window.onload = function () {
-
-    const isLogin = localStorage.getItem("isLogin");
-
-    const loginBtn = document.getElementById("loginBtn");
-
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    const daftarSection = document.getElementById("daftarSection");
-
-    if (isLogin === "true") {
-
-        if (loginBtn) {
-            loginBtn.style.display = "none";
-        }
-
-        if (logoutBtn) {
-            logoutBtn.style.display = "inline-block";
-        }
-
-        if (daftarSection) {
-            daftarSection.style.display = "none";
-        }
-
-    } else {
-
-        if (loginBtn) {
-            loginBtn.style.display = "inline-block";
-        }
-
-        if (logoutBtn) {
-            logoutBtn.style.display = "none";
-        }
-
-        if (daftarSection) {
-            daftarSection.style.display = "block";
-        }
-    }
-}
-
-function logout() {
-
-    localStorage.removeItem("isLogin");
-
-    alert("Logout berhasil");
-
-    window.location.href = "/dashboard";
-}
-
-</script>
 
 @endsection

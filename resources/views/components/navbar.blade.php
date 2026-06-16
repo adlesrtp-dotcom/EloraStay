@@ -35,21 +35,31 @@
 
     </div>
 
-    <!-- Login -->
-    <a href="/login"
-       id="loginBtn"
+    @if(session('login'))
+
+<div class="flex items-center gap-3">
+
+    <span class="font-semibold">
+        Halo, {{ session('nama') }}
+    </span>
+
+    <a href="{{ route('logout') }}"
        class="bg-white text-pink-500 px-4 py-2 rounded-full font-bold hover:bg-pink-100 transition">
 
-        Login
+        Logout
+
     </a>
 
-    <!-- Logout -->
-    <button
-        id="logoutBtn"
-        onclick="logout()"
-        class="hidden bg-white text-pink-500 px-4 py-2 rounded-full font-bold hover:bg-pink-100 transition">
+</div>
 
-        Logout
-    </button>
+@else
 
+<a href="/login"
+   class="bg-white text-pink-500 px-4 py-2 rounded-full font-bold hover:bg-pink-100 transition">
+
+    Login
+
+</a>
+
+@endif
 </nav>

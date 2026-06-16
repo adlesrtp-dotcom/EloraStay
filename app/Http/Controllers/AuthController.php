@@ -3,70 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\LoginAdmin;
-use App\Models\LoginPelanggan;
+use App\Models\User;
 
 class AuthController extends Controller
 {
-    // LOGIN ADMIN DAN PELANGGAN
+    // LOGIN
     public function login(Request $request)
     {
         $login = $request->login;
         $password = $request->password;
 
-        // CEK ADMIN
-        $admin = LoginAdmin::where('username', $login)
+        $user = User::where('email', $login)
             ->where('password', $password)
             ->first();
 
-        if ($admin) {
+        if (!$user) {
+            return back()->with(
+                'error',
+                'Email atau password salah'
+            );
+        }
 
-            session([
-                'login' => true,
-                'role' => 'admin',
-                'nama' => $admin->username
-            ]);
+        session([
+            'login' => true,
+            'role' => $user->role,
+            'nama' => $user->name
+        ]);
 
+        if ($user->role == 'admin') {
             return redirect('/dashboardadmin');
         }
 
-        // CEK PELANGGAN
-        $pelanggan = LoginPelanggan::where('email', $login)
-            ->where('password', $password)
-            ->first();
-
-        if ($pelanggan) {
-
-            session([
-                'login' => true,
-                'role' => 'pelanggan',
-                'nama' => $pelanggan->nama
-            ]);
-
-            return redirect('/dashboard');
-        }
-
-        return back()->with(
-            'error',
-            'Username/Email atau password salah'
-        );
+        return redirect('/dashboard');
     }
 
     // REGISTER
-    public function register(Request $request)
-    {
-        LoginPelanggan::create([
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'password' => $request->password
-        ]);
+   public function register(Request $request)
+{
+    User::create([
+        'name' => $request->nama,
+        'email' => $request->email,
+        'telepon' => $request->telepon,
+        'password' => $request->password,
+        'role' => 'pelanggan'
+    ]);
 
-        return redirect('/login')
-            ->with(
-                'success',
-                'Registrasi berhasil'
-            );
-    }
+    return redirect('/login')
+        ->with('success', 'Registrasi berhasil');
+}
 
     // LOGOUT
     public function logout()

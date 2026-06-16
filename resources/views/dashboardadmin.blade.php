@@ -74,9 +74,9 @@
                 </h3>
 
                 <p class="text-4xl font-bold text-pink-500">
-                    320
+                    {{ $totalPelanggan }}
                 </p>
-            </div>
+                </div>
 
             <div class="bg-white p-8 rounded-2xl shadow text-center">
                 <h3 class="text-xl text-gray-700 mb-4 font-semibold">
@@ -84,7 +84,7 @@
                 </h3>
 
                 <p class="text-4xl font-bold text-pink-500">
-                    150
+                    {{ $totalReservasi }}   
                 </p>
             </div>
 
@@ -94,7 +94,7 @@
                 </h3>
 
                 <p class="text-4xl font-bold text-pink-500">
-                    60
+                    {{ $totalKamar }}
                 </p>
             </div>
 
@@ -104,7 +104,7 @@
                 </h3>
 
                 <p class="text-4xl font-bold text-pink-500">
-                    Rp 9.8JT
+                    {{ $totalPembayaran }}
                 </p>
             </div>
 
@@ -130,33 +130,35 @@
 
                 <tbody>
 
-                    <tr class="border-b">
-                        <td class="p-4">RS-001</td>
-                        <td class="p-4">John Doe</td>
-                        <td class="p-4">11 Apr 2026</td>
-                        <td class="p-4 text-red-500 font-bold">Menunggu</td>
-                    </tr>
+                @forelse($reservasiTerbaru as $r)
 
-                    <tr class="border-b">
-                        <td class="p-4">RS-002</td>
-                        <td class="p-4">Jane Smith</td>
-                        <td class="p-4">12 Apr 2026</td>
-                        <td class="p-4 text-green-500 font-bold">Check In</td>
-                    </tr>
+                <tr class="border-b">
+                    <td class="p-4">
+                        RS-{{ str_pad($r->id, 3, '0', STR_PAD_LEFT) }}
+                    </td>
 
-                    <tr class="border-b">
-                        <td class="p-4">RS-003</td>
-                        <td class="p-4">Michael Chen</td>
-                        <td class="p-4">13 Apr 2026</td>
-                        <td class="p-4 text-red-500 font-bold">Menunggu</td>
-                    </tr>
+                    <td class="p-4">
+                        {{ $r->user->name ?? '-' }}
+                    </td>
 
-                    <tr>
-                        <td class="p-4">RS-004</td>
-                        <td class="p-4">Siti Rahma</td>
-                        <td class="p-4">14 Apr 2026</td>
-                        <td class="p-4 text-green-500 font-bold">Check In</td>
-                    </tr>
+                    <td class="p-4">
+                        {{ $r->check_in }}
+                    </td>
+
+                    <td class="p-4 font-bold">
+                        {{ $r->status }}
+                    </td>
+                </tr>
+
+                @empty
+
+                <tr>
+                    <td colspan="4" class="p-4 text-center">
+                        Belum ada data reservasi
+                    </td>
+                </tr>
+
+                @endforelse
 
                 </tbody>
 

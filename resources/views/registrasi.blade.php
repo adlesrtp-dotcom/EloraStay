@@ -113,8 +113,18 @@ tailwind.config = {
                         class="w-full px-5 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400">
 
                 </div>
+                <!-- Nomor Telepon -->
+                <div class="mb-4">
 
-                <!-- Password -->
+                    <input
+                        type="text"
+                        name="telepon"
+                        placeholder="Nomor Telepon"
+                        required
+                        class="w-full px-5 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400">
+
+                </div>
+                                <!-- Password -->
                 <div class="mb-4">
 
                     <input

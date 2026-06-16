@@ -344,29 +344,5 @@ function bayar(metode, status)
 }
 
 
-// ===============================
-// CEK LOGIN
-// ===============================
-
-const isLogin = localStorage.getItem("isLogin");
-
-if (isLogin !== "true") {
-     alert("Silakan login terlebih dahulu!");
-    window.location.href = "/dashboard";
-}
-
-
-// ===============================
-// LOGOUT
-// ===============================
-
-function logout() {
-
-    localStorage.removeItem("isLogin");
-
-    alert("Logout berhasil");
-
-    window.location.href = "/dashboard";
-}
 
     </script>

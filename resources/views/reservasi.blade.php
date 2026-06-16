@@ -39,7 +39,6 @@
 </section>
 
 <!-- LIST -->
-<!-- LIST -->
 <section class="px-6 pb-10">
 
 @if(session('success'))

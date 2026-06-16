@@ -6,6 +6,10 @@ use App\Http\Controllers\KamarController;
 use App\Http\Controllers\TipeKamarController;
 use App\Http\Controllers\ReservasiController;
 
+use App\Models\Kamar;
+use App\Models\Reservasi;
+use App\Models\Pembayaran;
+use App\Models\User;
 
 Route::get('/', function () {
     return redirect('/dashboard');
@@ -31,6 +35,23 @@ Route::get('/dashboard', function () {
 Route::get('/kamar', [KamarController::class, 'index'])
     ->name('kamar');
 
+// HALAMAN RESERVASI
+
+Route::post('/reservasi/store', [ReservasiController::class, 'store'])
+    ->name('reservasi.store');
+    Route::get('/reservasi', [ReservasiController::class, 'index'])
+    ->name('reservasi');
+
+// HALAMAN PEMBAYARAN
+Route::get('/pembayaran', function () {
+
+    if(!session('login')){
+        return redirect('/login');
+    }
+
+    return view('pembayaran');
+
+})->name('pembayaran');
 
 /*
 |--------------------------------------------------------------------------
@@ -46,14 +67,6 @@ Route::get('/login', function () {
 Route::post('/login', [AuthController::class, 'login'])
     ->name('login.process');
 
-// LOGIN ADMIN
-Route::get('/loginadmin', function () {
-    return view('login');
-});
-
-Route::post('/loginadmin',
-    [AuthController::class, 'loginAdmin']);
-
 // REGISTER
 Route::get('/registrasi', function () {
     return view('registrasi');
@@ -67,6 +80,8 @@ Route::get('/lupa-password', function () {
     return view('lupa-password');
 })->name('lupa-password');
 
+Route::get('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
 /*
 |--------------------------------------------------------------------------
 | PELANGGAN
@@ -90,12 +105,43 @@ Route::post('/tambah_pelanggan', function () {
 
 // DASHBOARD ADMIN
 Route::get('/dashboardadmin', function () {
-    return view('dashboardadmin');
+
+    if(session('role') != 'admin'){
+        return redirect('/login');
+    }
+
+    $totalPelanggan = User::where('role', 'pelanggan')->count();
+    $totalReservasi = Reservasi::count();
+    $totalKamar = Kamar::count();
+    $totalPembayaran = Pembayaran::count();
+
+    $reservasiTerbaru = Reservasi::with('user')
+        ->latest()
+        ->take(5)
+        ->get();
+
+    return view('dashboardadmin', compact(
+        'totalPelanggan',
+        'totalReservasi',
+        'totalKamar',
+        'totalPembayaran',
+        'reservasiTerbaru'
+    ));
+
 })->name('dashboardadmin');
 
 // DATA PELANGGAN ADMIN
+// DATA PELANGGAN ADMIN
 Route::get('/pelangganadmin', function () {
-    return redirect('/dashboardadmin');
+
+    if(session('role') != 'admin'){
+        return redirect('/login');
+    }
+
+    $pelanggan = User::all();
+
+    return view('pelangganadmin', compact('pelanggan'));
+
 })->name('pelangganadmin');
 
 // DATA RESERVASI ADMIN
