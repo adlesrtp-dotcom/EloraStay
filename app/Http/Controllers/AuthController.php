@@ -24,12 +24,15 @@ class AuthController extends Controller
             );
         }
 
+        // Simpan data user ke session
         session([
-            'login' => true,
-            'role' => $user->role,
-            'nama' => $user->name
+            'login'   => true,
+            'user_id' => $user->id,
+            'role'    => $user->role,
+            'nama'    => $user->name
         ]);
 
+        // Redirect berdasarkan role
         if ($user->role == 'admin') {
             return redirect('/dashboardadmin');
         }
@@ -38,19 +41,19 @@ class AuthController extends Controller
     }
 
     // REGISTER
-   public function register(Request $request)
-{
-    User::create([
-        'name' => $request->nama,
-        'email' => $request->email,
-        'telepon' => $request->telepon,
-        'password' => $request->password,
-        'role' => 'pelanggan'
-    ]);
+    public function register(Request $request)
+    {
+        User::create([
+            'name'     => $request->nama,
+            'email'    => $request->email,
+            'telepon'  => $request->telepon,
+            'password' => $request->password,
+            'role'     => 'pelanggan'
+        ]);
 
-    return redirect('/login')
-        ->with('success', 'Registrasi berhasil');
-}
+        return redirect('/login')
+            ->with('success', 'Registrasi berhasil');
+    }
 
     // LOGOUT
     public function logout()

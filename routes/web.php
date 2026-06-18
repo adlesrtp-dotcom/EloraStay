@@ -130,7 +130,7 @@ Route::get('/dashboardadmin', function () {
 
 })->name('dashboardadmin');
 
-// DATA PELANGGAN ADMIN
+
 // DATA PELANGGAN ADMIN
 Route::get('/pelangganadmin', function () {
 
@@ -138,7 +138,7 @@ Route::get('/pelangganadmin', function () {
         return redirect('/login');
     }
 
-    $pelanggan = User::all();
+    $pelanggan = User::where('role', 'pelanggan')->get();
 
     return view('pelangganadmin', compact('pelanggan'));
 

@@ -122,109 +122,62 @@
 
                 </thead>
 
-                <tbody>
+               <tbody>
 
-                    <tr class="border-b hover:bg-pink-50 transition">
+@forelse($pelanggan as $user)
 
-                        <td class="p-5">PL-001</td>
-                        <td class="p-5">John Doe</td>
-                        <td class="p-5">john@example.com</td>
-                        <td class="p-5">+62 812 3456 7890</td>
-                        <td class="p-5">Jakarta</td>
+<tr class="border-b hover:bg-pink-50 transition">
 
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
+    <td class="p-5">
+        PL-{{ str_pad($user->id, 3, '0', STR_PAD_LEFT) }}
+    </td>
 
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
+    <td class="p-5">
+        {{ $user->name }}
+    </td>
 
-                    </tr>
+    <td class="p-5">
+        {{ $user->email }}
+    </td>
 
-                    <tr class="border-b hover:bg-pink-50 transition">
+    <td class="p-5">
+        {{ $user->telepon ?? '-' }}
+    </td>
 
-                        <td class="p-5">PL-002</td>
-                        <td class="p-5">Jane Smith</td>
-                        <td class="p-5">jane@example.com</td>
-                        <td class="p-5">+62 812 1111 2222</td>
-                        <td class="p-5">Bandung</td>
+    <td class="p-5">
+        -
+    </td>
 
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
+    <td class="p-5 space-x-3">
 
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
+        <a href="#"
+           class="text-pink-500 font-bold hover:underline">
+            Edit
+        </a>
 
-                    </tr>
+        <a href="#"
+           class="text-red-500 font-bold hover:underline">
+            Hapus
+        </a>
 
-                    <tr class="border-b hover:bg-pink-50 transition">
+    </td>
 
-                        <td class="p-5">PL-003</td>
-                        <td class="p-5">Ahmad Rahman</td>
-                        <td class="p-5">ahmad@example.com</td>
-                        <td class="p-5">+62 813 5555 4444</td>
-                        <td class="p-5">Bali</td>
+</tr>
 
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
+@empty
 
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
+<tr>
 
-                    </tr>
+    <td colspan="6"
+        class="p-5 text-center text-gray-500">
+        Belum ada pelanggan
+    </td>
 
-                    <tr class="border-b hover:bg-pink-50 transition">
+</tr>
 
-                        <td class="p-5">PL-004</td>
-                        <td class="p-5">Sarah Johnson</td>
-                        <td class="p-5">sarah@example.com</td>
-                        <td class="p-5">+62 812 9876 5432</td>
-                        <td class="p-5">Yogyakarta</td>
+@endforelse
 
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
-
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
-
-                    </tr>
-
-                    <tr class="hover:bg-pink-50 transition">
-
-                        <td class="p-5">PL-005</td>
-                        <td class="p-5">Michael Chen</td>
-                        <td class="p-5">michael@example.com</td>
-                        <td class="p-5">+62 812 3333 7777</td>
-                        <td class="p-5">Jakarta</td>
-
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
-
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
-
-                    </tr>
-
-                </tbody>
+</tbody>
 
             </table>
 

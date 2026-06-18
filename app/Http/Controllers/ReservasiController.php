@@ -43,7 +43,7 @@ class ReservasiController extends Controller
 
         // Simpan reservasi
         $reservasi = Reservasi::create([
-            'user_id'      => 1, // sementara
+            'user_id'      => session('user_id'),
             'kamar_id'     => $kamar->id,
             'check_in'     => $request->checkin,
             'check_out'    => $request->checkout,
