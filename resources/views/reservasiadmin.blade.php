@@ -88,16 +88,30 @@
             <!-- Actions -->
             <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
 
-                <input
-                    type="text"
-                    placeholder="Cari reservasi..."
-                    class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-300">
+                <form action="{{ route('reservasiadmin') }}" method="GET"
+      class="flex gap-3">
 
-                <button
-                    class="bg-pink-500 hover:bg-pink-600 transition text-white font-bold px-6 py-3 rounded-xl">
-                    + Tambah Reservasi
-                </button>
+                    <input
+                        type="text"
+                        name="search"
+                        value="{{ request('search') }}"
+                        placeholder="Cari nama pelanggan..."
+                        class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500">
 
+                    <button
+                        type="submit"
+                        class="bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-xl">
+                        Cari
+                    </button>
+
+                     <a href="{{ route('reservasiadmin') }}"
+                        class="bg-gray-400 hover:bg-gray-500 text-white font-bold px-6 py-3 rounded-xl">
+                            Reset
+                        </a>
+
+                </form>
+
+                
             </div>
 
         </div>
@@ -117,117 +131,75 @@
                         <th class="p-5 text-left">Check-in</th>
                         <th class="p-5 text-left">Harga</th>
                         <th class="p-5 text-left">Status</th>
-                        <th class="p-5 text-left">Aksi</th>
+                        <th class="p-5 text-left">Aksi</th> 
 
                     </tr>
 
                 </thead>
 
-                <tbody>
+               <tbody>
 
-                    <tr class="border-b hover:bg-pink-50 transition">
+                @forelse($reservasi as $r)
 
-                        <td class="p-5">RS-001</td>
-                        <td class="p-5">John Doe</td>
-                        <td class="p-5">Deluxe Room</td>
-                        <td class="p-5">11 Apr 2026</td>
-                        <td class="p-5">Rp 500.000</td>
+                <tr class="border-b hover:bg-pink-50 transition">
 
-                        <td class="p-5">
-                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Check In
-                            </span>
-                        </td>
+                    <td class="p-5">
+                        RS-{{ str_pad($r->id, 3, '0', STR_PAD_LEFT) }}
+                    </td>
 
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
+                    <td class="p-5">
+                        {{ $r->user->name ?? '-' }}
+                    </td>
 
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
+                    <td class="p-5">
+                        {{ optional(optional($r->kamar)->tipeKamar)->nama_tipe ?? '-' }}
+                    </td>
 
-                    </tr>
+                    <td class="p-5">
+                        {{ $r->check_in }}
+                    </td>
 
-                    <tr class="border-b hover:bg-pink-50 transition">
+                    <td class="p-5">
+                        Rp {{ number_format($r->total_harga,0,',','.') }}
+                    </td>
 
-                        <td class="p-5">RS-002</td>
-                        <td class="p-5">Jane Smith</td>
-                        <td class="p-5">Superior Room</td>
-                        <td class="p-5">12 Apr 2026</td>
-                        <td class="p-5">Rp 650.000</td>
+                    <td class="p-5">
 
-                        <td class="p-5">
+                        @if($r->status == 'pending')
+
                             <span class="bg-yellow-100 text-yellow-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Menunggu
+                                Pending
                             </span>
-                        </td>
 
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
+                        @elseif($r->status == 'dikonfirmasi')
 
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
+                            <span class="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Dikonfirmasi
+                            </span>
 
-                    </tr>
+                        @else
 
-                    <tr class="border-b hover:bg-pink-50 transition">
-
-                        <td class="p-5">RS-003</td>
-                        <td class="p-5">Michael Chen</td>
-                        <td class="p-5">Suite Room</td>
-                        <td class="p-5">13 Apr 2026</td>
-                        <td class="p-5">Rp 900.000</td>
-
-                        <td class="p-5">
                             <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Check In
+                                Selesai
                             </span>
-                        </td>
 
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
+                        @endif
 
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
+</td>
+                </tr>
 
-                    </tr>
+                @empty
 
-                    <tr class="hover:bg-pink-50 transition">
+                <tr>
 
-                        <td class="p-5">RS-004</td>
-                        <td class="p-5">Siti Rahma</td>
-                        <td class="p-5">Family Room</td>
-                        <td class="p-5">14 Apr 2026</td>
-                        <td class="p-5">Rp 750.000</td>
+                    <td colspan="6"
+                        class="p-5 text-center text-gray-500">
+                        Belum ada reservasi
+                    </td>
 
-                        <td class="p-5">
-                            <span class="bg-yellow-100 text-yellow-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Menunggu
-                            </span>
-                        </td>
+                </tr>
 
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
-
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
-
-                    </tr>
+                @endforelse
 
                 </tbody>
 

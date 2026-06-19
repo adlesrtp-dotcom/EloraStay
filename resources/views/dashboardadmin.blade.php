@@ -103,8 +103,8 @@
                     Pendapatan
                 </h3>
 
-                <p class="text-4xl font-bold text-pink-500">
-                    {{ $totalPembayaran }}
+                <p class="text-2xl font-bold text-pink-500 break-words">
+                    Rp {{ number_format($totalPendapatan, 0, ',', '.') }}
                 </p>
             </div>
 

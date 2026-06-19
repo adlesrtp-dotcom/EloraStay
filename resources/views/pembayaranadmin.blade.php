@@ -88,15 +88,29 @@
             <!-- Actions -->
             <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
 
-                <input
-                    type="text"
-                    placeholder="Cari pembayaran..."
-                    class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-300">
+               <form action="{{ route('pembayaranadmin') }}"
+                    method="GET"
+                    class="flex gap-3">
 
-                <button
-                    class="bg-pink-500 hover:bg-pink-600 transition text-white font-bold px-6 py-3 rounded-xl">
-                    + Tambah Pembayaran
-                </button>
+                    <input
+                        type="text"
+                        name="search"
+                        value="{{ request('search') }}"
+                        placeholder="Cari nama pelanggan..."
+                        class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-300">
+
+                    <button
+                        type="submit"
+                        class="bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-xl">
+                        Cari
+                    </button>
+
+                    <a href="{{ route('pembayaranadmin') }}"
+                    class="bg-gray-400 hover:bg-gray-500 text-white font-bold px-6 py-3 rounded-xl">
+                        Reset
+                    </a>
+
+                </form>
 
             </div>
 
@@ -123,102 +137,85 @@
 
                 </thead>
 
-                <tbody>
+               <tbody>
 
-                    <tr class="border-b hover:bg-pink-50 transition">
+                @forelse($pembayaran as $p)
 
-                        <td class="p-5">PB-001</td>
-                        <td class="p-5">John Doe</td>
-                        <td class="p-5">RS-001</td>
-                        <td class="p-5">Transfer</td>
-                        <td class="p-5">Rp 3.500.000</td>
+                <tr class="border-b hover:bg-pink-50 transition">
 
-                        <td class="p-5">
+                    <td class="p-5">
+                        PB-{{ str_pad($p->id, 3, '0', STR_PAD_LEFT) }}
+                    </td>
+
+                    <td class="p-5">
+                        {{ $p->reservasi->user->name ?? '-' }}
+                    </td>
+
+                    <td class="p-5">
+                        RS-{{ str_pad($p->reservasi_id, 3, '0', STR_PAD_LEFT) }}
+                    </td>
+
+                    <td class="p-5">
+                        {{ ucfirst($p->metode_pembayaran) }}
+                    </td>
+
+                    <td class="p-5">
+                        Rp {{ number_format($p->total_bayar, 0, ',', '.') }}
+                    </td>
+
+                    <td class="p-5">
+
+                        @if($p->status == 'lunas')
+
                             <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
                                 Lunas
                             </span>
-                        </td>
 
-                        <td class="p-5">
-                            <a href="#"
-                               class="text-pink-500 font-bold hover:underline">
-                                Detail
-                            </a>
-                        </td>
+                        @else
 
-                    </tr>
-
-                    <tr class="border-b hover:bg-pink-50 transition">
-
-                        <td class="p-5">PB-002</td>
-                        <td class="p-5">Jane Smith</td>
-                        <td class="p-5">RS-002</td>
-                        <td class="p-5">Cash</td>
-                        <td class="p-5">Rp 2.500.000</td>
-
-                        <td class="p-5">
                             <span class="bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-bold">
                                 Pending
                             </span>
-                        </td>
 
-                        <td class="p-5">
-                            <a href="#"
-                               class="text-pink-500 font-bold hover:underline">
-                                Detail
+                        @endif
+
+                    </td>
+
+                    <td class="p-5">
+
+                        @if($p->status != 'lunas')
+
+                            <a href="{{ route('pembayaran.status', [$p->id, 'lunas']) }}"
+                            class="text-green-500 font-bold hover:underline">
+                                Tandai Lunas
                             </a>
-                        </td>
 
-                    </tr>
+                        @else
 
-                    <tr class="border-b hover:bg-pink-50 transition">
-
-                        <td class="p-5">PB-003</td>
-                        <td class="p-5">Ahmad Rahman</td>
-                        <td class="p-5">RS-003</td>
-                        <td class="p-5">QRIS</td>
-                        <td class="p-5">Rp 2.000.000</td>
-
-                        <td class="p-5">
-                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Lunas
+                            <span class="text-gray-500">
+                                Selesai
                             </span>
-                        </td>
 
-                        <td class="p-5">
-                            <a href="#"
-                               class="text-pink-500 font-bold hover:underline">
-                                Detail
-                            </a>
-                        </td>
+                        @endif
 
-                    </tr>
+                    </td>
 
-                    <tr class="hover:bg-pink-50 transition">
+                </tr>
 
-                        <td class="p-5">PB-004</td>
-                        <td class="p-5">Siti Rahma</td>
-                        <td class="p-5">RS-004</td>
-                        <td class="p-5">Transfer</td>
-                        <td class="p-5">Rp 3.500.000</td>
+                @empty
 
-                        <td class="p-5">
-                            <span class="bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Pending
-                            </span>
-                        </td>
+                <tr>
 
-                        <td class="p-5">
-                            <a href="#"
-                               class="text-pink-500 font-bold hover:underline">
-                                Detail
-                            </a>
-                        </td>
+                    <td colspan="7"
+                        class="p-5 text-center text-gray-500">
+                        Belum ada data pembayaran
+                    </td>
 
-                    </tr>
+                </tr>
+
+                @endforelse
 
                 </tbody>
-
             </table>
 
         </div>

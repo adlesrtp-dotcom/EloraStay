@@ -88,15 +88,27 @@
             <!-- Actions -->
             <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
 
-                <input
-                    type="text"
-                    placeholder="Cari pelanggan..."
-                    class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-300">
+                <form method="GET" action="{{ route('pelangganadmin') }}"
+      class="flex gap-3">
 
-                <button
-                    class="bg-pink-500 hover:bg-pink-600 transition text-white font-bold px-6 py-3 rounded-xl">
-                    + Tambah Pelanggan
-                </button>
+    <input
+        type="text"
+        name="cari"
+        value="{{ request('cari') }}"
+        placeholder="Cari pelanggan..."
+        class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-300">
+
+    <button
+        type="submit"
+        class="bg-pink-500 hover:bg-pink-600 text-white px-5 py-3 rounded-xl font-semibold">
+        Cari
+    </button>
+
+     <a href="{{ route('pelangganadmin') }}"
+       class="bg-gray-400 hover:bg-gray-500 text-white font-bold px-6 py-3 rounded-xl">
+        Reset
+    </a>
+</form>
 
             </div>
 
@@ -116,7 +128,6 @@
                         <th class="p-5 text-left">Email</th>
                         <th class="p-5 text-left">Telepon</th>
                         <th class="p-5 text-left">Alamat</th>
-                        <th class="p-5 text-left">Aksi</th>
 
                     </tr>
 
@@ -148,19 +159,7 @@
         -
     </td>
 
-    <td class="p-5 space-x-3">
 
-        <a href="#"
-           class="text-pink-500 font-bold hover:underline">
-            Edit
-        </a>
-
-        <a href="#"
-           class="text-red-500 font-bold hover:underline">
-            Hapus
-        </a>
-
-    </td>
 
 </tr>
 
@@ -168,8 +167,8 @@
 
 <tr>
 
-    <td colspan="6"
-        class="p-5 text-center text-gray-500">
+    <td colspan="5"
+    class="p-5 text-center text-gray-500">
         Belum ada pelanggan
     </td>
 

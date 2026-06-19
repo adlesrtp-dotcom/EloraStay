@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\TipeKamarController;
@@ -113,7 +114,7 @@ Route::get('/dashboardadmin', function () {
     $totalPelanggan = User::where('role', 'pelanggan')->count();
     $totalReservasi = Reservasi::count();
     $totalKamar = Kamar::count();
-    $totalPembayaran = Pembayaran::count();
+    $totalPendapatan = Pembayaran::sum('total_bayar');
 
     $reservasiTerbaru = Reservasi::with('user')
         ->latest()
@@ -124,7 +125,7 @@ Route::get('/dashboardadmin', function () {
         'totalPelanggan',
         'totalReservasi',
         'totalKamar',
-        'totalPembayaran',
+        'totalPendapatan',
         'reservasiTerbaru'
     ));
 
@@ -132,33 +133,148 @@ Route::get('/dashboardadmin', function () {
 
 
 // DATA PELANGGAN ADMIN
-Route::get('/pelangganadmin', function () {
+Route::get('/pelangganadmin', function (Request $request) {
 
     if(session('role') != 'admin'){
         return redirect('/login');
     }
 
-    $pelanggan = User::where('role', 'pelanggan')->get();
+    $keyword = $request->cari;
 
-    return view('pelangganadmin', compact('pelanggan'));
+    $pelanggan = User::where('role', 'pelanggan')
+        ->when($keyword, function ($query) use ($keyword) {
+            $query->where('name', 'like', "%{$keyword}%")
+                  ->orWhere('email', 'like', "%{$keyword}%")
+                  ->orWhere('telepon', 'like', "%{$keyword}%");
+        })
+        ->get();
+
+    return view('pelangganadmin', compact('pelanggan', 'keyword'));
 
 })->name('pelangganadmin');
 
 // DATA RESERVASI ADMIN
-Route::get('/reservasiadmin', function () {
+Route::get('/reservasiadmin', function (Illuminate\Http\Request $request) {
 
-    $reservasi = [];
+    $search = $request->search;
 
-    return view('reservasiadmin', compact('reservasi'));
+    $reservasi = Reservasi::with([
+        'user',
+        'kamar.tipeKamar'
+    ])
+
+    ->when($search, function ($query) use ($search) {
+
+        $query->whereHas('user', function ($q) use ($search) {
+
+            $q->where('name', 'like', "%{$search}%");
+
+        });
+
+    })
+
+    ->latest()
+    ->get();
+
+    return view('reservasiadmin', compact(
+        'reservasi',
+        'search'
+    ));
 
 })->name('reservasiadmin');
 
+Route::get('/reservasi/{id}/status/{status}', function ($id, $status) {
+
+    if(session('role') != 'admin'){
+        return redirect('/login');
+    }
+
+    $reservasi = Reservasi::findOrFail($id);
+
+    $reservasi->update([
+        'status' => $status
+    ]);
+
+    return back();
+
+})->name('reservasi.status');
+
 // DATA KAMAR ADMIN
-Route::get('/kamaradmin', function () {
-    return view('kamaradmin');
+Route::get('/kamaradmin', function (Request $request) {
+
+    if(session('role') != 'admin'){
+        return redirect('/login');
+    }
+
+    $search = $request->search;
+
+    $kamar = Kamar::with('tipeKamar')
+
+        ->when($search, function ($query) use ($search) {
+
+            $query->where('nomor_kamar', 'like', "%{$search}%")
+                  ->orWhereHas('tipeKamar', function ($q) use ($search) {
+                      $q->where('nama_tipe', 'like', "%{$search}%");
+                  });
+
+        })
+
+        ->orderBy('nomor_kamar')
+        ->get();
+
+    return view('kamaradmin', compact(
+        'kamar',
+        'search'
+    ));
+
 })->name('kamaradmin');
 
 // DATA PEMBAYARAN ADMIN
-Route::get('/pembayaranadmin', function () {
-    return view('pembayaranadmin');
+Route::get('/pembayaranadmin', function (Request $request) {
+
+    if(session('role') != 'admin'){
+        return redirect('/login');
+    }
+
+    $search = $request->search;
+
+    $pembayaran = Pembayaran::with([
+        'reservasi.user',
+        'reservasi.kamar.tipeKamar'
+    ])
+
+    ->when($search, function ($query) use ($search) {
+
+        $query->whereHas('reservasi.user', function ($q) use ($search) {
+
+            $q->where('name', 'like', "%{$search}%");
+
+        });
+
+    })
+
+    ->latest()
+    ->get();
+
+    return view('pembayaranadmin', compact(
+        'pembayaran',
+        'search'
+    ));
+
 })->name('pembayaranadmin');
+
+Route::get('/pembayaran/{id}/status/{status}', function ($id, $status) {
+
+    if(session('role') != 'admin'){
+        return redirect('/login');
+    }
+
+    $pembayaran = Pembayaran::findOrFail($id);
+
+    $pembayaran->update([
+        'status' => $status
+    ]);
+
+    return back();
+
+})->name('pembayaran.status');

@@ -88,15 +88,30 @@
             <!-- Actions -->
             <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
 
-                <input
-                    type="text"
-                    placeholder="Cari kamar..."
-                    class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-300">
+               <form action="{{ route('kamaradmin') }}"
+      method="GET"
+      class="flex gap-3">
 
-                <button
-                    class="bg-pink-500 hover:bg-pink-600 transition text-white font-bold px-6 py-3 rounded-xl">
-                    + Tambah Kamar
-                </button>
+    <input
+        type="text"
+        name="search"
+        value="{{ request('search') }}"
+        placeholder="Cari kamar..."
+        class="w-full sm:w-72 px-5 py-3 border border-gray-300 rounded-xl outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-300">
+
+    <button
+        type="submit"
+        class="bg-pink-500 hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-xl">
+        Cari
+    </button>
+
+    <a href="{{ route('kamaradmin') }}"
+       class="bg-gray-400 hover:bg-gray-500 text-white font-bold px-6 py-3 rounded-xl">
+        Reset
+    </a>
+
+</form>
+
 
             </div>
 
@@ -116,113 +131,66 @@
                         <th class="p-5 text-left">Tipe</th>
                         <th class="p-5 text-left">Harga</th>
                         <th class="p-5 text-left">Status</th>
-                        <th class="p-5 text-left">Aksi</th>
+                      
 
                     </tr>
 
                 </thead>
 
-                <tbody>
+              <tbody>
 
-                    <tr class="border-b hover:bg-pink-50 transition">
+                @forelse($kamar as $k)
 
-                        <td class="p-5">KM-001</td>
-                        <td class="p-5">Suite Premium</td>
-                        <td class="p-5">VIP</td>
-                        <td class="p-5">Rp 3.500.000</td>
+                <tr class="border-b hover:bg-pink-50 transition">
 
-                        <td class="p-5">
+                    <td class="p-5">
+                        KM-{{ str_pad($k->id, 3, '0', STR_PAD_LEFT) }}
+                    </td>
+
+                    <td class="p-5">
+                        {{ $k->nomor_kamar }}
+                    </td>
+
+                    <td class="p-5">
+                        {{ $k->tipeKamar->nama_tipe ?? '-' }}
+                    </td>
+
+                    <td class="p-5">
+                        Rp {{ number_format($k->tipeKamar->harga ?? 0, 0, ',', '.') }}
+                    </td>
+
+                    <td class="p-5">
+
+                        @if($k->status == 'tersedia')
+
                             <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
                                 Tersedia
                             </span>
-                        </td>
 
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
+                        @else
 
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-pink-50 transition">
-
-                        <td class="p-5">KM-002</td>
-                        <td class="p-5">Deluxe Room</td>
-                        <td class="p-5">Deluxe</td>
-                        <td class="p-5">Rp 2.500.000</td>
-
-                        <td class="p-5">
                             <span class="bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Penuh
+                                Terisi
                             </span>
-                        </td>
 
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
+                        @endif
 
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
+                    </td>
 
-                    </tr>
+                </tr>
 
-                    <tr class="border-b hover:bg-pink-50 transition">
+                @empty
 
-                        <td class="p-5">KM-003</td>
-                        <td class="p-5">Standard Room</td>
-                        <td class="p-5">Standard</td>
-                        <td class="p-5">Rp 1.500.000</td>
+                <tr>
 
-                        <td class="p-5">
-                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Tersedia
-                            </span>
-                        </td>
+                    <td colspan="5"
+                        class="p-5 text-center text-gray-500">
+                        Belum ada data kamar
+                    </td>
 
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
+                </tr>
 
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
-
-                    </tr>
-
-                    <tr class="hover:bg-pink-50 transition">
-
-                        <td class="p-5">KM-004</td>
-                        <td class="p-5">Family Room</td>
-                        <td class="p-5">Family</td>
-                        <td class="p-5">Rp 2.800.000</td>
-
-                        <td class="p-5">
-                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Tersedia
-                            </span>
-                        </td>
-
-                        <td class="p-5 space-x-3">
-                            <a href="#" class="text-pink-500 font-bold hover:underline">
-                                Edit
-                            </a>
-
-                            <a href="#" class="text-red-500 font-bold hover:underline">
-                                Hapus
-                            </a>
-                        </td>
-
-                    </tr>
+                @endforelse
 
                 </tbody>
 
