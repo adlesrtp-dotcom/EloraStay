@@ -98,30 +98,33 @@
     <h3 class="text-2xl font-bold mb-5">
         Metode Pembayaran
     </h3>
+<div class="space-y-4">
 
-    <div class="space-y-4">
+    <button
+        onclick="pilihMetode('transfer')"
+        type="button"
+        class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
 
-        <button
-            onclick="pilihMetode('transfer')"
-            type="button"
-            class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+        Transfer Bank
 
-            Transfer Bank
+    </button>
 
-        </button>
+    <button
+        onclick="pilihMetode('cod')"
+        type="button"
+        class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
 
-        <button
-            onclick="pilihMetode('cod')"
-            type="button"
-            class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+        Bayar di Tempat
 
-            Bayar di Tempat
+    </button>
 
-        </button>
+</div>
+   
 
-    </div>
-
-    <form action="{{ route('reservasi.store') }}" method="POST" class="mt-6">
+    <form action="{{ route('reservasi.store') }}"
+      method="POST"
+      enctype="multipart/form-data"
+      class="mt-6">
 
         @csrf
 
@@ -153,15 +156,30 @@
                 </p>
 
             </div>
+            <div class="mb-5">
 
-            <button
-                type="submit"
-                onclick="return bayar('Transfer Bank','Menunggu Verifikasi')"
-                class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+            <label class="block mb-2 font-medium">
+                Upload Bukti Transfer
+            </label>
 
-                Saya Sudah Transfer
+            <input
+                type="file"
+                name="bukti_pembayaran"
+                accept="image/*"
+                required
+                class="w-full border rounded-xl p-3">
 
-            </button>
+        </div>
+    
+
+    <button
+        type="submit"
+        onclick="return bayar('Transfer Bank','Menunggu Verifikasi')"
+        class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
+
+        Saya Sudah Transfer
+
+    </button>
 
         </div>
 

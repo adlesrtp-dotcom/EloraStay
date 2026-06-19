@@ -52,11 +52,20 @@ class ReservasiController extends Controller
             'status'       => 'pending'
         ]);
 
+        $bukti = null;
+
+        if ($request->hasFile('bukti_pembayaran')) {
+
+            $bukti = $request->file('bukti_pembayaran')
+                ->store('bukti_pembayaran', 'public');
+        }
+
         // Simpan pembayaran
-        Pembayaran::create([
+       Pembayaran::create([
             'reservasi_id'       => $reservasi->id,
             'metode_pembayaran'  => $request->metode,
             'total_bayar'        => $totalHarga,
+            'bukti_pembayaran'   => $bukti,
             'status'             => 'pending'
         ]);
 

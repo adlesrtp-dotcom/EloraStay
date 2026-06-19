@@ -54,6 +54,25 @@ Route::get('/pembayaran', function () {
 
 })->name('pembayaran');
 
+Route::post('/upload-bukti/{id}', function (Request $request, $id) {
+
+    $request->validate([
+        'bukti_pembayaran' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+    ]);
+
+    $path = $request->file('bukti_pembayaran')
+        ->store('bukti_pembayaran', 'public');
+
+    $pembayaran = Pembayaran::findOrFail($id);
+
+    $pembayaran->update([
+        'bukti_pembayaran' => $path
+    ]);
+
+    return back()->with('success', 'Bukti pembayaran berhasil diupload');
+
+})->name('upload.bukti');
+
 /*
 |--------------------------------------------------------------------------
 | AUTH
@@ -274,6 +293,15 @@ Route::get('/pembayaran/{id}/status/{status}', function ($id, $status) {
     $pembayaran->update([
         'status' => $status
     ]);
+
+    // Jika pembayaran sudah dikonfirmasi
+    if($status == 'dibayar'){
+
+        $pembayaran->reservasi->update([
+            'status' => 'lunas'
+        ]);
+
+    }
 
     return back();
 

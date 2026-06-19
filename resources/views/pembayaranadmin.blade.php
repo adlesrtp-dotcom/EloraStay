@@ -130,6 +130,7 @@
                         <th class="p-5 text-left">Reservasi</th>
                         <th class="p-5 text-left">Metode</th>
                         <th class="p-5 text-left">Total</th>
+                        <th class="p-5 text-left">Bukti</th>
                         <th class="p-5 text-left">Status</th>
                         <th class="p-5 text-left">Aksi</th>
 
@@ -164,31 +165,45 @@
                     </td>
 
                     <td class="p-5">
-
-                        @if($p->status == 'lunas')
-
-                            <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Lunas
-                            </span>
-
+                        @if($p->bukti_pembayaran)
+                            <a href="{{ asset('storage/' . $p->bukti_pembayaran) }}"
+                               target="_blank"
+                               class="text-pink-500 font-bold hover:underline">
+                                Lihat Bukti
+                            </a>
                         @else
-
-                            <span class="bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Pending
-                            </span>
-
+                            -
                         @endif
+                         </td>   
+
+                    <td class="p-5">
+                
+                            @if($p->status == 'dibayar')
+
+                                <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
+                                    Lunas
+                                </span>
+
+                            @else
+
+                                <span class="bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-bold">
+                                    Pending
+                                </span>
+
+                            @endif
+
+                        </td>
 
                     </td>
 
                     <td class="p-5">
 
-                        @if($p->status != 'lunas')
+                       @if($p->status != 'dibayar')
 
-                            <a href="{{ route('pembayaran.status', [$p->id, 'lunas']) }}"
-                            class="text-green-500 font-bold hover:underline">
-                                Tandai Lunas
-                            </a>
+                        <a href="{{ route('pembayaran.status', [$p->id, 'dibayar']) }}"
+                        class="text-green-500 font-bold hover:underline">
+                            Konfirmasi Lunas
+                        </a>
 
                         @else
 
@@ -206,7 +221,7 @@
 
                 <tr>
 
-                    <td colspan="7"
+                    <td colspan="8"
                         class="p-5 text-center text-gray-500">
                         Belum ada data pembayaran
                     </td>
