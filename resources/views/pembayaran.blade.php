@@ -26,7 +26,7 @@
 </section>
 
 <!-- Container -->
-    <section class="max-w-4xl mx-auto px-5 py-10">
+<section class="max-w-4xl mx-auto px-5 py-10">
 
     <!-- Data Pemesanan -->
     <div class="bg-white rounded-2xl p-6 shadow-md mb-6">
@@ -165,8 +165,7 @@
             <input
                 type="file"
                 name="bukti_pembayaran"
-                accept="image/*"
-                required
+                accept="image/*"    
                 class="w-full border rounded-xl p-3">
 
         </div>
@@ -192,7 +191,7 @@
 
             <button
                 type="submit"
-                onclick="return bayar('COD','Menunggu')"
+                onclick="return bayar('COD')"
                 class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
 
                 Konfirmasi Booking
@@ -308,55 +307,56 @@ checkout.addEventListener("change", hitung);
 // ===============================
 // PILIH METODE PEMBAYARAN
 // ===============================
-
 function pilihMetode(metode) {
 
-    document
-        .getElementById("transfer")
-        .classList.add("hidden");
+    document.getElementById("transfer").classList.add("hidden");
+    document.getElementById("cod").classList.add("hidden");
 
-    document
-        .getElementById("cod")
-        .classList.add("hidden");
+    const bukti = document.getElementById("buktiPembayaran");
 
     if (metode === "transfer") {
 
-        document
-            .getElementById("transfer")
-            .classList.remove("hidden");
+        document.getElementById("transfer").classList.remove("hidden");
+        document.getElementById("metodePembayaran").value = "Transfer Bank";
+        bukti.required = true;
 
     } else {
 
-        document
-            .getElementById("cod")
-            .classList.remove("hidden");
+        document.getElementById("cod").classList.remove("hidden");
+        document.getElementById("metodePembayaran").value = "COD";
+        bukti.required = false;
+        bukti.value = "";
     }
 }
 
 // ===============================
 // VALIDASI SEBELUM SUBMIT
 // ===============================
-function bayar(metode, status)
+function bayar(metode)
 {
-    if (
-        !nama.value ||
-        !checkin.value ||
-        !checkout.value ||
-        total <= 0
-    ) {
-
-        alert("Lengkapi data terlebih dahulu!");
+    if (!nama.value.trim()) {
+        alert("Nama belum diisi!");
         return false;
     }
 
-    document.getElementById("checkinHidden").value =
-        checkin.value;
+    if (!checkin.value) {
+        alert("Pilih tanggal check-in!");
+        return false;
+    }
 
-    document.getElementById("checkoutHidden").value =
-        checkout.value;
+    if (!checkout.value) {
+        alert("Pilih tanggal check-out!");
+        return false;
+    }
 
-    document.getElementById("metodePembayaran").value =
-        metode;
+    if (total <= 0) {
+        alert("Tanggal tidak valid!");
+        return false;
+    }
+
+    document.getElementById("checkinHidden").value = checkin.value;
+    document.getElementById("checkoutHidden").value = checkout.value;
+    document.getElementById("metodePembayaran").value = metode;
 
     return true;
 }
@@ -364,3 +364,5 @@ function bayar(metode, status)
 
 
     </script>
+
+@endsection

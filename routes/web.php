@@ -208,11 +208,20 @@ Route::get('/reservasi/{id}/status/{status}', function ($id, $status) {
         return redirect('/login');
     }
 
-    $reservasi = Reservasi::findOrFail($id);
+    $reservasi = Reservasi::with('kamar')->findOrFail($id);
 
-    $reservasi->update([
-        'status' => $status
-    ]);
+    // Update status reservasi
+    $reservasi->status = $status;
+    $reservasi->save();
+
+    // Jika checkout, kamar kembali tersedia
+    if($status == 'checkout'){
+
+        $reservasi->kamar->update([
+            'status' => 'tersedia'
+        ]);
+
+    }
 
     return back();
 
@@ -288,19 +297,16 @@ Route::get('/pembayaran/{id}/status/{status}', function ($id, $status) {
         return redirect('/login');
     }
 
-    $pembayaran = Pembayaran::findOrFail($id);
+    $pembayaran = Pembayaran::with('reservasi')->findOrFail($id);
 
-    $pembayaran->update([
-        'status' => $status
-    ]);
+    // Update status pembayaran
+    $pembayaran->status = $status;
+    $pembayaran->save();
 
-    // Jika pembayaran sudah dikonfirmasi
-    if($status == 'dibayar'){
-
-        $pembayaran->reservasi->update([
-            'status' => 'lunas'
-        ]);
-
+    // Update status reservasi
+    if($pembayaran->reservasi){
+        $pembayaran->reservasi->status = 'lunas';
+        $pembayaran->reservasi->save();
     }
 
     return back();

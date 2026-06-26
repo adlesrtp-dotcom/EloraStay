@@ -11,15 +11,22 @@ use Carbon\Carbon;
 class ReservasiController extends Controller
 {
     // TAMPILKAN HALAMAN RESERVASI
-    public function index()
-    {
-        $reservasis = Reservasi::with([
+   public function index()
+{
+    if (!session('login')) {
+        return redirect('/login');
+    }
+
+    $reservasis = Reservasi::with([
             'kamar.tipeKamar',
             'pembayaran'
-        ])->latest()->get();
+        ])
+        ->where('user_id', session('user_id'))
+        ->latest()
+        ->get();
 
-        return view('reservasi', compact('reservasis'));
-    }
+    return view('reservasi', compact('reservasis'));
+}
 
     // SIMPAN RESERVASI
     public function store(Request $request)

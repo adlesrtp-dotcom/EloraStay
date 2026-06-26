@@ -171,28 +171,63 @@
                                 Pending
                             </span>
 
-                        @elseif($r->status == 'dikonfirmasi')
+                        @elseif($r->status == 'lunas')
 
                             <span class="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Dikonfirmasi
+                                Lunas
                             </span>
 
-                        @else
+                        @elseif($r->status == 'checkin')
+
+                            <span class="bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-bold">
+                                Check In
+                            </span>
+
+                        @elseif($r->status == 'checkout')
 
                             <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">
-                                Selesai
+                                Check Out
                             </span>
 
                         @endif
 
-</td>
+                    </td>
+                    <td class="p-5">
+
+                    @if($r->status == 'lunas')
+
+                        <a href="{{ route('reservasi.status', [$r->id,'checkin']) }}"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+                            Check In
+                        </a>
+
+                    @elseif($r->status == 'checkin')
+
+                        <a href="{{ route('reservasi.status', [$r->id,'checkout']) }}"
+                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+                            Check Out
+                        </a>
+
+                    @elseif($r->status == 'checkout')
+
+                        <span class="text-green-600 font-bold">
+                            Selesai
+                        </span>
+
+                    @else
+
+                        -
+
+                    @endif
+
+                </td>
                 </tr>
 
                 @empty
 
                 <tr>
 
-                    <td colspan="6"
+                    <td colspan="7"
                         class="p-5 text-center text-gray-500">
                         Belum ada reservasi
                     </td>
