@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Fasilitas;   
 
 class TipeKamar extends Model
 {
@@ -26,5 +27,11 @@ class TipeKamar extends Model
     public function kamars()
     {
         return $this->hasMany(Kamar::class, 'tipe_kamar_id');
+    }
+
+    // TAMBAHKAN DI SINI
+    public function fasilitas()
+    {
+        return $this->hasMany(Fasilitas::class, 'tipe_kamar_id');
     }
 }

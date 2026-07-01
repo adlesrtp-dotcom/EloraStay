@@ -110,11 +110,11 @@
     </button>
 
     <button
-        onclick="pilihMetode('cod')"
+        onclick="pilihMetode('Bayar di hotel')"
         type="button"
         class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
 
-        Bayar di Tempat
+        Bayar di Hotel
 
     </button>
 
@@ -183,7 +183,7 @@
         </div>
 
         <!-- COD -->
-        <div id="cod" class="hidden">
+        <div id="Bayar di hotel" class="hidden">
 
             <p class="mb-4 text-center font-medium">
                 Bayar langsung di hotel
@@ -191,7 +191,7 @@
 
             <button
                 type="submit"
-                onclick="return bayar('COD')"
+                onclick="return bayar('Bayar di Hotel')"
                 class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl font-semibold transition">
 
                 Konfirmasi Booking
@@ -310,7 +310,7 @@ checkout.addEventListener("change", hitung);
 function pilihMetode(metode) {
 
     document.getElementById("transfer").classList.add("hidden");
-    document.getElementById("cod").classList.add("hidden");
+    document.getElementById("Bayar di hotel").classList.add("hidden");
 
     const bukti = document.getElementById("buktiPembayaran");
 
@@ -322,8 +322,8 @@ function pilihMetode(metode) {
 
     } else {
 
-        document.getElementById("cod").classList.remove("hidden");
-        document.getElementById("metodePembayaran").value = "COD";
+        document.getElementById("Bayar di hotel").classList.remove("hidden");
+        document.getElementById("metodePembayaran").value = "Bayar di Hotel";
         bukti.required = false;
         bukti.value = "";
     }

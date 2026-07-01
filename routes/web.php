@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\TipeKamarController;
 use App\Http\Controllers\ReservasiController;
+use App\Http\Controllers\FasilitasController;
 
 use App\Models\Kamar;
 use App\Models\Reservasi;
@@ -236,13 +237,24 @@ Route::get('/kamaradmin', function (Request $request) {
 
     $search = $request->search;
 
-    $kamar = Kamar::with('tipeKamar')
+    $detail = null;
+
+    if($request->detail){
+
+        $detail = App\Models\TipeKamar::with('fasilitas')
+                    ->find($request->detail);
+
+    }
+
+    $kamar = Kamar::with('tipeKamar.fasilitas')
 
         ->when($search, function ($query) use ($search) {
 
             $query->where('nomor_kamar', 'like', "%{$search}%")
                   ->orWhereHas('tipeKamar', function ($q) use ($search) {
+
                       $q->where('nama_tipe', 'like', "%{$search}%");
+
                   });
 
         })
@@ -252,10 +264,21 @@ Route::get('/kamaradmin', function (Request $request) {
 
     return view('kamaradmin', compact(
         'kamar',
-        'search'
+        'search',
+        'detail'
     ));
 
 })->name('kamaradmin');
+
+
+Route::post('/fasilitasadmin/{id}', [FasilitasController::class,'store'])
+    ->name('fasilitas.store');
+
+Route::put('/fasilitas/{id}', [FasilitasController::class,'update'])
+    ->name('fasilitas.update');
+
+Route::delete('/fasilitas/{id}', [FasilitasController::class,'destroy'])
+    ->name('fasilitas.destroy');
 
 // DATA PEMBAYARAN ADMIN
 Route::get('/pembayaranadmin', function (Request $request) {

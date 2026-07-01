@@ -131,6 +131,7 @@
                         <th class="p-5 text-left">Tipe</th>
                         <th class="p-5 text-left">Harga</th>
                         <th class="p-5 text-left">Status</th>
+                        <th class="p-5 text-center">Detail Kamar</th>
                       
 
                     </tr>
@@ -177,13 +178,22 @@
 
                     </td>
 
+                    <td class="p-5 text-center">
+
+                        <a href="{{ route('kamaradmin', ['detail' => $k->tipe_kamar_id]) }}"
+                        class="bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-lg font-semibold">
+                            Detail
+                        </a>
+
+                    </td>
+
                 </tr>
 
                 @empty
 
                 <tr>
 
-                    <td colspan="5"
+                    <td colspan="6"
                         class="p-5 text-center text-gray-500">
                         Belum ada data kamar
                     </td>
@@ -197,6 +207,124 @@
             </table>
 
         </div>
+
+        @if($detail)
+
+<div class="bg-white p-8 rounded-3xl shadow mt-8">
+
+    <h2 class="text-2xl font-bold mb-6">
+        Detail {{ $detail->nama_tipe }}
+    </h2>
+
+    <table class="w-full">
+
+        <thead>
+
+            <tr class="bg-pink-100">
+
+                <th class="p-3 text-left">No</th>
+                <th class="p-3 text-left">Fasilitas</th>
+                <th class="p-3 text-center">Aksi</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        @foreach($detail->fasilitas as $f)
+
+        <tr class="border-b">
+
+            <td class="p-3">
+                {{ $loop->iteration }}
+            </td>
+
+            <td class="p-3">
+
+                <form action="{{ route('fasilitas.update',$f->id) }}"
+                      method="POST"
+                      class="flex gap-3">
+
+                    @csrf
+                    @method('PUT')
+
+                    <input
+                        type="text"
+                        name="nama_fasilitas"
+                        value="{{ $f->nama_fasilitas }}"
+                        class="border rounded-lg px-3 py-2 w-full">
+
+                    <button
+                        class="bg-blue-500 text-white px-4 rounded-lg">
+
+                        Simpan
+
+                    </button>
+
+                </form>
+
+            </td>
+
+            <td class="p-3 text-center">
+
+                <form action="{{ route('fasilitas.destroy',$f->id) }}"
+                      method="POST">
+
+                    @csrf
+                    @method('DELETE')
+
+                    <button
+                        onclick="return confirm('Hapus fasilitas?')"
+                        class="bg-red-500 text-white px-4 py-2 rounded-lg">
+
+                        Hapus
+
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        @endforeach
+
+        </tbody>
+
+    </table>
+
+    <hr class="my-6">
+
+    <h3 class="text-xl font-bold mb-3">
+        Tambah Fasilitas
+    </h3>
+
+    <form action="{{ route('fasilitas.store',$detail->id) }}"
+          method="POST"
+          class="flex gap-3">
+
+        @csrf
+
+        <input
+            type="text"
+            name="nama_fasilitas"
+            placeholder="Masukkan fasilitas..."
+            class="border rounded-lg px-4 py-2 w-full"
+            required>
+
+        <button
+            class="bg-green-500 hover:bg-green-600 text-white px-6 rounded-lg">
+
+            Tambah
+
+        </button>
+
+    </form>
+
+</div>
+
+@endif
 
     </div>
     
