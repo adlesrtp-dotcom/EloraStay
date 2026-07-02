@@ -50,35 +50,56 @@ tailwind.config = {
             </h2>
 
             <p class="text-sm">
-                Masukkan email untuk reset password
+                Masukkan email dan nomor HP yang terdaftar untuk menerima link reset password.
             </p>
 
         </div>
 
-        <!-- FORM -->
-        <form onsubmit="resetPassword(event)">
+        <form action="{{ route('password.check') }}" method="POST">
+        @csrf
 
-            <!-- INPUT -->
-            <div class="mb-5">
+        <!-- Email -->
+        <div class="mb-5">
+            <input
+                type="email"
+                name="email"
+                value="{{ old('email') }}"
+                placeholder="Masukkan Email"
+                required
+                class="w-full px-5 py-3 rounded-full border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-400">
+        </div>
 
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Masukkan email"
-                    required
-                    class="w-full px-5 py-3 rounded-full border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-400">
+        <!-- Nomor HP -->
+        <div class="mb-5">
+            <input
+                type="tel"
+                name="telepon"
+                value="{{ old('telepon') }}"
+                pattern="[0-9]{10,15}"
+                placeholder="Masukkan Nomor HP"
+                required
+                class="w-full px-5 py-3 rounded-full border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-400">
+        </div>
 
-            </div>
+        <button
+            type="submit"
+            class="w-full bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white py-3 rounded-full font-semibold transition duration-300 shadow-md">
+            Verifikasi
+        </button>
 
-            <!-- BUTTON -->
-            <button
-                type="submit"
-                class="w-full bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white py-3 rounded-full font-semibold transition duration-300 shadow-md">
+        @if(session('error'))
+        <div class="mb-4 bg-red-100 text-red-700 p-3 rounded-lg">
+            {{ session('error') }}
+        </div>
+        @endif
 
-                Kirim Link Reset
-            </button>
+        @if(session('success'))
+        <div class="mb-4 bg-green-100 text-green-700 p-3 rounded-lg">
+            {{ session('success') }}
+        </div>
+        @endif
+    </form>
 
-        </form>
 
         <!-- LOGIN -->
         <p class="text-center text-sm text-gray-600 mt-6">
@@ -152,37 +173,7 @@ tailwind.config = {
     <!-- BOTTOM -->
     <div class="text-center py-4 bg-black/10 text-sm">
         © 2026 EloraStay. All rights reserved.
-    </div>
-
-</footer>
-
-<!-- SCRIPT -->
-<script>
-
-function resetPassword(e) {
-
-    e.preventDefault();
-
-    const email =
-        document.getElementById("email").value;
-
-    if (email === "") {
-
-        alert("Email wajib diisi!");
-
-        return;
-    }
-
-    // simulasi kirim email
-    alert(
-        "Link reset password telah dikirim ke " + email
-    );
-
-    // redirect login
-    window.location.href = "/login";
-}
-
-</script>
+    </div></footer>
 
 </body>
 </html>

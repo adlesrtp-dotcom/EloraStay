@@ -8,7 +8,10 @@ class KamarController extends Controller
 {
     public function index()
     {
-        $tipeKamars = TipeKamar::with('kamars')->get();
+        $tipeKamars = TipeKamar::with([
+            'kamars',
+            'fasilitas'
+        ])->get();
 
         return view('kamar', compact('tipeKamars'));
     }

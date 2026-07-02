@@ -103,6 +103,17 @@ Route::get('/lupa-password', function () {
 
 Route::get('/logout', [AuthController::class, 'logout'])
     ->name('logout');
+
+    // PROSES LUPA PASSWORD
+Route::post('/password/check', [AuthController::class, 'checkPassword'])
+    ->name('password.check');
+
+Route::get('/reset-password/{id}', [AuthController::class, 'showResetPassword'])
+    ->name('password.reset');
+
+Route::post('/reset-password/{id}', [AuthController::class, 'updatePassword'])
+    ->name('password.update');
+    
 /*
 |--------------------------------------------------------------------------
 | PELANGGAN

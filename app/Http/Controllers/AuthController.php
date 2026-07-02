@@ -55,6 +55,53 @@ class AuthController extends Controller
             ->with('success', 'Registrasi berhasil');
     }
 
+    // ===========================
+    // LUPA PASSWORD
+    // ===========================
+
+    public function checkPassword(Request $request)
+    {
+        $request->validate([
+            'email'    => 'required|email',
+            'telepon'  => 'required'
+        ]);
+
+        $user = User::where('email', $request->email)
+                    ->where('telepon', $request->telepon)
+                    ->first();
+
+        if (!$user) {
+            return back()->with(
+                'error',
+                'Email atau nomor HP tidak sesuai.'
+            );
+        }
+
+        return redirect()->route('password.reset', $user->id);
+    }
+
+    public function showResetPassword($id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('reset-password', compact('user'));
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        $request->validate([
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->password = $request->password;
+        $user->save();
+
+        return redirect('/login')
+            ->with('success', 'Password berhasil diubah.');
+    }
+
     // LOGOUT
     public function logout()
     {

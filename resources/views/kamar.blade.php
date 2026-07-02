@@ -74,8 +74,8 @@
                         @json($tipe->ukuran),
                         @json($tipe->rating),
                         @json($tipe->harga),
-                        @json($tipe->kamars->where("status","tersedia")->count())
-
+                        @json($tipe->kamars->where("status","tersedia")->count()),
+            @json($tipe->fasilitas)
                     )'
 
                     class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition">
@@ -116,7 +116,7 @@
 
 <script>
 
-function openModal(tipeId, nama, desc, img, capacity, size, rating, price, available) {
+function openModal(tipeId, nama, desc, img, capacity, size, rating, price, available, fasilitas) {
 
     document.getElementById("roomModal").classList.remove("hidden");
 
@@ -145,11 +145,9 @@ function openModal(tipeId, nama, desc, img, capacity, size, rating, price, avail
 
         <!-- fasilitas -->
         <ul class="space-y-2 text-sm text-gray-600 mb-6">
-            <li>✔ WiFi Gratis</li>
-            <li>✔ AC</li>
-            <li>✔ Smart TV</li>
-            <li>✔ Sarapan Gratis</li>
-            <li>✔ Kamar Mandi Dalam</li>
+            ${fasilitas.map(f => `
+                <li>✔ ${f.nama_fasilitas}</li>
+            `).join('')}
         </ul>
 
         <h3 class="text-pink-500 text-2xl font-bold mb-5">
